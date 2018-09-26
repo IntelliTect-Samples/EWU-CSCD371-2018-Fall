@@ -339,3 +339,6 @@ coverage.json
 # Remove C# build files
 obj/
 bin/
+
+# Remove MacOS File System Organization Files
+.DS_Store
