@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HelloWorld.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class TestHelloWorldInOut
     {
         [TestMethod]
         public void TestConsoleUsingEmptyString()
