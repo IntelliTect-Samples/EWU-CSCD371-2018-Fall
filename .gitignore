@@ -342,3 +342,6 @@ bin/
 
 # Remove MacOS File System Organization Files
 .DS_Store
+
+# Remove VS Code Configuration Files
+.vscode/
