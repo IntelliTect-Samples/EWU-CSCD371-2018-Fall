@@ -11,7 +11,7 @@ namespace HelloWorld.Tests
             string testVal = "";
             string expectedOutput =
 $@"Please enter your first name: <<{testVal}
->>Your name is: {testVal}";
+>>Your first name is: {testVal}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.
                 Expect(expectedOutput, HelloWorld.Program.Main);
@@ -23,7 +23,7 @@ $@"Please enter your first name: <<{testVal}
             string testVal = "Cameron";
             string expectedOutput =
 $@"Please enter your first name: <<{testVal}
->>Your name is: {testVal}";
+>>Your first name is: {testVal}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.
                 Expect(expectedOutput, HelloWorld.Program.Main);
