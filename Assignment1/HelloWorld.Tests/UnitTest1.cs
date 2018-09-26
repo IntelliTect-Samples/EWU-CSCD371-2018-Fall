@@ -6,8 +6,27 @@ namespace HelloWorld.Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestConsoleUsingEmptyString()
         {
+            string testVal = "";
+            string expectedOutput =
+$@"Please enter your first name: <<{testVal}
+>>Your name is: {testVal}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.
+                Expect(expectedOutput, HelloWorld.Program.Main);
+        }
+
+        [TestMethod]
+        public void TestConsoleUsingStringCameron()
+        {
+            string testVal = "Cameron";
+            string expectedOutput =
+$@"Please enter your first name: <<{testVal}
+>>Your name is: {testVal}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.
+                Expect(expectedOutput, HelloWorld.Program.Main);
         }
     }
 }
