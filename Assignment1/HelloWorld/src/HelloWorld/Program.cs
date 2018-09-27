@@ -2,7 +2,7 @@
 
 namespace HelloWorld
 {
-    public class Program
+    public class UserInputName
     {
         public static void Main(string[] args)
         {
