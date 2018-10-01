@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,21 +19,47 @@ namespace ConsoleMathSolver.Tests
         }
         
         [TestMethod]
-        public void ParseOperators_TooManyOperatorsOnePlusOnePlus()
+        public void ParseOperators_OneMinusOne()
         {
-            const string input = "1+1+";
+            const string input = "1-1";
             var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
             
-            Assert.IsNull(res);
+            Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
         }
         
         [TestMethod]
+        public void ParseOperators_OneTimesOne()
+        {
+            const string input = "1*1";
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            
+            Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
+        }
+        
+        [TestMethod]
+        public void ParseOperators_OneDividedByOne()
+        {
+            const string input = "1/1";
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            
+            Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
+        public void ParseOperators_TooManyOperatorsOnePlusOnePlus()
+        {
+            const string input = "1+1+";
+
+            ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
         public void ParseOperators_TooManyOperatorsPlusOnePlusOne()
         {
             const string input = "+1+1";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
-            
-            Assert.IsNull(res);
+            ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
         }
         
         [TestMethod]
@@ -45,12 +72,11 @@ namespace ConsoleMathSolver.Tests
         }
         
         [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
         public void ParseOperators_OperatorNoNumbers()
         {
             const string input = "+";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
-            
-            Assert.IsNull(res);
+            ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
         }
     }
 }

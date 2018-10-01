@@ -8,9 +8,9 @@ namespace ConsoleMathSolver
     public class ConsoleMathSolverHelper
     {
         /// <summary>
-        /// Returns list of type [int] split on operators. If list is not properly formatted null is returned
-        /// First non-integer number is considered to be operator. If this operator is not one of the
-        /// valid operators, null is returned.
+        /// Returns list of type [int] split on operators. If list is not properly formatted an InvalidDataException
+        /// is returned. First non-integer number is considered to be operator. If this operator is not one of the
+        /// valid operators, InvalidDataException is thrown.
         /// Valid operators: +, -, *, /
         /// </summary>
         /// <param name="operatorInput">Operator delimited string of integers
@@ -50,9 +50,12 @@ namespace ConsoleMathSolver
             }
 
             // too many operators
-            return (validNumCount == tempArr.Count) ? toReturn : null;
+            return (validNumCount == tempArr.Count) ? toReturn : 
+                throw new InvalidDataException("String not properly operator delimited.");
         }
 
+        // Finds first non-digit in string, and determines if it is a valid operator
+        // Throws InvalidDataException if no valid operator found
         private static char OperatorUsed(string operatorInput)
         {
             foreach (var i in operatorInput)
