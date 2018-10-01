@@ -8,12 +8,13 @@ namespace ConsoleMathSolver.Tests
     public class ConsoleMathSolverHelperTests
     {
         [TestMethod]
-        public void TestParseTwoIntegersOneOne()
+        public void ParseOperators_TwoIntegersOneOnePlus()
         {
             const string input = "1+1";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            const char testOperator = '+';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, testOperator);
             
-            Assert.AreEqual(new List<object> {1, 1}, res);
+            Assert.AreEqual(new List<int> {1, 1}, res);
         }
     }
 }
