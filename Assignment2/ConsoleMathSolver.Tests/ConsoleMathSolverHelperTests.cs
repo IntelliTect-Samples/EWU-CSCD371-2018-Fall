@@ -13,7 +13,8 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_OnePlusOne()
         {
             const string input = "1+1";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '+';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
             
             Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
         }
@@ -22,7 +23,8 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_OneMinusOne()
         {
             const string input = "1-1";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '-';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
             
             Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
         }
@@ -31,7 +33,8 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_OneTimesOne()
         {
             const string input = "1*1";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '*';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
             
             Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
         }
@@ -40,7 +43,8 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_OneDividedByOne()
         {
             const string input = "1/1";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '/';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
             
             Assert.IsTrue(new List<int> {1, 1}.SequenceEqual(res));
         }
@@ -50,8 +54,8 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_TooManyOperatorsOnePlusOnePlus()
         {
             const string input = "1+1+";
-
-            ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '+';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
         }
         
         [TestMethod]
@@ -59,14 +63,16 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_TooManyOperatorsPlusOnePlusOne()
         {
             const string input = "+1+1";
-            ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '+';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
         }
         
         [TestMethod]
         public void ParseOperators_EmptyString()
         {
             const string input = "";
-            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '+';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
             
             Assert.IsNull(res);
         }
@@ -76,7 +82,19 @@ namespace ConsoleMathSolver.Tests
         public void ParseOperators_OperatorNoNumbers()
         {
             const string input = "+";
-            ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input);
+            char operatorUsed = '+';
+            var res = ConsoleMathSolver.ConsoleMathSolverHelper.ParseOperators(input, operatorUsed);
+        }
+        
+        
+        
+        [TestMethod]
+        public void CalculateValue_List1Plus1()
+        {
+            List<int> testArr = new List<int> {1, 1};
+            int res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(testArr);
+            
+            Assert.AreEqual(2, res);
         }
     }
 }

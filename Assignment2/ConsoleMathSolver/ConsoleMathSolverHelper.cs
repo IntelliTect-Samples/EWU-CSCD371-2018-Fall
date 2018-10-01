@@ -7,23 +7,27 @@ namespace ConsoleMathSolver
 {
     public class ConsoleMathSolverHelper
     {
+
+        public static int CalculateValue(List<int> numsList)
+        {
+            return 0;
+        }
+        
         /// <summary>
-        /// Returns list of type [int] split on operators. If list is not properly formatted an InvalidDataException
-        /// is returned. First non-integer number is considered to be operator. If this operator is not one of the
-        /// valid operators, InvalidDataException is thrown.
+        /// Returns list of type [int] split on operators. If list is not properly formatted then null is returned
+        /// First non-integer number is considered to be operator. If this operator is not one of the
+        /// valid operators, null is returned.
         /// Valid operators: +, -, *, /
         /// </summary>
         /// <param name="operatorInput">Operator delimited string of integers
         /// I.E: "1+1" not "1+1+"</param>
         /// <param name="operatorUsed">Operator splitting integers</param>
-        public static List<int> ParseOperators(string operatorInput)
+        public static List<int> ParseOperators(string operatorInput, char operatorUsed)
         {
             if (string.IsNullOrEmpty(operatorInput))
             {
                 return null;
             }
-
-            char operatorUsed = OperatorUsed(operatorInput);
             
             List<int> toReturn = new List<int>();
 
