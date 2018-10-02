@@ -8,9 +8,53 @@ namespace ConsoleMathSolver
     public class ConsoleMathSolverHelper
     {
 
-        public static int CalculateValue(List<int> numsList)
+        public static int CalculateValue(string operatorInput)
         {
-            return 0;
+            string operatorUsed = OperatorUsed(operatorInput);
+
+            List<int> numsArr = ParseOperators(operatorInput, operatorUsed);
+
+            if (!(numsArr.Count >= 2))
+            {
+                return 0; 
+            }
+            int result = numsArr[0];
+
+            // todo: set result to first in array and then calculate from subsequent elements
+            // todo: ensure at least two operators
+            switch (operatorUsed)
+            {
+                    case "+":
+                        for (int i = 1; i < numsArr.Count; i++)
+                        {
+                            result += numsArr[i];
+                        }
+
+                        return result;
+                    case "-":
+                        for (int i = 1; i < numsArr.Count; i++)
+                        {
+                            result -= numsArr[i];
+                        }
+
+                        return result;
+                    case "*":
+                        for (int i = 1; i < numsArr.Count; i++)
+                        {
+                            result *= numsArr[i];
+                        }
+
+                        return result;
+                    case "/":
+                        for (int i = 1; i < numsArr.Count; i++)
+                        {
+                            result /= numsArr[i];
+                        }
+
+                        return result;
+            }
+            
+            return result;
         }
         
         /// <summary>
@@ -22,7 +66,8 @@ namespace ConsoleMathSolver
         /// <param name="operatorInput">Operator delimited string of integers
         /// I.E: "1+1" not "1+1+"</param>
         /// <param name="operatorUsed">Operator splitting integers</param>
-        public static List<int> ParseOperators(string operatorInput, char operatorUsed)
+        //todo: change to return tuple of Integer, Integer
+        public static List<int> ParseOperators(string operatorInput, string operatorUsed)
         {
             if (string.IsNullOrEmpty(operatorInput))
             {
@@ -60,20 +105,36 @@ namespace ConsoleMathSolver
 
         // Finds first non-digit in string, and determines if it is a valid operator
         // Throws InvalidDataException if no valid operator found
-        private static char OperatorUsed(string operatorInput)
+        // todo: Handle negative numbers. If second number is negative then parse on double negative character
+        // todo: change to private
+        public static string OperatorUsed(string operatorInput)
         {
-            foreach (var i in operatorInput)
+            for (int i = 0; i < operatorInput.Length; i++)
             {
-                if (!char.IsDigit(i))
+                if (i == 0 && operatorInput[i] == '-')
                 {
-                    // check if is one of the valid operators
-                    if (new List<char> {'+', '-', '/', '*'}.Contains(i))
+                    continue;
+                }
+                if (!char.IsDigit(operatorInput[i]))
+                {
+                    if (operatorInput[i] == '-' && (i+1) < operatorInput.Length)
                     {
-                        return i;
+                        // -1 - -1
+                        // negative following subtraction symbol
+                        if (operatorInput[i + 1] == '-')
+                        {
+                            return "--";
+                        }
                     }
+                    else if (new List<char> {'+', '-', '/', '*'}.Contains(operatorInput[i]))
+                    {
+                        return operatorInput[i] + "";
+                    }
+
                     throw new InvalidDataException($"\"{i}\" is not a valid operator");
                 }
             }
+
             throw new InvalidDataException("No valid operator found");
         }
     }
