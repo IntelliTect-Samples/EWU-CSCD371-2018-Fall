@@ -1,0 +1,17 @@
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwichUnitTest.deps.json
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwichUnitTest.runtimeconfig.json
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwichUnitTest.runtimeconfig.dev.json
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwichUnitTest.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwichUnitTest.pdb
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.AssemblyInfoInputs.cache
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.AssemblyInfo.cs
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.pdb
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.csprojAssemblyReference.cache
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwich.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\bin\Debug\netcoreapp2.1\HelloSandwich.pdb
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwichUnitTest\obj\Debug\netcoreapp2.1\HelloSandwichUnitTest.csproj.CopyComplete

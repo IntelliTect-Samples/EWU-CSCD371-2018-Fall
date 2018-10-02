@@ -1,0 +1,11 @@
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\bin\Debug\netcoreapp2.1\HelloSandwich.deps.json
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\bin\Debug\netcoreapp2.1\HelloSandwich.runtimeconfig.json
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\bin\Debug\netcoreapp2.1\HelloSandwich.runtimeconfig.dev.json
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\bin\Debug\netcoreapp2.1\HelloSandwich.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\bin\Debug\netcoreapp2.1\HelloSandwich.pdb
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\obj\Debug\netcoreapp2.1\HelloSandwich.csprojAssemblyReference.cache
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\obj\Debug\netcoreapp2.1\HelloSandwich.csproj.CoreCompileInputs.cache
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\obj\Debug\netcoreapp2.1\HelloSandwich.AssemblyInfoInputs.cache
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\obj\Debug\netcoreapp2.1\HelloSandwich.AssemblyInfo.cs
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\obj\Debug\netcoreapp2.1\HelloSandwich.dll
+C:\Users\Brian Bos (User)\Documents\Visual Studio 2017\Projects\EWU-CSCD371-2018-Fall\Assignment1\HelloSandwich\HelloSandwich\obj\Debug\netcoreapp2.1\HelloSandwich.pdb
