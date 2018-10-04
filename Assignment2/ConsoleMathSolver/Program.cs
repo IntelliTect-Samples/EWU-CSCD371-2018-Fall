@@ -13,7 +13,11 @@ namespace ConsoleMathSolver
             try
             {
                 Console.Write("Please enter expression in form <integer><operator><integer>: ");
-                string userInput = Console.ReadLine();
+                
+                // checks if a command line argument is present, if not input taken from console
+                string userInput = (args.Length != 0) ? args[0] : Console.ReadLine();
+                
+                
                 double result = CalculateValue(userInput);
                 Console.WriteLine($"Value is: {result}");
             }
