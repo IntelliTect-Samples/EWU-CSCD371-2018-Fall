@@ -136,8 +136,8 @@ namespace CalculatorTest
         }
         
         [DataRow("50--5", "55")]
-        [DataRow("10--10000", "10100")]
-        [DataRow("9999--1", "1000")]
+        [DataRow("10--10000", "10010")]
+        [DataRow("9999--1", "10000")]
         [DataTestMethod]
         public void SubtractPosMinusNeg(string inputStr, string answer)
         {
@@ -158,8 +158,8 @@ namespace CalculatorTest
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(ExpectedOutput, Assignment2_Calculator.Calculator.Main);
         }
         
-        [DataRow("-2147483647-2", "2147483649")]
-        [DataRow("2--2147483647", "2147483645")]
+        [DataRow("200--2147483647", "2147483847")]
+        [DataRow("2--2147483647", "2147483649")]
         [DataRow("-2147483647-100", "-2147483747")]
         [DataRow("-2147483647--2147483647", "0")]
         [DataTestMethod]
