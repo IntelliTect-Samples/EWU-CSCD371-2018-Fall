@@ -3,6 +3,11 @@ using Assignment2_Calculator;
 using IntelliTect.TestTools.Console;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+/**
+ * Casey White
+ * Tests the calculator class
+ * tests edge cases on /,*,-,+,%,^ operators
+ */
 namespace CalculatorTest
 {
     [TestClass]
