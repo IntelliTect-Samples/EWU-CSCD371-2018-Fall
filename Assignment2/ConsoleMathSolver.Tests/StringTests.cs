@@ -6,8 +6,6 @@ namespace ConsoleMathSolver.Tests
     [TestClass]
     public class StringTests
     {
-        // remove
-        // trim
         // ends with
         [TestMethod]
         [DataRow("someinsidething", "something", "inside", 4)]
@@ -28,6 +26,16 @@ namespace ConsoleMathSolver.Tests
         public void TestStringInsert(string expected, string toRemoveFrom, int atIndex)
         {
             Assert.AreEqual(expected, toRemoveFrom.Remove(atIndex));
+        }
+        
+        [TestMethod]
+        [DataRow("something", "   something    ")]
+        [DataRow("nonewline", "\n\nnonewline")]
+        [DataRow("", "")]
+        [DataRow("keep space", "keep space")]
+        public void TestStringTrim(string expected, string toTrim)
+        {
+            Assert.AreEqual(expected, toTrim.Trim());
         }
     }
 }
