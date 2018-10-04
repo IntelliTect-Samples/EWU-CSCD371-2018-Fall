@@ -18,5 +18,16 @@ namespace ConsoleMathSolver.Tests
         {
             Assert.AreEqual(expected, toInsertInto.Insert(atIndex, insertThis));
         }
+        
+                
+        [TestMethod]
+        [DataRow("some", "something", 4)]
+        [DataRow("", "something", 0)]
+        [DataRow("something", "something", 9)]
+        [DataRow("fin", "finito", 3)]
+        public void TestStringInsert(string expected, string toRemoveFrom, int atIndex)
+        {
+            Assert.AreEqual(expected, toRemoveFrom.Remove(atIndex));
+        }
     }
 }
