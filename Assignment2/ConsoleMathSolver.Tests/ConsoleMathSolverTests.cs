@@ -68,6 +68,18 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
         }
         
         [TestMethod]
+        public void OneTimesZero()
+        {
+            string testVal = "1*0";
+            double expectedAnswer = 0.0;
+            string expectedOutput =
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>Value is: {expectedAnswer}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
         public void MaxIntPlusMaxInt()
         {
             int firstNumber = int.MaxValue;

@@ -35,10 +35,9 @@ namespace ConsoleMathSolver
                 throw;
             }
         }
-        
-        
-        
-        public static double CalculateValue(string userInput)
+
+
+        private static double CalculateValue(string userInput)
         {
             if (string.IsNullOrEmpty(userInput))
             {
@@ -140,7 +139,7 @@ namespace ConsoleMathSolver
                     throw new InvalidDataException("String not properly operator delimited.");
                 }
             }
-
+            
             // no operators present
             if (splitOnOperator.Count == 0)
             {
