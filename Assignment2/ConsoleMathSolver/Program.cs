@@ -130,6 +130,11 @@ namespace ConsoleMathSolver
             else
             {
                 splitOnOperator = new List<string>(operatorInput.Split(operatorUsed));
+                
+                if (splitOnOperator.Count < 2)
+                {
+                    throw new InvalidDataException("String not properly operator delimited.");
+                }
             }
 
             // no operators present
@@ -152,9 +157,14 @@ namespace ConsoleMathSolver
                 }
             }
 
+            // make sure the last character isn't a erroneous operator
+            if (splitOnOperator.Count > 2 || !char.IsDigit(splitOnOperator[1][splitOnOperator[1].Length-1]))
+            {
+                throw new InvalidDataException("String not properly operator delimited.");
+            }
+            
             // too many operators
-            return (validNumCount == splitOnOperator.Count) ? toReturn : 
-                throw new InvalidDataException($"String not properly operator delimited. \"{validNumCount}\" numbers but \"{splitOnOperator.Count}\" operators");
+            return toReturn;
         }
 
         // Finds first non-digit in string, and determines if it is a valid operator

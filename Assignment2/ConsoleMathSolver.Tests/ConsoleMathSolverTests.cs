@@ -8,6 +8,42 @@ namespace ConsoleMathSolver.Tests
     public class ConsoleMathSolverTests
     {
         [TestMethod]
+        public void ImproperNumberOfOperatorsSideBySide()
+        {
+            string testVal = "1++1";
+            double expectedAnswer = 0.0;
+            string expectedOutput =
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>String not properly operator delimited.";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
+        public void ImproperNumberOfOperatorsExtraAtFront()
+        {
+            string testVal = "+1+1";
+            double expectedAnswer = 0.0;
+            string expectedOutput =
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>String not properly operator delimited.";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+
+        [TestMethod]
+        public void ImproperNumberOfOperatorsExtraAtBack()
+        {
+            string testVal = "1+1+";
+            double expectedAnswer = 0.0;
+            string expectedOutput =
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>String not properly operator delimited.";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+
+        [TestMethod]
         public void EmptyInput()
         {
             string testVal = "";
