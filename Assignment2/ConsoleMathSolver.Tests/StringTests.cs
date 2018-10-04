@@ -37,5 +37,16 @@ namespace ConsoleMathSolver.Tests
         {
             Assert.AreEqual(expected, toTrim.Trim());
         }
+        
+        [TestMethod]
+        [DataRow(true, "abcd", 'd')]
+        [DataRow(false, "abcd", 'b')]
+        [DataRow(true, "bbbb", 'b')]
+        [DataRow(false, "", 'b')]
+        [DataRow(true, "test ", ' ')]
+        public void TestStringEndsWith(bool expected, string viewCharFrom, char endingChar)
+        {
+            Assert.AreEqual(expected, viewCharFrom.EndsWith(endingChar));
+        }
     }
 }
