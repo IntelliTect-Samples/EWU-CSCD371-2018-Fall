@@ -8,12 +8,9 @@ namespace ConsoleMathSolver
     {
         public static void Main(string[] args)
         {
-            var tempList = (ConsoleMathSolverHelper.ParseOperators("-1+-1", "+"));
-            foreach (var i in tempList)
-            {
-                Console.WriteLine(i);
-            }
-            Console.WriteLine(tempList.Count);
+            int temp1 = 5;
+            int temp2 = 0;
+            Console.WriteLine(temp1 / temp2);
         }
     }
 }
