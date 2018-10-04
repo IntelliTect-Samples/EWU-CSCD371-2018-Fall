@@ -257,7 +257,7 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
             string testVal = "2/2";
             double expectedAnswer = 1.0;
             string expectedOutput =
-                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
 >>Value is: {expectedAnswer}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
@@ -269,7 +269,7 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
             string testVal = "-2/2";
             double expectedAnswer = -1.0;
             string expectedOutput =
-                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
 >>Value is: {expectedAnswer}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
@@ -281,7 +281,7 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
             string testVal = "2/-2";
             double expectedAnswer = -1.0;
             string expectedOutput =
-                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
 >>Value is: {expectedAnswer}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
@@ -293,7 +293,7 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
             string testVal = "-2/-2";
             double expectedAnswer = 1.0;
             string expectedOutput =
-                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+$@"Please enter expression in form <integer><operator><integer>: <<{testVal}
 >>Value is: {expectedAnswer}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
