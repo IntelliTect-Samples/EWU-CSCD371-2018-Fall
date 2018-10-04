@@ -53,6 +53,12 @@ namespace ConsoleMathSolver
 
             List<int> parsedNumbers = ParseOperators(userInputNoSpaces, operatorUsed);
 
+            if (operatorUsed == "--")
+            {
+                operatorUsed = operatorUsed[0] + "";
+                parsedNumbers[1] = parsedNumbers[1] * -1;
+            }
+
             if (parsedNumbers.Count != 2)
             {
                 return 0; 
@@ -106,17 +112,35 @@ namespace ConsoleMathSolver
         {
             List<int> toReturn = new List<int>();
 
-            List<string> tempArr = new List<string>(operatorInput.Split(operatorUsed));
+            List<string> splitOnOperator;
+
+            if (operatorInput[0] == '-' && operatorUsed == "-") // if the first number is a negative
+            {
+                string tempString = operatorInput.Substring(1); // exclude first negative
+                splitOnOperator = new List<string>(tempString.Split(operatorUsed));
+
+                if (splitOnOperator.Count < 2)
+                {
+                    throw new InvalidDataException("String not properly operator delimited.");
+                }
+                
+                string replaceNegative = "-" + splitOnOperator[0];
+                splitOnOperator[0] = replaceNegative;
+            }
+            else
+            {
+                splitOnOperator = new List<string>(operatorInput.Split(operatorUsed));
+            }
 
             // no operators present
-            if (tempArr.Count == 0)
+            if (splitOnOperator.Count == 0)
             {
                 throw new InvalidDataException("Invalid input sequence! Input must match <integer><operator><integer>");
             }
 
             int validNumCount = 0;
 
-            foreach (var temp in tempArr)
+            foreach (var temp in splitOnOperator)
             {
                 if (int.TryParse(temp, out int parsedVal))
                 {
@@ -129,8 +153,8 @@ namespace ConsoleMathSolver
             }
 
             // too many operators
-            return (validNumCount == tempArr.Count) ? toReturn : 
-                throw new InvalidDataException("String not properly operator delimited.");
+            return (validNumCount == splitOnOperator.Count) ? toReturn : 
+                throw new InvalidDataException($"String not properly operator delimited. \"{validNumCount}\" numbers but \"{splitOnOperator.Count}\" operators");
         }
 
         // Finds first non-digit in string, and determines if it is a valid operator
@@ -152,6 +176,10 @@ namespace ConsoleMathSolver
                         if (operatorInput[i + 1] == '-')
                         {
                             return "--";
+                        }
+                        else
+                        {
+                            return "-";
                         }
                     }
                     else if (new List<char> {'+', '-', '/', '*'}.Contains(operatorInput[i]))
