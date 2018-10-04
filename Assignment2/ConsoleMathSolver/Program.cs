@@ -17,12 +17,22 @@ namespace ConsoleMathSolver
                 double result = CalculateValue(userInput);
                 Console.WriteLine($"Value is: {result}");
             }
+            catch (InvalidDataException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
         }
+        
+        
         
         public static double CalculateValue(string userInput)
         {

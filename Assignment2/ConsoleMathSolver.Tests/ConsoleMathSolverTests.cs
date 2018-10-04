@@ -20,14 +20,13 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
         }
         
         [TestMethod]
-        [ExpectedException(typeof(InvalidDataException))]
         public void EmptyInput()
         {
             string testVal = "";
             double expectedAnswer = 0.0;
             string expectedOutput =
 $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
->>Value is: {expectedAnswer}";
+>>Input cannot be empty!";
 
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
         }
@@ -61,13 +60,72 @@ $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
         }
         
         [TestMethod]
-        [ExpectedException(typeof(DivideByZeroException))]
         public void DivideByZero()
         {
             string testVal = "1/0";
             double expectedAnswer = 0.0;
             string expectedOutput =
 $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>Cannot divide by 0!";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
+        public void PositivePlusPositive()
+        {
+            string testVal = "1+1";
+            double expectedAnswer = 2.0;
+            string expectedOutput =
+                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>Value is: {expectedAnswer}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
+        public void NegativePlusPositive()
+        {
+            string testVal = "-1+1";
+            double expectedAnswer = 0.0;
+            string expectedOutput =
+                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>Value is: {expectedAnswer}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
+        public void PositivePlusNegative()
+        {
+            string testVal = "1+-1";
+            double expectedAnswer = 0.0;
+            string expectedOutput =
+                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>Value is: {expectedAnswer}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
+        public void NegativePlusNegative()
+        {
+            string testVal = "-1+-1";
+            double expectedAnswer = -2.0;
+            string expectedOutput =
+                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
+>>Value is: {expectedAnswer}";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
+        }
+        
+        [TestMethod]
+        public void FourteenPlusOneThousandFortySix()
+        {
+            string testVal = "14+1046";
+            double expectedAnswer = 1060;
+            string expectedOutput =
+                $@"Please enter expression in form <integer><operator><integer>: <<{testVal}
 >>Value is: {expectedAnswer}";
 
             IntelliTect.TestTools.Console.ConsoleAssert.Expect(expectedOutput, ConsoleMathSolver.Program.Main);
