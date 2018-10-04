@@ -429,7 +429,7 @@ namespace CalculatorTest
             ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
         }
 
-        [DataRow("50^-7", "781250000000")]
+        [DataRow("50^-7", "1.28E-12")]
         [DataRow("10000^-19", "1E-76")]
         [DataRow("7^8", "5764801")]
         [DataRow("100^-9", "1E-18")]
