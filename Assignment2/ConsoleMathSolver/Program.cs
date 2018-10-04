@@ -8,9 +8,18 @@ namespace ConsoleMathSolver
     {
         public static void Main(string[] args)
         {
-            int temp1 = 5;
-            int temp2 = 0;
-            Console.WriteLine(temp1 / temp2);
+            try
+            {
+                Console.Write("Please enter expression in form <integer><operator><integer>: ");
+                string userInput = Console.ReadLine();
+                double result = ConsoleMathSolverHelper.CalculateValue(userInput);
+                Console.WriteLine($"Value is: {result}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

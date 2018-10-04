@@ -102,7 +102,7 @@ namespace ConsoleMathSolver.Tests
         public void CalculateValue_1Plus1()
         {
             const string input = "1+1";
-            int res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
+            double res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
             
             Assert.AreEqual(2, res);
         }
@@ -111,7 +111,7 @@ namespace ConsoleMathSolver.Tests
         public void CalculateValue_2Plus1()
         {
             const string input = "2+1";
-            int res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
+            double res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
             
             Assert.AreEqual(3, res);
         }
@@ -120,7 +120,7 @@ namespace ConsoleMathSolver.Tests
         public void CalculateValue_2Times2()
         {
             const string input = "2*2";
-            int res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
+            double res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
             
             Assert.AreEqual(4, res);
         }
@@ -129,7 +129,7 @@ namespace ConsoleMathSolver.Tests
         public void CalculateValue_2TimesNegative2()
         {
             const string input = "1*-2";
-            int res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
+            double res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
             
             Assert.AreEqual(-2, res);
         }
@@ -138,7 +138,7 @@ namespace ConsoleMathSolver.Tests
         public void CalculateValue_Negative2TimesNegative2()
         {
             const string input = "-2*-2";
-            int res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
+            double res = ConsoleMathSolver.ConsoleMathSolverHelper.CalculateValue(input);
             
             Assert.AreEqual(4, res);
         }

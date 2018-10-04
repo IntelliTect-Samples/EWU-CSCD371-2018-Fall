@@ -8,13 +8,24 @@ namespace ConsoleMathSolver
 {
     public static class ConsoleMathSolverHelper
     {
-
-        // NOTE: Will throw System.DivideByZeroException
-        public static double CalculateValue(string operatorInput)
+        public static double CalculateValue(string userInput)
         {
-            string operatorUsed = OperatorUsed(operatorInput);
+            if (string.IsNullOrEmpty(userInput))
+            {
+                throw new InvalidDataException("Input cannot be empty!");
+            }
+            
+            // remove spaces from input string
+            string userInputNoSpaces = Regex.Replace(userInput, "\\ +", "");
 
-            List<int> parsedNumbers = ParseOperators(operatorInput, operatorUsed);
+            if (userInputNoSpaces.Length == 0)
+            {
+                throw new InvalidDataException("Input cannot be empty!");
+            }
+           
+            string operatorUsed = OperatorUsed(userInputNoSpaces);
+
+            List<int> parsedNumbers = ParseOperators(userInputNoSpaces, operatorUsed);
 
             if (parsedNumbers.Count != 2)
             {
@@ -49,7 +60,13 @@ namespace ConsoleMathSolver
                     case "/":
                         for (int i = 1; i < parsedNumbers.Count; i++)
                         {
-                            result /= parsedNumbers[i];
+                            // check for divide by 0
+                            if (parsedNumbers[i] == 0)
+                            {
+                                throw new DivideByZeroException("Cannot divide by 0!");
+                            }
+
+                        result /= parsedNumbers[i];
                         }
 
                         return result;
@@ -62,16 +79,6 @@ namespace ConsoleMathSolver
         // throws InvalidDataException 
         public static List<int> ParseOperators(string operatorInput, string operatorUsed)
         {
-            if (operatorInput == null || operatorUsed == null)
-            {
-                throw new NullReferenceException("operatorInput and operatorUsed cannot be null!");
-            }
-
-            if (Regex.Replace(operatorInput, "\\ +", "") == "" || Regex.Replace(operatorUsed, "\\ +", "") == "")
-            {
-                throw new InvalidDataException("operatorInput and operatorUsed cannot be empty!");   
-            }
-            
             List<int> toReturn = new List<int>();
 
             List<string> tempArr = new List<string>(operatorInput.Split(operatorUsed));
