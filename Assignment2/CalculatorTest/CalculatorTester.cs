@@ -395,7 +395,84 @@ namespace CalculatorTest
     }
 
 
+    [TestClass]
+    public class ExponentIntegerTests
+    {
+        [DataRow("50^7", "781250000000")]
+        [DataRow("10000^3", "1000000000000")]
+        [DataRow("9999^2", "99980001")]
+        [DataRow("100^9", "1E+18")]
+        [DataRow("1^200", "1")]
+        [DataTestMethod]
+        public void ExponentPositive(string inputStr, string answer)
+        {
+            var ExpectedOutput = $@">>Please enter an expression ie. (3+1): <<{inputStr}
+                                               >>{inputStr}={answer}";
+            ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
+        }
 
+        [DataRow("-50^7", "-781250000000")]
+        [DataRow("-10000^19", "-1E+76")]
+        [DataRow("-9999^80", "∞")]
+        [DataRow("-100^9", "-1E+18")]
+        [DataRow("-1^2", "1")]
+        [DataTestMethod]
+        public void ExponentNegExponentPos(string inputStr, string answer)
+        {
+            var ExpectedOutput = $@">>Please enter an expression ie. (3+1): <<{inputStr}
+                                               >>{inputStr}={answer}";
+            ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
+        }
+
+        [DataRow("50^-7", "781250000000")]
+        [DataRow("10000^-19", "1E-76")]
+        [DataRow("7^8", "5764801")]
+        [DataRow("100^-9", "1E-18")]
+        [DataRow("1^-2", "1")]
+        [DataTestMethod]
+        public void ExponentPosExponentNeg(string inputStr, string answer)
+        {
+            var ExpectedOutput = $@">>Please enter an expression ie. (3+1): <<{inputStr}
+                                               >>{inputStr}={answer}";
+            ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
+        }
+
+        [DataRow("2147483647^200", "∞")]
+        [DataRow("2^2147483647", "∞")]
+        [DataRow("2147483647^-219", "0")]
+        [DataRow("2147483647^2147483647", "∞")]
+        [DataTestMethod]
+        public void ExponentMaxValue(string inputStr, string answer)
+        {
+            var ExpectedOutput = $@">>Please enter an expression ie. (3+1): <<{inputStr}
+                                               >>{inputStr}={answer}";
+            ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
+        }
+
+        [DataRow("-2147483647^400", "∞")]
+        [DataRow("200^-2147483647", "0")]
+        [DataRow("-2147483647^-100", "0")]
+        [DataRow("-2147483647^-2147483647", "0")]
+        [DataTestMethod]
+        public void ExponentMinValue(string inputStr, string answer)
+        {
+            var ExpectedOutput = $@">>Please enter an expression ie. (3+1): <<{inputStr}
+                                               >>{inputStr}={answer}";
+            ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
+        }
+
+        [DataRow("-150^0", "1")]
+        [DataRow("200^0", "1")]
+        [DataRow("-9^0", "1")]
+        [DataRow("63^0", "1")]
+        [DataTestMethod]
+        public void ExponentByZero(string inputStr, string answer)
+        {
+            var ExpectedOutput = $@">>Please enter an expression ie. (3+1): <<{inputStr}
+                                               >>{inputStr}={answer}";
+            ConsoleAssert.Expect(ExpectedOutput, Calculator.Main);
+        }
+    }
 
 
     [TestClass]

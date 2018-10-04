@@ -28,7 +28,7 @@ namespace Assignment2_Calculator
 
         private static bool IsValidExpression(string expressionStr)
         {
-            var regex = new Regex(@"^-?\d+[-+/%*]{1}-?\d+$");    //correct expression pattern
+            var regex = new Regex(@"^-?\d+[-+/*%^]{1}-?\d+$");    //correct expression pattern
             var isValid = regex.IsMatch(expressionStr);
             regex = new Regex(@"-?\d+[/]{1}0+$");                //checks if there is division by zero
             var hasDivisionByZero = regex.IsMatch(expressionStr);
@@ -48,7 +48,7 @@ namespace Assignment2_Calculator
         private static (long, long, char) ParseIntoTuple(string expressionStr)
         {
             (long operandOne, long operandTwo, char operatorOne) expressionTuple; 
-            var match = Regex.Match(expressionStr,@"(?<=\d)[-+*%/]{1}");                        //gets operator not negative sign        
+            var match = Regex.Match(expressionStr,@"(?<=\d)[-+*/%^]{1}");                        //gets operator not negative sign        
             char.TryParse(match.Value, out expressionTuple.operatorOne);
             
             long.TryParse(expressionStr.Substring(0,match.Index), out expressionTuple.operandOne);
