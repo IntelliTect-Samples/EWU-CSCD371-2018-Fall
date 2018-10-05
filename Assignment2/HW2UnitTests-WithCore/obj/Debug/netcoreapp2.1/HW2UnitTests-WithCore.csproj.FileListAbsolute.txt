@@ -1,0 +1,17 @@
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.csprojAssemblyReference.cache
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.csproj.CoreCompileInputs.cache
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.AssemblyInfoInputs.cache
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.AssemblyInfo.cs
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2UnitTests-WithCore.deps.json
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2UnitTests-WithCore.runtimeconfig.json
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2UnitTests-WithCore.runtimeconfig.dev.json
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2UnitTests-WithCore.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2UnitTests-WithCore.pdb
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.pdb
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.csproj.CopyComplete
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2UnitTests-WithCore\obj\Debug\netcoreapp2.1\HW2UnitTests-WithCore.pdb

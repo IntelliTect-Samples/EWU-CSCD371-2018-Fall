@@ -1,0 +1,11 @@
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.deps.json
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.runtimeconfig.json
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.runtimeconfig.dev.json
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\bin\Debug\netcoreapp2.1\HW2-WithCore.pdb
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\obj\Debug\netcoreapp2.1\HW2-WithCore.csproj.CoreCompileInputs.cache
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\obj\Debug\netcoreapp2.1\HW2-WithCore.AssemblyInfoInputs.cache
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\obj\Debug\netcoreapp2.1\HW2-WithCore.AssemblyInfo.cs
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\obj\Debug\netcoreapp2.1\HW2-WithCore.dll
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\obj\Debug\netcoreapp2.1\HW2-WithCore.pdb
+C:\Users\Jeff\source\repos\HW2-WithCore\HW2-WithCore\obj\Debug\netcoreapp2.1\HW2-WithCore.csprojAssemblyReference.cache
