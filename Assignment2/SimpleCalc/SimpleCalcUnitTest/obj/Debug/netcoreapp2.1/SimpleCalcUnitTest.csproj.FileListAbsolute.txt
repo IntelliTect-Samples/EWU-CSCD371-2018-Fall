@@ -1,0 +1,17 @@
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalcUnitTest.deps.json
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalcUnitTest.runtimeconfig.json
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalcUnitTest.runtimeconfig.dev.json
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalcUnitTest.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalcUnitTest.pdb
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalc.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\bin\Debug\netcoreapp2.1\SimpleCalc.pdb
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.csprojAssemblyReference.cache
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.AssemblyInfoInputs.cache
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.AssemblyInfo.cs
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.csproj.CopyComplete
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalcUnitTest\obj\Debug\netcoreapp2.1\SimpleCalcUnitTest.pdb

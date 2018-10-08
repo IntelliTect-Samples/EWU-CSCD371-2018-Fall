@@ -1,0 +1,11 @@
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\bin\Debug\netcoreapp2.1\SimpleCalc.deps.json
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\bin\Debug\netcoreapp2.1\SimpleCalc.runtimeconfig.json
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\bin\Debug\netcoreapp2.1\SimpleCalc.runtimeconfig.dev.json
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\bin\Debug\netcoreapp2.1\SimpleCalc.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\bin\Debug\netcoreapp2.1\SimpleCalc.pdb
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\obj\Debug\netcoreapp2.1\SimpleCalc.csprojAssemblyReference.cache
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\obj\Debug\netcoreapp2.1\SimpleCalc.csproj.CoreCompileInputs.cache
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\obj\Debug\netcoreapp2.1\SimpleCalc.AssemblyInfoInputs.cache
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\obj\Debug\netcoreapp2.1\SimpleCalc.AssemblyInfo.cs
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\obj\Debug\netcoreapp2.1\SimpleCalc.dll
+C:\Users\Anatoli\source\repos\EWU-CSCD371-2018-Fall\Assignment2\SimpleCalc\SimpleCalc\obj\Debug\netcoreapp2.1\SimpleCalc.pdb
