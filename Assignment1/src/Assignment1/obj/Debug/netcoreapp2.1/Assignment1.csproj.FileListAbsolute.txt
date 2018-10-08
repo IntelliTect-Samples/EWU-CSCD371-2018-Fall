@@ -1,0 +1,11 @@
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\bin\Debug\netcoreapp2.1\Assignment1.deps.json
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\bin\Debug\netcoreapp2.1\Assignment1.runtimeconfig.json
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\bin\Debug\netcoreapp2.1\Assignment1.runtimeconfig.dev.json
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\bin\Debug\netcoreapp2.1\Assignment1.dll
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\bin\Debug\netcoreapp2.1\Assignment1.pdb
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\obj\Debug\netcoreapp2.1\Assignment1.csprojAssemblyReference.cache
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\obj\Debug\netcoreapp2.1\Assignment1.csproj.CoreCompileInputs.cache
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\obj\Debug\netcoreapp2.1\Assignment1.AssemblyInfoInputs.cache
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\obj\Debug\netcoreapp2.1\Assignment1.AssemblyInfo.cs
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\obj\Debug\netcoreapp2.1\Assignment1.dll
+C:\Users\Blazina\OneDrive - Eastern Washington University\CSCD 371\EWU-CSCD371-2018-Fall\Assignment1\src\Assignment1\obj\Debug\netcoreapp2.1\Assignment1.pdb
