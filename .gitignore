@@ -328,3 +328,20 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Local History for Visual Studio
+.localhistory/
+
+# Remove coverlet configuration files
+cov.xml
+coverage.json
+
+# Remove C# build files
+obj/
+bin/
+
+# Remove MacOS File System Organization Files
+.DS_Store
+
+# Remove VS Code Configuration Folder
+.vscode/
