@@ -5,3 +5,4 @@
 
 # Checkout the [Wiki](https://github.com/IntelliTect-Samples/EWU-CSCD371-2018-Fall/wiki) for More Information
 
+Some comments - WIP
