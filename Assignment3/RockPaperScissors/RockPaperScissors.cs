@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace RockPaperScissors
 {
-    class RockPaperScissors
+    public class RockPaperScissors
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Rock Paper Scissors!\nInput Ex.: \"rock\", \"r\"");
 

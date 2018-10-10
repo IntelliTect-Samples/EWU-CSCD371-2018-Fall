@@ -1,13 +1,16 @@
+using IntelliTect.TestTools.Console;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RockPaperScissorsTest
 {
     [TestClass]
-    public class RockPaperScissors
+    public class InputTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestGetUserMoveRock()
         {
+            var expectedOutput = @">>Three. Two. One. Shoot!: <<rock";
+            ConsoleAssert.Expect(expectedOutput, RockPaperScissors.RockPaperScissors.GetUserMove);
         }
     }
 }
