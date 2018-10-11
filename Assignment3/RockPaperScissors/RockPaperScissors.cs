@@ -20,11 +20,11 @@ namespace RockPaperScissors
                     playersHealth = UpdateHealth(roundMoves , CalculateDamageDealt(roundMoves), playersHealth);
                     Console.WriteLine($"Your health: {playersHealth.userHealth}\nComputer health: {playersHealth.cpuHealth}");
 
-                } while (IsGameOver(playersHealth));
+                } while (!IsGameOver(playersHealth));
 
                 var results = playersHealth.userHealth == 0 ? "lost" : "won";
                 Console.WriteLine($"You {results}!\n");
-            } while (!PlayAgain());
+            } while (PlayAgain());
             Console.WriteLine("Goodbye...");
         }
 
