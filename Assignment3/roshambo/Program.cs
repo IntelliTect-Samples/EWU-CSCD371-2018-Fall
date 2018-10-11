@@ -27,14 +27,9 @@ namespace roshambo
                     
                     (string loser, int healthDeduction) lastRoundResults = CalculateRoundLoser(playerOneMove, computerMove);
 
-                    if (lastRoundResults.loser.Equals("tie"))
-                    {
-                        Console.WriteLine("There was a tie!");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{lastRoundResults.loser} lost the round!");
-                    }
+                    Console.WriteLine(lastRoundResults.loser.Equals("tie")
+                        ? "There was a tie!"
+                        : $"{lastRoundResults.loser} lost the round!");
 
                     if (lastRoundResults.loser.Equals("PlayerOne"))
                     {
