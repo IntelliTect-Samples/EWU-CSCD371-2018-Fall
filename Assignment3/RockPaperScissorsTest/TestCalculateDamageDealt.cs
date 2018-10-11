@@ -14,6 +14,8 @@ namespace RockPaperScissorsTest
     [TestClass]
     public class TestCalculateDamageDealt
     {
+        //user wins
+        
         [TestMethod]
         public void TestUserBeatsCpuWithRock()
         {
@@ -32,6 +34,7 @@ namespace RockPaperScissorsTest
             Assert.AreEqual(15, RockPaperScissors.RockPaperScissors.CalculateDamageDealt(("scissors", "paper")));
         }
         
+        //cpu wins
         
         [TestMethod]
         public void TestCpuBeatsUserWithRock()
@@ -50,6 +53,8 @@ namespace RockPaperScissorsTest
         {
             Assert.AreEqual(-15, RockPaperScissors.RockPaperScissors.CalculateDamageDealt(("paper", "scissors")));
         }
+        
+        //draw
         
         [TestMethod]
         public void TestDrawRock()
