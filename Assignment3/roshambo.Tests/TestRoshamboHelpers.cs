@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace roshambo.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class TestRoshamboHelpers
     {
         [DataTestMethod]
         [DataRow("rock", "rock", "tie")]
