@@ -7,6 +7,7 @@ namespace RockPaperScissorsTest
     [TestClass]
     public class TestUpdateHealth
     {
+        //user wins
         [DataRow(100,100)]
         [DataRow(30,85)]
         [DataRow(55,30)]
@@ -43,7 +44,7 @@ namespace RockPaperScissorsTest
             Assert.AreEqual(initialCpuHealth -15, returnedHealth.cpuHealth);
         }
         
-        
+        //cpu wins
         
         [DataRow(100,100)]
         [DataRow(30,85)]
@@ -78,6 +79,44 @@ namespace RockPaperScissorsTest
             var initialPlayersHealth = (initialUserHealth, initialCpuHealth);
             var returnedHealth = RockPaperScissors.RockPaperScissors.UpdateHealth(("paper", "scissors"), -15, initialPlayersHealth);
             Assert.AreEqual(initialUserHealth -15, returnedHealth.userHealth);
+            Assert.AreEqual(initialCpuHealth, returnedHealth.cpuHealth);
+        }
+        
+        //draw
+        
+        [DataRow(100,100)]
+        [DataRow(30,85)]
+        [DataRow(55,30)]
+        [DataTestMethod]
+        public void TestUpdateHealthDrawRock(int initialUserHealth, int initialCpuHealth)
+        {
+            var initialPlayersHealth = (initialUserHealth, initialCpuHealth);
+            var returnedHealth = RockPaperScissors.RockPaperScissors.UpdateHealth(("rock", "rock"), 0, initialPlayersHealth);
+            Assert.AreEqual(initialUserHealth, returnedHealth.userHealth);
+            Assert.AreEqual(initialCpuHealth, returnedHealth.cpuHealth);
+        }
+        
+        [DataRow(100,100)]
+        [DataRow(30,85)]
+        [DataRow(55,30)]
+        [DataTestMethod]
+        public void TestUpdateHealthDrawPaper(int initialUserHealth, int initialCpuHealth)
+        {
+            var initialPlayersHealth = (initialUserHealth, initialCpuHealth);
+            var returnedHealth = RockPaperScissors.RockPaperScissors.UpdateHealth(("paper", "paper"), 0, initialPlayersHealth);
+            Assert.AreEqual(initialUserHealth, returnedHealth.userHealth);
+            Assert.AreEqual(initialCpuHealth, returnedHealth.cpuHealth);
+        }
+        
+        [DataRow(100,100)]
+        [DataRow(30,85)]
+        [DataRow(55,30)]
+        [DataTestMethod]
+        public void TestUpdateHealthDrawScissors(int initialUserHealth, int initialCpuHealth)
+        {
+            var initialPlayersHealth = (initialUserHealth, initialCpuHealth);
+            var returnedHealth = RockPaperScissors.RockPaperScissors.UpdateHealth(("scissors", "scissors"), 0, initialPlayersHealth);
+            Assert.AreEqual(initialUserHealth, returnedHealth.userHealth);
             Assert.AreEqual(initialCpuHealth, returnedHealth.cpuHealth);
         }
     }
