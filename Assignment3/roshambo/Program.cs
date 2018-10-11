@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace roshambo
 {
@@ -66,6 +68,18 @@ namespace roshambo
             {
                 return ("tie", 0);
             }
+        }
+
+        /// <summary>
+        /// Randomly calculates computers move.
+        /// </summary>
+        /// <returns>Random value of "rock", "paper", or "scissors"</returns>
+        public static string GetComputerMove()
+        {
+            List<string> testList = new List<string>{"rock", "paper", "scissors"};
+            Random rand = new Random();
+            int indexOfRandomElement = rand.Next(testList.Count);
+            return testList[indexOfRandomElement];
         }
     }
 }
