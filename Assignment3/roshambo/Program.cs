@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace roshambo
 {
@@ -9,7 +10,60 @@ namespace roshambo
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int playerOneHealthPoints = 100;
+            int playerTwoHealthPoints = 100;
+
+            bool continuePlay = true;
+
+            while (continuePlay)
+            {
+                while (playerOneHealthPoints > 0 && playerTwoHealthPoints > 0)
+                {
+                    Console.Write("Enter your move (rock, paper, scissors): ");
+                    string playerOneMove = Console.ReadLine();
+                    string computerMove = GetComputerMove();
+                    
+                    Console.WriteLine($"Player one played {playerOneMove} and computer played {computerMove}");
+                    
+                    (string loser, int healthDeduction) lastRoundResults = CalculateRoundLoser(playerOneMove, computerMove);
+
+                    if (lastRoundResults.loser.Equals("tie"))
+                    {
+                        Console.WriteLine("There was a tie!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{lastRoundResults.loser} lost the round!");
+                    }
+
+                    if (lastRoundResults.loser.Equals("PlayerOne"))
+                    {
+                        playerOneHealthPoints -= lastRoundResults.healthDeduction;
+                    }
+                    else if(lastRoundResults.loser.Equals("PlayerTwo"))
+                    {
+                        playerTwoHealthPoints -= lastRoundResults.healthDeduction;
+                    }
+                    
+                    Console.WriteLine($"Player has {playerOneHealthPoints} health points and computer has " +
+                                      $"{playerTwoHealthPoints} health points");
+                }
+                
+                string winner = (playerOneHealthPoints > playerTwoHealthPoints) ? "player one" : "player two";
+                Console.Write($"{winner} wins! Press 'y' to play again or 'n' to quit!: ");
+
+                switch (Console.ReadLine().Trim())
+                {
+                       case "y":
+                           continuePlay = true;
+                           playerOneHealthPoints = 100;
+                           playerTwoHealthPoints = 100;
+                           break;
+                       case "n":
+                           continuePlay = false;
+                           break;
+                }
+            }
         }
 
         /// <summary>
