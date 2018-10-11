@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Text;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -29,6 +32,58 @@ namespace roshambo.Tests
         {
             (string winner, int healthDeduction) returnVal = Program.CalculateRoundLoser(playerOneMove, playerTwoMove);
             Assert.AreEqual(expectedPoints, returnVal.healthDeduction);
+        }
+
+        [TestMethod]
+        public void TestPromptPlayerAgain_y()
+        {
+            string userInput = "y";
+            
+            var saveStdin = Console.In;
+            
+            var newInput = new StringReader(userInput);
+            Console.SetIn(newInput);
+
+            bool result = Program.DoesUserWantToPlayAgain();
+            
+            Console.SetIn(saveStdin);
+            
+            Assert.IsTrue(result);
+        }
+        
+        [TestMethod]
+        public void TestPromptPlayerAgain_n()
+        {
+            string userInput = "n";
+            
+            var saveStdin = Console.In;
+            
+            var newInput = new StringReader(userInput);
+            Console.SetIn(newInput);
+
+            bool result = Program.DoesUserWantToPlayAgain();
+            
+            Console.SetIn(saveStdin);
+            
+            Assert.IsFalse(result);
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
+        public void TestPromptPlayerAgain_InvalidInput()
+        {
+            string userInput = "something else";
+            
+            var saveStdin = Console.In;
+            
+            var newInput = new StringReader(userInput);
+            Console.SetIn(newInput);
+
+            bool result = Program.DoesUserWantToPlayAgain();
+            
+            Console.SetIn(saveStdin);
+            
+            Assert.IsFalse(result);
         }
     }
 }

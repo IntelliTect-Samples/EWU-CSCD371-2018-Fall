@@ -10,13 +10,16 @@ namespace roshambo
     {
         public static void Main(string[] args)
         {
-            int playerOneHealthPoints = 100;
-            int playerTwoHealthPoints = 100;
+            int playerOneHealthPoints;
+            int playerTwoHealthPoints;
 
             bool continuePlay = true;
 
             while (continuePlay)
             {
+                playerOneHealthPoints = 100;
+                playerTwoHealthPoints = 100;
+                
                 while (playerOneHealthPoints > 0 && playerTwoHealthPoints > 0)
                 {
                     Console.Write("Enter your move (rock, paper, scissors): ");
@@ -43,21 +46,20 @@ namespace roshambo
                     Console.WriteLine($"Player has {playerOneHealthPoints} health points and computer has " +
                                       $"{playerTwoHealthPoints} health points");
                 }
-                
-                string winner = (playerOneHealthPoints > playerTwoHealthPoints) ? "player one" : "player two";
-                Console.Write($"{winner} wins! Press 'y' to play again or 'n' to quit!: ");
 
-                switch (Console.ReadLine().Trim())
+                string winner = "";
+
+                if (playerOneHealthPoints == playerTwoHealthPoints)
                 {
-                       case "y":
-                           continuePlay = true;
-                           playerOneHealthPoints = 100;
-                           playerTwoHealthPoints = 100;
-                           break;
-                       case "n":
-                           continuePlay = false;
-                           break;
+                    winner = "There was a tie!";
                 }
+                else
+                {
+                    winner = (playerOneHealthPoints > playerTwoHealthPoints) ? "player one wins!" : "player two wins!";
+                    
+                }
+                
+                Console.Write($"{winner}");
             }
         }
 
@@ -129,6 +131,26 @@ namespace roshambo
             Random rand = new Random();
             int indexOfRandomElement = rand.Next(testList.Count);
             return testList[indexOfRandomElement];
+        }
+
+        /// <summary>
+        /// Prompts user to press 'y' if they want to play again or 'n' if they dont want to play again
+        /// Throws InvalidDataException if the input is not 'y' or 'n'
+        /// </summary>
+        /// <returns>True if the user wants to play again, false if they do not want to play again</returns>
+        /// <exception cref="InvalidDataException"></exception>
+        public static bool DoesUserWantToPlayAgain()
+        {
+            Console.WriteLine("Press 'y' to play again or 'n' to quit!: ");
+            switch (Console.ReadLine().Trim().ToLower())
+            {
+                case "y":
+                    return true;
+                case "n":
+                    return false;
+                default:
+                    throw new InvalidDataException("Invalid menu choice!");
+            }
         }
     }
 }
