@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roshambo", "Roshambo\Roshambo.csproj", "{2D5897F1-6CCA-4BFC-B1BB-5E2C010E85B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{37CEFF20-38C8-4A2E-A904-3EEB85EB54FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoshamboTests", "test\RoshamboTests\RoshamboTests.csproj", "{C07370E6-7383-4FCE-87D1-6BAA6F6AB443}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D5897F1-6CCA-4BFC-B1BB-5E2C010E85B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5897F1-6CCA-4BFC-B1BB-5E2C010E85B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5897F1-6CCA-4BFC-B1BB-5E2C010E85B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5897F1-6CCA-4BFC-B1BB-5E2C010E85B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07370E6-7383-4FCE-87D1-6BAA6F6AB443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07370E6-7383-4FCE-87D1-6BAA6F6AB443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07370E6-7383-4FCE-87D1-6BAA6F6AB443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07370E6-7383-4FCE-87D1-6BAA6F6AB443}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8409CC04-C228-43A7-91E9-C8C748E6618F}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C07370E6-7383-4FCE-87D1-6BAA6F6AB443} = {37CEFF20-38C8-4A2E-A904-3EEB85EB54FE}
+	EndGlobalSection
+EndGlobal
