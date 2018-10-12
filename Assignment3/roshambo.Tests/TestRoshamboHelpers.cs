@@ -83,11 +83,5 @@ namespace roshambo.Tests
             
             Assert.IsFalse(result);
         }
-
-        [TestMethod]
-        public void TestGetComputerMove_EnsureValid()
-        {
-            
-        }
     }
 }
