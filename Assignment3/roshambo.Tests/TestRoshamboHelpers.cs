@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Text;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace roshambo.Tests
@@ -37,7 +35,7 @@ namespace roshambo.Tests
         [TestMethod]
         public void TestPromptPlayerAgain_y()
         {
-            string userInput = "y";
+            const string userInput = "y";
             
             var saveStdin = Console.In;
             
@@ -54,7 +52,7 @@ namespace roshambo.Tests
         [TestMethod]
         public void TestPromptPlayerAgain_n()
         {
-            string userInput = "n";
+            const string userInput = "n";
             
             var saveStdin = Console.In;
             
@@ -72,7 +70,7 @@ namespace roshambo.Tests
         [ExpectedException(typeof(InvalidDataException))]
         public void TestPromptPlayerAgain_InvalidInput()
         {
-            string userInput = "something else";
+            const string userInput = "something else";
             
             var saveStdin = Console.In;
             
@@ -84,6 +82,12 @@ namespace roshambo.Tests
             Console.SetIn(saveStdin);
             
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void TestGetComputerMove_EnsureValid()
+        {
+            
         }
     }
 }

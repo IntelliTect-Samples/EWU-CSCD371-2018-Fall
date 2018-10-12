@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 
 namespace roshambo
 {
@@ -10,15 +8,12 @@ namespace roshambo
     {
         public static void Main(string[] args)
         {
-            int playerOneHealthPoints;
-            int playerTwoHealthPoints;
-
             bool continuePlay = true;
 
             while (continuePlay)
             {
-                playerOneHealthPoints = 100;
-                playerTwoHealthPoints = 100;
+                int playerOneHealthPoints = 100;
+                int playerTwoHealthPoints = 100;
                 
                 while (playerOneHealthPoints > 0 && playerTwoHealthPoints > 0)
                 {
@@ -55,11 +50,13 @@ namespace roshambo
                 }
                 else
                 {
-                    winner = (playerOneHealthPoints > playerTwoHealthPoints) ? "player one wins!" : "player two wins!";
+                    winner = (playerOneHealthPoints > playerTwoHealthPoints) ? "Player one won!" : "Computer won!";
                     
                 }
                 
-                Console.Write($"{winner}");
+                Console.WriteLine($"{winner}");
+
+                continuePlay = DoesUserWantToPlayAgain();
             }
         }
 
@@ -141,7 +138,7 @@ namespace roshambo
         /// <exception cref="InvalidDataException"></exception>
         public static bool DoesUserWantToPlayAgain()
         {
-            Console.WriteLine("Press 'y' to play again or 'n' to quit!: ");
+            Console.Write("Press 'y' to play again or 'n' to quit!: ");
             switch (Console.ReadLine().Trim().ToLower())
             {
                 case "y":
