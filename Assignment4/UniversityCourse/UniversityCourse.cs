@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace UniversityCourse
+namespace Assignment4
 {
-    public class Class1
+    public class UniversityCourse
     {
     }
 }

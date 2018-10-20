@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UniversityCourse.Tests
+namespace Assignment4.Tests
 {
     [TestClass]
     public class CourseTester
