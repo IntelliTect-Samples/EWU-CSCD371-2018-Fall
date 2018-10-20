@@ -13,7 +13,7 @@ namespace Assignment4
             get { return _DateStart; }
             private set
             {
-                if (value.CompareTo(DateEnd) > 0)
+                if (value.CompareTo(DateEnd) < 0)
                     throw new ArgumentOutOfRangeException($"Start date cannot be after end date: {value}", nameof(value));
                 _DateStart = value;
             }
@@ -61,6 +61,7 @@ namespace Assignment4
         public Event(string name, string location, DateTime dateStart, DateTime dateEnd)
         {
             Name = name;
+            Location = location;
             DateStart = dateStart;
             DateEnd = dateEnd;
             NumberOfEvents++;
