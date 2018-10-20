@@ -39,7 +39,7 @@ namespace Assignment4
             EventCount++;
         }
 
-        ~Event()
+        public void Deconstruct()
         {
             EventCount--;
         }
@@ -49,7 +49,7 @@ namespace Assignment4
             EventCount = 0;
         }
         
-        public string GetSummaryInformation()
+        public virtual string GetSummaryInformation()
         {
             return $"The event starts at {TimeRange.startTime.Hour} and ends at {TimeRange.endTime.Hour}";
         }

@@ -9,9 +9,9 @@ namespace Assignment4.Tests
     {
         readonly DateTime _sampleStartingTime = new DateTime(2018, 1, 1, 10, 0, 0);
         readonly DateTime _sampleEndingTime = new DateTime(2018, 1, 1, 22, 0, 0);
-
-        [TestCleanup()]
-        public void Cleanup()
+        
+        [TestInitialize]
+        public void ResetNumberOfInstances()
         {
             Event.ResetInstanceCount();
         }
@@ -20,8 +20,8 @@ namespace Assignment4.Tests
         public void Constructor_TestCountInstances_Equals3()
         {
             Event myEvent = new Event(new DateTime(2017), new DateTime(2018));
-            UniversityCourse myCourse = new UniversityCourse(11002, _sampleStartingTime, _sampleEndingTime);
-            UniversityCourse myCourse2 = new UniversityCourse(11003, _sampleStartingTime, _sampleEndingTime);
+            Event myCourse = new Event(_sampleStartingTime, _sampleEndingTime);
+            Event myCourse2 = new Event(_sampleStartingTime, _sampleEndingTime);
             
             Assert.AreEqual(3, Event.EventCount);
         }
@@ -39,6 +39,55 @@ namespace Assignment4.Tests
         public void Constructor_EndTimeBeforeStartTime_InvalidDataException()
         {  
             Event myEvent = new Event(_sampleEndingTime, _sampleStartingTime);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
+        public void Constructor_StartDayNotEqualToEndDay_InvalidDataException()
+        {
+            DateTime timeOne = new DateTime(2018, 10, 10);
+            DateTime timeTwo = new DateTime(2018, 10, 11);
+            
+            Event myEvent = new Event(timeOne, timeTwo);
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
+        public void Constructor_StartMonthNotEqualToEndMonth_InvalidDataException()
+        {
+            DateTime timeOne = new DateTime(2018, 10, 10);
+            DateTime timeTwo = new DateTime(2019, 10, 10);
+            
+            Event myEvent = new Event(timeOne, timeTwo);
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataException))]
+        public void Constructor_StartYearNotEqualToEndYear_InvalidDataException()
+        {
+            DateTime timeOne = new DateTime(2018, 10, 10);
+            DateTime timeTwo = new DateTime(2019, 10, 10);
+            
+            Event myEvent = new Event(timeOne, timeTwo);
+        }
+
+        [TestMethod]
+        public void GetSummaryInformation_ValidData()
+        {
+            string expectedResult = $"The event starts at {_sampleStartingTime.Hour} and ends at {_sampleEndingTime.Hour}";
+            
+            Event myEvent = new Event(_sampleStartingTime, _sampleEndingTime);
+            
+            Assert.AreEqual(expectedResult, myEvent.GetSummaryInformation());
+        }
+
+        [TestMethod]
+        public void TestDestructor_ReductionInNumberOfInstances()
+        {
+            Event myEvent = new Event(_sampleStartingTime, _sampleEndingTime);
+            
+            myEvent.Deconstruct();
+            Assert.AreEqual(0, Event.EventCount);
         }
     }
 }

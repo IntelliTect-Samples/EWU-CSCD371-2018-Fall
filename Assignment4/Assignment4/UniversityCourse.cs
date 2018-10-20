@@ -20,6 +20,11 @@ namespace Assignment4
                 {
                     throw new InvalidDataException("Maximum number of days is 5!");
                 }
+
+                if (value.Count < 1)
+                {
+                    throw new InvalidDataException("Must occur on at least 1 day!");
+                }
                 
                 // NOTE: Saturday and Sunday are not valid school days
                 List<char> validDaysOfWeek = new List<char> {'M', 'T', 'W', 'R', 'F'};
@@ -36,24 +41,20 @@ namespace Assignment4
         }
         
         // Calculated property
-        public int DailyHoursOfHomeworkExpected
-        {
-            get { return DaysOfWeek.Count * (TimeRange.startTime.Hour - TimeRange.endTime.Hour); }
-        }
+        // 2 hours of homework expected for every hour of class time
+        public int DailyHoursOfHomeworkExpected 
+            => (DaysOfWeek.Count * (TimeRange.endTime.Hour - TimeRange.startTime.Hour)) * 2;
 
         private List<char> _daysOfWeek;
         
-        public UniversityCourse(int CRN, DateTime startingTime, DateTime endingTime) : base(startingTime, endingTime)
+        public UniversityCourse(int crn, DateTime startingTime, DateTime endingTime, List<char> daysOfWeek) 
+            : base(startingTime, endingTime)
         {
-            if (CRN.ToString().Length != 5)
-            {
-                throw new InvalidDataException("CRN must be 5 digit value!");
-            }
-
-            this.Crn = CRN;
+            this.Crn = crn;
+            this.DaysOfWeek = daysOfWeek;
         }
 
-        public new string GetSummaryInformation()
+        public override string GetSummaryInformation()
         {
             string daysOfWeekEventOccursOn = "";
             foreach (char cur in DaysOfWeek)
@@ -61,10 +62,11 @@ namespace Assignment4
                 daysOfWeekEventOccursOn += cur + " ";
             }
             
-            return $"The course CRN is: {Crn}{System.Environment.NewLine}" +
-                   $"{base.GetSummaryInformation()}{System.Environment.NewLine} " +
-                   $"It repeats on {daysOfWeekEventOccursOn}" +
-                   $"Expect {DailyHoursOfHomeworkExpected} hours of homework each day.";
+            return 
+$@"The course CRN is: {Crn}
+{base.GetSummaryInformation()}
+It repeats on {daysOfWeekEventOccursOn}
+Expect {DailyHoursOfHomeworkExpected} hours of homework each day.";
         }
     }
 }
