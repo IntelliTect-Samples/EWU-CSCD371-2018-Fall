@@ -1,13 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Course;
 
-namespace Course.Tests
+namespace UniversityCourse.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class CourseTester
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Get_Schedule_Return_Success()
         {
         }
     }
