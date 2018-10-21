@@ -28,6 +28,7 @@ namespace Assignment4
             set {
                 if (value is null)
                     throw new ArgumentNullException("The instructor name cannot be null", nameof(value));
+                value = value.Trim();
                 if (value.Length < 2)
                     throw new ArgumentOutOfRangeException($"The instructor name must be atleast 2 characters: {value}", nameof(value));
                 _Instructor = value;
@@ -43,8 +44,8 @@ namespace Assignment4
                 if (value is null)
                     throw new ArgumentNullException("The schedule cannot be null", nameof(value));
                 value = value.Trim();
-                if (value.Length < 1)
-                    throw new ArgumentOutOfRangeException($"The course must meet atleast once a week", nameof(value));
+                if (value.Length < 1 || value.Length > 7)
+                    throw new ArgumentOutOfRangeException($"The course must meet atleast once a week and less than 8", nameof(value));
                 _Schedule = value;
             }
         }
