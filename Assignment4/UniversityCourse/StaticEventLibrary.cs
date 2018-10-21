@@ -17,7 +17,7 @@ namespace Assignment4
                 case null:
                     throw new ArgumentNullException("Event is null", nameof(@object));
                 default:
-                    throw new ArgumentException("Unknown object type", nameof(@object));
+                    return @object.ToString();
             }
         }
     }

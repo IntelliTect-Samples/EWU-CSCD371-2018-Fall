@@ -58,11 +58,12 @@ End Date: 12/10/2018 2:00:00 PM";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void Display_Object_ArgumentException()
         {
-            var output = StaticEventLibrary.Display("Some object");
-            Assert.Fail();
+            var myString = "This is my string";
+            var output = StaticEventLibrary.Display(myString);
+            var expectedOutput = myString;
+            Assert.AreEqual(expectedOutput, output);
         }
     }
 }

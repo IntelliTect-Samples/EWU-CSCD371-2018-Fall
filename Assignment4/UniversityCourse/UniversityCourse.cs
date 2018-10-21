@@ -50,7 +50,6 @@ namespace Assignment4
             }
         }
 
-        private int _NumberOfCredits;
         public int NumberOfCredits
         {
             get {
