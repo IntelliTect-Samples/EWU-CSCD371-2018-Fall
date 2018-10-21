@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-
+/*Properties in Event class are read only
+    So to check validation, values are passed to constructor*/
 namespace Assignment4.Tests
 {
     [TestClass]
@@ -8,7 +9,7 @@ namespace Assignment4.Tests
     {
 
 
-/*Name*/
+        /*Name*/
         [DataRow("Bake Sale")]
         [DataRow("Interview")]
         [DataRow("Hot Date")]
@@ -36,10 +37,11 @@ namespace Assignment4.Tests
         public void Set_Name_Constructed_ArgumentNullException()
         {
             Event @event = new Event(null, "123 N something rd", new DateTime(2018, 7, 18, 12, 0, 0, 0), new DateTime(2018, 7, 18, 15, 0, 0, 0));
+            Assert.Fail();
         }
 
 
-/*Location*/
+        /*Location*/
         [DataRow("123 N something rd")]
         [DataRow("5 N a st")]
         [DataRow("CEB 301")]
@@ -59,6 +61,7 @@ namespace Assignment4.Tests
         public void Get_Location_Constructed_ArgumentOutOfRangeException(string location)
         {
             Event @event = new Event("Study Group", location, new DateTime(2018, 7, 18, 12, 0, 0, 0), new DateTime(2018, 7, 18, 15, 0, 0, 0));
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -66,10 +69,11 @@ namespace Assignment4.Tests
         public void Set_Location_Constructed_ArgumentNullException()
         {
             Event @event = new Event("Study Group", null, new DateTime(2018, 7, 18, 12, 0, 0, 0), new DateTime(2018, 7, 18, 15, 0, 0, 0));
+            Assert.Fail();
         }
 
 
-/*Start Date*/
+        /*Start Date*/
         [TestMethod]
         public void Get_StartDate_Constructed_Success()
         {
@@ -87,7 +91,7 @@ namespace Assignment4.Tests
         }
 
 
-/*End Date*/
+        /*End Date*/
         [TestMethod]
         public void Get_EndDate_Constructed_Success()
         {
@@ -105,7 +109,7 @@ namespace Assignment4.Tests
         }
 
 
-/*Number of Events*/
+        /*Number of Events*/
         [TestMethod]
         public void Get_Number_of_Constructed_Events_Success()
         {
@@ -115,13 +119,19 @@ namespace Assignment4.Tests
         }
 
 
-/*Deconstructor
+        /*Get Summary Information*/
+
         [TestMethod]
-        public void Deconstruct_Event_Success()
+        public void Get_Summary_Information_Success()
         {
             Event @event = new Event("MyEvent", "CEB301", new DateTime(2018, 7, 18, 15, 0, 0, 0), new DateTime(2019, 7, 18, 12, 0, 0, 0));
-            ()
-            Assert.AreEqual(numberOfEventsBefore + 1, Event.NumberOfEvents);
-        }*/
+            var output = @event.GetSummaryInformation();
+            var expectedOutput =
+@"Event Name: MyEvent
+Location: CEB301
+Start Date: 7/18/2018 3:00:00 PM
+End Date: 7/18/2019 12:00:00 PM";
+            Assert.AreEqual(expectedOutput, output);
+        }
     }
 }

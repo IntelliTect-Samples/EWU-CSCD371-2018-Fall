@@ -55,7 +55,7 @@ namespace Assignment4
         {
             get {
                 var daysPerWeek = Schedule.Length;
-                var hoursPerDay = (DateEnd - DateStart).TotalHours;
+                var hoursPerDay = DateEnd.Hour - DateStart.Hour;
                 return (int)(daysPerWeek * hoursPerDay);
             }
         }
@@ -74,7 +74,7 @@ namespace Assignment4
         public override string GetSummaryInformation()
         {
             return base.GetSummaryInformation() + 
-                $"Course ID: {CourseID}\nInstructor: {Instructor}\nSchedule: {Schedule}\n Number of Credits: {NumberOfCredits}";
+                $"\nCourse ID: {CourseID}\nInstructor: {Instructor}\nSchedule: {Schedule}\nNumber of Credits: {NumberOfCredits}";
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment4
 {
-    class StaticEventLibrary
+    public class StaticEventLibrary
     {
         public static string Display(object @object)
         {

@@ -75,7 +75,7 @@ namespace Assignment4
 
         public virtual string GetSummaryInformation()
         {
-            return $"Event Name: {Name}\nStart Date: {DateStart}\nEnd Date: {DateEnd}";
+            return $"Event Name: {Name}\nLocation: {Location}\nStart Date: {DateStart}\nEnd Date: {DateEnd}";
         }
     }
 }

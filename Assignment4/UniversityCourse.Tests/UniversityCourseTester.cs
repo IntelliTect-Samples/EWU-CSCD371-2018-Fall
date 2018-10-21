@@ -13,7 +13,6 @@ namespace Assignment4.Tests
             course = new UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
-           
         }
 
 /*Course ID*/
@@ -109,6 +108,50 @@ namespace Assignment4.Tests
         {
             course.Schedule = null;
             Assert.Fail();
+        }
+
+        /*Number of courses*/
+        [TestMethod]
+        public void Get_Number_of_Constructed_Courses_Success()
+        {
+            var numberOfCoursesBefore = UniversityCourse.NumberOfCourses;
+            UniversityCourse myCourse = new UniversityCourse("Web Development", "CEB 228",
+                new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
+                "CSCD272", "Casey White", "mtwrf");
+            Assert.AreEqual(numberOfCoursesBefore + 1, UniversityCourse.NumberOfCourses);
+        }
+
+
+        /*Credits*/
+        [TestMethod]
+        public void Get_Credits_6_Success()
+        {
+            Assert.AreEqual(6, course.NumberOfCredits);
+        }
+
+        [TestMethod]
+        public void Get_Credits_4_Success()
+        {
+            course.Schedule = "mw";
+            Assert.AreEqual(4, course.NumberOfCredits);
+        }
+
+
+        /*Get Summary Information*/
+        [TestMethod]
+        public void Get_Summary_Information_Success()
+        {
+            var output = course.GetSummaryInformation();
+            var expectedOutput =
+@"Event Name: Android Development
+Location: CEB 228
+Start Date: 9/18/2018 12:00:00 PM
+End Date: 12/10/2018 2:00:00 PM
+Course ID: CSCD272
+Instructor: Paul Shimpf
+Schedule: mwf
+Number of Credits: 6";
+            Assert.AreEqual(expectedOutput, output);
         }
     }
 }
