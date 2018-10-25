@@ -2,7 +2,7 @@
 
 In this assignment, we will be using test driven development to create new classes for a UniversityCourse and an event.
 
-## Exercises
+## Exercises - **Due 2018-10-20**
 
 * Read through Chapter 7 by 2018-10-16
 * Be prepared to discuss all chapter 6&7 coding guidelines in class on 2018-10-16
