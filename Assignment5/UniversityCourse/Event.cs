@@ -5,12 +5,12 @@ namespace UniversityCourse
     public class Event
     {
 
-        public static int NumberOfEvents { get; private set; } = 0;
+        public static int NumberOfEvents { get; private set;}
 
         private DateTime _DateStart;
         public DateTime DateStart
         {
-            get { return _DateStart; }
+            get => _DateStart;
             private set
             {
                 if (value.CompareTo(DateEnd) < 0)
@@ -22,7 +22,7 @@ namespace UniversityCourse
         private DateTime _DateEnd;
         public DateTime DateEnd
         {
-            get { return _DateEnd; }
+            get => _DateEnd;
             private set
             {
                 if (value.CompareTo(DateStart) < 0)
@@ -34,7 +34,7 @@ namespace UniversityCourse
         private string _Name;
         public string Name
         {
-            get { return _Name; }
+            get => _Name;
             private set {
                 if (value is null)
                     throw new ArgumentNullException("The event name cannot be null");
@@ -46,7 +46,7 @@ namespace UniversityCourse
         private string _Location;
         public string Location
         {
-            get { return _Location; }
+            get => _Location;
             private set
             {
                 if (value is null)

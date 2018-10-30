@@ -5,12 +5,12 @@ namespace UniversityCourse
 {
     public class UniversityCourse : Event
     {
-        public static int NumberOfCourses { get; private set; } = 0;
+        public static int NumberOfCourses { get; private set; }
 
         private string _CourseID;
         public string CourseID
         {
-            get { return _CourseID; }
+            get => _CourseID;
             set {
                 if (value is null)
                     throw new ArgumentNullException("The course ID cannot be null", nameof(value));
@@ -24,7 +24,7 @@ namespace UniversityCourse
         private string _Instructor;
         public string Instructor
         {
-            get { return _Instructor; }
+            get => _Instructor;
             set {
                 if (value is null)
                     throw new ArgumentNullException("The instructor name cannot be null", nameof(value));
@@ -39,7 +39,7 @@ namespace UniversityCourse
         private string _Schedule;
         public string Schedule
         {
-            get { return _Schedule; }
+            get => _Schedule;
             set {
                 if (value is null)
                     throw new ArgumentNullException("The schedule cannot be null", nameof(value));
@@ -55,7 +55,7 @@ namespace UniversityCourse
             get {
                 var daysPerWeek = Schedule.Length;
                 var hoursPerDay = DateEnd.Hour - DateStart.Hour;
-                return (int)(daysPerWeek * hoursPerDay);
+                return daysPerWeek * hoursPerDay;
             }
         }
 
