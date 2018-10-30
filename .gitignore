@@ -345,3 +345,6 @@ bin/
 
 # Remove VS Code Configuration Folder
 .vscode/
+
+# Remove Jetbrains files
+.idea
