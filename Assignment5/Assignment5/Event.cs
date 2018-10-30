@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Assignment5
 {
-    public class Event
+    public class Event : IEvent
     {
         // Auto property
         public static int EventCount { get; private set; }
@@ -52,6 +52,16 @@ namespace Assignment5
         public virtual string GetSummaryInformation()
         {
             return $"The event starts at {TimeRange.startTime.Hour} and ends at {TimeRange.endTime.Hour}";
+        }
+
+        public int GetStartingHour()
+        {
+            return _timeRange.startTime.Hour;
+        }
+
+        public int GetEndingHour()
+        {
+            return _timeRange.endTime.Hour;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 
 namespace Assignment5
 {
+    // NOTE: IEvent extension is not needed here since Event already extends IEvent
     public class UniversityCourse : Event
     {
         // Read only

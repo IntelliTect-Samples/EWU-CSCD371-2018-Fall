@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment5
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // TODO: Allow user to select what event to create
+            // TODO: Display list of created events
+            List<IEvent> eventList = new List<IEvent>();
         }
     }
 }
