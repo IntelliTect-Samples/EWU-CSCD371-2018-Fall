@@ -5,7 +5,7 @@ This assignment will use some of the code files you created in Assignment 5. For
 ## Reading 
 * TBD
 
-## Coding Excercise (due 11/01/2018)
+## Coding Excercise (due 11/06/2018)
 * Create a flags enum for the days of the week
 * Create an enum for the quarters (Spring, Summer, Fall, Winter) in a school year
 * Create a struct that will store only a Time value (hour, minute, second)
