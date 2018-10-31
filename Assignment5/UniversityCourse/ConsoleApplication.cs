@@ -134,7 +134,6 @@ Choice: ");
             try{ date = DateTime.Parse(input);}
             catch (Exception e)
             {
-                MyConsole.WriteLine(e.Message);///////////////////////////////////////////////////////
                 MyConsole.WriteLine("Invalid date, re-enter [mm/dd/yyyy]: ");
                 return GetDate();
             }
@@ -147,22 +146,17 @@ Choice: ");
             var input = GetNonEmptyString();
             string[] hrMin;
             if (new Regex("(?:[01][0-9]|[2][0-4]):(?:[0-5][0-9])").IsMatch(input) && (hrMin = input.Split(':')).Length == 2)
-            {
                 return new DateTime(1,1,1, int.Parse(hrMin[0]), int.Parse(hrMin[1]), 0);
-            }
-            else
-            {
-                MyConsole.WriteLine("Invalid time, re-enter [HH:MM]");
-                return GetTime();
-            }
 
+            MyConsole.WriteLine("Invalid time, re-enter [HH:MM]");
+            return GetTime();
         }
 
         private static void ListAllEvents()
         {
             foreach (var createdEvent in CreatedEvents)
             {
-                StaticEventLibrary.Display(createdEvent);
+                MyConsole.WriteLine(StaticEventLibrary.Display(createdEvent));
             }
         }
 
