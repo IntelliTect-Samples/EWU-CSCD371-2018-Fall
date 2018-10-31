@@ -30,6 +30,8 @@ namespace UniversityCourse.Tests
         public void Get_Name_Constructed_ArgumentOutOfRangeException(string name)
         {
             Event @event = new Event(name, "123 N something rd", new DateTime(2018, 7, 18, 12, 0, 0, 0), new DateTime(2018, 7, 18, 15, 0, 0, 0));
+            Assert.Fail();
+            
         }
 
         [TestMethod]
