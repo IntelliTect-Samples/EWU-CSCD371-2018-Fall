@@ -10,6 +10,7 @@ namespace Assignment5.Tests
         [DataTestMethod]
         [DataRow(10, 22, 12)]
         [DataRow(10, 20, 10)]
+        [DataRow(10, 11, 1)]
         public void GetHourRangeOfEvent_EnsureCorrectHourRangeReturned
             (int startingHour, int endingHour, int expectedDifference)
         {
