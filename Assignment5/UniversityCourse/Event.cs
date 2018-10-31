@@ -2,7 +2,7 @@
 
 namespace UniversityCourse
 {
-    public class Event
+    public class Event : IEvent
     {
 
         public static int NumberOfEvents { get; private set;}
@@ -44,6 +44,8 @@ namespace UniversityCourse
             }
         }
         private string _Location;
+        private IEvent _eventImplementation;
+
         public string Location
         {
             get => _Location;
@@ -77,5 +79,10 @@ namespace UniversityCourse
         {
             return $"Event Name: {Name}\nLocation: {Location}\nStart Date: {DateStart}\nEnd Date: {DateEnd}";
         }
+
+
+        public string GetName(){return Name;}
+        public DateTime GetStartDate(){return DateStart;}
+        public DateTime GetEndDate(){return DateStart;}
     }
 }
