@@ -110,7 +110,6 @@ namespace UniversityCourse.Tests
             Event @event = new Event("MyEvent", "CEB301", new DateTime(2018, 7, 18, 15, 0, 0, 0), endDate);
         }
 
-
         /*Number of Events*/
         [TestMethod]
         public void Get_Number_of_Constructed_Events_Success()
