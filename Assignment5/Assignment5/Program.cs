@@ -58,15 +58,31 @@ Selection: ";
 
             Console.Write(toReturn);
 
-            return Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                return Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public static void PrintEventList(List<Event> toPrint)
         {
             string fullEventList = "";
-            foreach (Event cur in toPrint)
+            if (toPrint.Count > 0)
             {
-                fullEventList += cur.GetSummaryInformation() + System.Environment.NewLine;
+                int counter = 1;
+                foreach (Event cur in toPrint)
+                {
+                    fullEventList += $"{counter}. " + cur.GetSummaryInformation() + System.Environment.NewLine;
+                    counter++;
+                }
+            }
+            else
+            {
+                fullEventList = "List is empty!";
             }
             
             Console.WriteLine(fullEventList);
@@ -165,18 +181,22 @@ Selection: ";
         public static int PromptUserForInt(string prompt)
         {
             int toReturn = 0;
-            try
+
+            while (toReturn == 0)
             {
-                Console.Write($"Enter {prompt}: ");
-                toReturn = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine($"{prompt} must be an integer!");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine($"{prompt} is too large!");
+                try
+                {
+                    Console.Write($"Enter {prompt}: ");
+                    toReturn = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine($"{prompt} must be an integer!");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine($"{prompt} is too large!");
+                }
             }
 
             return toReturn;
