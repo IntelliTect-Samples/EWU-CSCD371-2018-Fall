@@ -82,15 +82,11 @@ namespace ConsoleApp1
         {
             string title = setTitle(console);
 
-            DateTime startTime = SetEventDate(console);
             console.WriteLine("Please set start time");
-            DateTime temp = SetTime(console);
-
-            console.WriteLine("/nWhen does it End?/n");
-
-            DateTime endTime = SetEventDate(console);
+            DateTime startTime = SetEventDate(console);
+            
             console.WriteLine("Please set end time");
-            endTime = SetTime(console);
+            DateTime endTime = SetEventDate(console);
 
             Event newEvent = new Event(title, startTime, endTime);
 
@@ -140,7 +136,7 @@ namespace ConsoleApp1
                 foreach (Event e in eventList)
                 {
                     console.WriteLine("\n" + e.title);
-                    //console.WriteLine(e.GetDays());
+                    console.WriteLine(e.GetDays());
                     console.WriteLine(e.GetSummaryInformation() + "\n");
                 }
             }
@@ -154,11 +150,11 @@ namespace ConsoleApp1
         {
             if (courseList.Count > 0)
             {
-                console.WriteLine($"Course count: {courseList.Count}");
+                console.WriteLine($"\nCourse count: {courseList.Count}\n");
 
                 foreach (UniversityCourse uC in courseList)
                 {
-                    console.WriteLine(uC.GetSummaryInformation());
+                    console.WriteLine(uC.GetSummaryInformation() + "\n");
                 }
             }
             else
@@ -187,7 +183,9 @@ namespace ConsoleApp1
             string stringDay = console.ReadLine();
             int day = int.Parse(stringDay);
 
-            DateTime time = new DateTime(year, month, day, 0, 0, 0);
+            DateTime hourMinute = SetTime(console);
+
+            DateTime time = new DateTime(year, month, day, hourMinute.Hour, hourMinute.Minute, 0);
             return time;
         }
     }
