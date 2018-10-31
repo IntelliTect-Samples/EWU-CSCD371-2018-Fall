@@ -26,7 +26,9 @@ namespace Assignment5
                        eventList.Add(createdEvent);
                        break;
                    case 2:
-                       Console.WriteLine("In 2");
+                       UniversityCourse createdCourse = PromptCreateUniversityCourse();
+                       Console.WriteLine("UniversityCourse created!");
+                       eventList.Add(createdCourse);
                        break;
                    case 3:
                        Console.WriteLine("Full list of events:");
@@ -43,7 +45,7 @@ namespace Assignment5
             } while (selection != 4);
         }
 
-        private static int PrintMenuAndGetUserSelection()
+        public static int PrintMenuAndGetUserSelection()
         {
             const string toReturn = 
 @"Select from the following menu options:
@@ -59,7 +61,7 @@ Selection: ";
             return Convert.ToInt32(Console.ReadLine());
         }
 
-        private static void PrintEventList(List<Event> toPrint)
+        public static void PrintEventList(List<Event> toPrint)
         {
             string fullEventList = "";
             foreach (Event cur in toPrint)
@@ -70,7 +72,7 @@ Selection: ";
             Console.WriteLine(fullEventList);
         }
 
-        private static Event PromptCreateEvent(DateTime startingTime)
+        public static Event PromptCreateEvent(DateTime startingTime)
         {
             while (true)
             {
@@ -78,7 +80,8 @@ Selection: ";
                 {
                     int endingHour = PromptUserForInt("ending hour");
                     
-                    DateTime endingTime = new DateTime(startingTime.Year, startingTime.Month, startingTime.Day, endingHour, 0, 0);
+                    DateTime endingTime = 
+                        new DateTime(startingTime.Year, startingTime.Month, startingTime.Day, endingHour, 0, 0);
 
                     return new Event(startingTime, endingTime);
                 }
@@ -88,8 +91,51 @@ Selection: ";
                 }
             }
         }
+        
+        public static UniversityCourse PromptCreateUniversityCourse()
+        {
+            int crnToSet;
+            DateTime startingTime;
+            DateTime endingTime;
+            
+            while (true)
+            {
+                try
+                {
+                    //crn, starting time, ending time, days of the week
+                    crnToSet = PromptUserForInt("crn");
+                    startingTime = PromptCreateDateTime();
+                    
+                    int endingHour = PromptUserForInt("ending hour");
+                    
+                    endingTime = 
+                        new DateTime(startingTime.Year, startingTime.Month, startingTime.Day, endingHour, 0, 0);
+                    
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid data, try again!");
+                }
+            }
+            
+            while (true)
+            {
+                try
+                {   
+                    // get days of the week
+                    List<char> daysOfWeek = PromptUserForDaysOfWeek();
+                    
+                    return new UniversityCourse(crnToSet, startingTime, endingTime, daysOfWeek);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid data, try again!");
+                }
+            }
+        }
 
-        private static DateTime PromptCreateDateTime()
+        public static DateTime PromptCreateDateTime()
         {
             while (true)
             {
@@ -116,7 +162,7 @@ Selection: ";
             }
         }
 
-        private static int PromptUserForInt(string prompt)
+        public static int PromptUserForInt(string prompt)
         {
             int toReturn = 0;
             try
@@ -134,6 +180,35 @@ Selection: ";
             }
 
             return toReturn;
+        }
+
+        public static List<char> PromptUserForDaysOfWeek()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter days of week (M, T, W, T, F) separated by commas (I.E: M T W): ");
+                    string userInput = Console.ReadLine();
+                    
+                    userInput = userInput.Trim();
+
+                    string[] arrayOfSelection = userInput.Split(null);
+
+                    List<char> toReturn = new List<char>();
+                    
+                    foreach (string cur in arrayOfSelection)
+                    {
+                        toReturn.Add(cur[0]);
+                    }
+
+                    return toReturn;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid days of week!");
+                }
+            }
         }
     }
 }
