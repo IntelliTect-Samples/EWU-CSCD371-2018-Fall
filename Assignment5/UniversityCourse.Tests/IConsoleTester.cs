@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -43,6 +44,8 @@ namespace UniversityCourse.Tests
             var actualInput = myConsole.ReadLine();
             Assert.AreEqual(input, actualInput);
         }
+
+       
 
     }
 }
