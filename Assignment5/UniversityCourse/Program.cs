@@ -2,9 +2,11 @@
 
 namespace UniversityCourse
 {
-    static class UniversityCourseIO
+    public static class UniversityCourseIo
     {
-        static void Main(string[] args)
+        private static IConsole MyConsole { get;} = new RealConsole();
+        
+        public static void Main(string[] args)
         {
             int menuChoice;
             do
@@ -17,7 +19,7 @@ namespace UniversityCourse
 
         private static void DisplayMenu()
         {
-            Console.Write(
+            MyConsole.WriteLine(
 @"Enter a menu option
 1. Create event
 2. Display events
@@ -45,7 +47,7 @@ Choice: ");
         {
             int menuChoice;
             while (!int.TryParse(Console.ReadLine(), out menuChoice) || menuChoice < 0 || menuChoice > 2) 
-                Console.WriteLine("Invalid menu option\n");
+                MyConsole.WriteLine("Invalid menu option\n");
             return menuChoice;
         }
         

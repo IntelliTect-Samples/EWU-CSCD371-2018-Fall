@@ -10,9 +10,9 @@ namespace UniversityCourse
             Console.WriteLine(line);
         }
 
-        public object GetHost()
+        public string ReadLine()
         {
-            throw new NotImplementedException();
+            return Console.ReadLine();
         }
     }
 }
