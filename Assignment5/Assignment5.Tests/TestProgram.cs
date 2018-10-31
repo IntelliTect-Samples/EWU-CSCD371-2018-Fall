@@ -6,10 +6,86 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Assignment5.Tests
 {
+    // NOTE: only methods without while(true) loops are tested
     [TestClass]
     public class TestProgram
     {
 
+        [TestMethod]
+        public void TestProgramMain_ValidData()
+        {
+            string expected =
+$@"Select from the following menu options:
+1. Create Event
+2. Create University Course
+3. Display list of events
+4. Exit
+
+Selection: <<1
+>>
+Enter year: <<2018
+>>
+Enter month: <<1
+>>
+Enter day: <<1
+>>
+Enter starting hour: <<10
+>>
+Enter ending hour: <<22
+>>
+Event created!
+Select from the following menu options:
+1. Create Event
+2. Create University Course
+3. Display list of events
+4. Exit
+
+Selection: <<2
+>>
+Enter crn: <<115
+>>
+Enter year: <<2018
+>>
+Enter month: <<1
+>>
+Enter day: <<1
+>>
+Enter starting hour: <<10
+>>
+Enter ending hour: <<22
+>>
+Enter days of week (M, T, W, T, F) separated by commas (I.E: M T W): <<M T W R
+>>
+UniversityCourse created!
+Select from the following menu options:
+1. Create Event
+2. Create University Course
+3. Display list of events
+4. Exit
+
+Selection: <<3
+>>
+Full list of events:
+1. The event starts at 10 and ends at 22
+2. The course CRN is: 115
+The event starts at 10 and ends at 22
+It repeats on M T W R 
+Expect 24 hours of homework each day.
+
+Select from the following menu options:
+1. Create Event
+2. Create University Course
+3. Display list of events
+4. Exit
+
+Selection: <<4
+>>
+Exiting!
+";
+
+            IntelliTect.TestTools.Console.ConsoleAssert.Expect(expected, Program.Main);
+        }
+        
         [DataTestMethod]
         [DataRow("5")]
         [DataRow("1")]

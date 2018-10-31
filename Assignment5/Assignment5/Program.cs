@@ -35,7 +35,6 @@ namespace Assignment5
                        PrintEventList(eventList);
                        break;
                     case 4:
-                        Console.WriteLine("In 4");
                         Console.WriteLine("Exiting!");
                         break;
                    default:
@@ -56,7 +55,7 @@ namespace Assignment5
 
 Selection: ";
 
-            Console.Write(toReturn);
+            Console.WriteLine(toReturn);
 
             try
             {
@@ -186,7 +185,7 @@ Selection: ";
             {
                 try
                 {
-                    Console.Write($"Enter {prompt}: ");
+                    Console.WriteLine($"Enter {prompt}: ");
                     toReturn = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (FormatException)
@@ -208,7 +207,7 @@ Selection: ";
             {
                 try
                 {
-                    Console.Write("Enter days of week (M, T, W, T, F) separated by commas (I.E: M T W): ");
+                    Console.WriteLine("Enter days of week (M, T, W, T, F) separated by commas (I.E: M T W): ");
                     string userInput = Console.ReadLine();
                     
                     userInput = userInput.Trim();

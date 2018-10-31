@@ -44,7 +44,7 @@ namespace Assignment5
         // Calculated property
         // 2 hours of homework expected for every hour of class time
         public int DailyHoursOfHomeworkExpected 
-            => (DaysOfWeek.Count * (TimeRange.endTime.Hour - TimeRange.startTime.Hour)) * 2;
+            => ((TimeRange.endTime.Hour - TimeRange.startTime.Hour)) * 2;
 
         private List<char> _daysOfWeek;
         
