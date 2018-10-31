@@ -83,6 +83,6 @@ namespace UniversityCourse
 
         public string GetName(){return Name;}
         public DateTime GetStartDate(){return DateStart;}
-        public DateTime GetEndDate(){return DateStart;}
+        public DateTime GetEndDate(){return DateEnd;}
     }
 }
