@@ -4,6 +4,6 @@ namespace UniversityCourse
     {
         void WriteLine(string line);
 
-        object GetHost();
+        string ReadLine();
     }
 }
