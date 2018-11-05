@@ -10,11 +10,11 @@ namespace Assignment6
             int startingMinute, int startingSecond, int durationHours, int durationMinutes, int durationSeconds)
         {
             this.Crn = crn;
-            _currentSchedule = new Schedule(daysOfWeek, quarter, startingHour, startingMinute, startingSecond, 
+            CurrentSchedule = new Schedule(daysOfWeek, quarter, startingHour, startingMinute, startingSecond, 
                 durationHours, durationMinutes, durationSeconds);
         }
         
-        private enum Day
+        public enum Day
         {
             Sun,
             Mon,
@@ -25,7 +25,7 @@ namespace Assignment6
             Sat
         };
 
-        private enum SchoolQuarter
+        public enum SchoolQuarter
         {
             Fall,
             Winter,
@@ -33,35 +33,28 @@ namespace Assignment6
             Summer
         };
 
-        readonly struct TimeValue
+        public readonly struct TimeValue
         {
             public int Hour { get; }
-            public int _minute { get; }
-            public int _second { get; }
+            public int Minute { get; }
+            public int Second { get; }
 
             public TimeValue(int hour, int minute, int second)
             {
                 Hour = hour;
-                _minute = minute;
-                _second = second;
+                Minute = minute;
+                Second = second;
             }
         }
 
-        readonly struct Schedule
+        public readonly struct Schedule
         {
             // List so we can have multiple days
             public List<Day> DaysOfWeek { get; }
+
             public SchoolQuarter Quarter { get; }
             public TimeValue StartTime { get; }
             public TimeSpan Duration { get; }
-            
-            public Schedule(List<Day> daysOfWeek, SchoolQuarter quarter, TimeValue startTime, TimeSpan duration)
-            {
-                DaysOfWeek = daysOfWeek;
-                Quarter = quarter;
-                StartTime = startTime;
-                Duration = duration;
-            }
 
             public Schedule(string daysOfWeek, string quarter, int startingHour, int startingMinute, 
                 int startingSecond, int durationHours, int durationMinutes, int durationSeconds)
@@ -69,8 +62,7 @@ namespace Assignment6
                 DaysOfWeek = ConvertStringToDayList(daysOfWeek);
                 Quarter = ConvertStringToSchoolQuarter(quarter);
 
-                if (startingHour <= 24 && startingHour > 0 && startingMinute < 60 && startingMinute >= 0 
-                    && startingSecond < 60 && startingSecond >= 0)
+                if (IsValidTime(startingHour, startingMinute, startingSecond))
                 {
                     StartTime = new TimeValue(startingHour, startingMinute, startingSecond);
                 }
@@ -79,8 +71,16 @@ namespace Assignment6
                     throw new InvalidDataException("Starting time is out of valid time range! Valid range: " +
                                                    "Hour (0-24), Minute (0-60), Seconds (0-60)");
                 }
-                
-                Duration = new TimeSpan(durationHours, durationMinutes, durationSeconds);
+
+                if (IsValidTime(durationHours, durationMinutes, durationSeconds))
+                {
+                    Duration = new TimeSpan(durationHours, durationMinutes, durationSeconds);
+                }
+                else
+                {
+                    throw new InvalidDataException("Duration time is out of valid time range! Valid range: " +
+                                                  "Hour (0-24), Minute (0-60), Seconds (0-60)");
+                }
             }
 
             private static List<Day> ConvertStringToDayList(string spaceDelimitedDayList)
@@ -118,6 +118,8 @@ namespace Assignment6
                     }
                 }
 
+                newDayList.Sort();
+                
                 return newDayList;
             }
             
@@ -140,9 +142,25 @@ namespace Assignment6
                 validQuarterTypes = validQuarterTypes.Trim();
                 throw new InvalidDataException($"{schoolQuarter} is an invalid SchoolQuarter. Valid quarters are: \"{validQuarterTypes}\"");
             }
+
+            private static bool IsValidTime(int hour, int minute, int second)
+            {
+                if (hour < 24 && hour >= 0 && minute < 60 && minute >= 0 
+                    && second < 60 && second >= 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            public string GetQuarter()
+            {
+                return Quarter.ToString();
+            }
         }
 
-        private readonly Schedule _currentSchedule;
+        public readonly Schedule CurrentSchedule;
 
         public void SetSchedule(string daysToSet)
         {
@@ -178,33 +196,35 @@ namespace Assignment6
         
         // Calculated property
         // 2 hours of homework expected for every hour of class time
-        public int DailyHoursOfHomeworkExpected 
-            => (_currentSchedule.Duration.Hours+(_currentSchedule.Duration.Minutes/60)) * 2;
+        public double WeeklyHoursOfHomeworkExpected 
+            => (CurrentSchedule.Duration.Hours+(CurrentSchedule.Duration.Minutes/60.0)) * 2;
 
         public string GetSummaryInformation()
         {
             string daysOfWeekEventOccursOn = "";
-            foreach (Day cur in _currentSchedule.DaysOfWeek)
+            foreach (Day cur in CurrentSchedule.DaysOfWeek)
             {
                 daysOfWeekEventOccursOn += cur + " ";
             }
+
+            daysOfWeekEventOccursOn = daysOfWeekEventOccursOn.Trim();
             
             return 
 $@"The course CRN is: {Crn}
-It starts at {_currentSchedule.StartTime.Hour}:{_currentSchedule.StartTime._minute}:{_currentSchedule.StartTime._second} 
-It lasts for {_currentSchedule.Duration.Hours} hours {_currentSchedule.Duration.Minutes} minutes and {_currentSchedule.Duration.Seconds} seconds
+The event starts at {CurrentSchedule.StartTime.Hour}:{CurrentSchedule.StartTime.Minute}:{CurrentSchedule.StartTime.Second}
+It lasts for {CurrentSchedule.Duration.Hours} hours, {CurrentSchedule.Duration.Minutes} minutes, and {CurrentSchedule.Duration.Seconds} seconds
 It repeats on {daysOfWeekEventOccursOn}
-Expect {DailyHoursOfHomeworkExpected} hours of homework each day.";
+Expect {WeeklyHoursOfHomeworkExpected} hours of homework each week.";
         }
 
         public int GetStartingHour()
         {
-            return _currentSchedule.StartTime.Hour;
+            return CurrentSchedule.StartTime.Hour;
         }
 
         public int GetEndingHour()
         {
-            int startingTimePlusDuration = _currentSchedule.StartTime.Hour + _currentSchedule.Duration.Hours;
+            int startingTimePlusDuration = CurrentSchedule.StartTime.Hour + CurrentSchedule.Duration.Hours;
 
             if (startingTimePlusDuration > 24)
             {
