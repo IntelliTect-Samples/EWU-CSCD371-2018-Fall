@@ -25,13 +25,13 @@ Selection: <<1
 >>
 Enter year: <<2018
 >>
-Enter month: <<1
+Enter month: <<10
 >>
-Enter day: <<1
+Enter day: <<10
 >>
 Enter starting hour: <<10
 >>
-Enter ending hour: <<22
+Enter ending hour: <<12
 >>
 Event created!
 Select from the following menu options:
@@ -42,19 +42,23 @@ Select from the following menu options:
 
 Selection: <<2
 >>
-Enter crn: <<115
+Enter crn: <<11005
 >>
-Enter year: <<2018
+Enter days of week (Mon, Tues, Weds, Thurs, Fri, Sat, Sun) separated by spaces (I.E: Mon Tues Weds): <<Tues Thurs
 >>
-Enter month: <<1
+Enter school quarter, value values: (Spring, Winter, Fall, Summer): <<Spring
 >>
-Enter day: <<1
+Enter starting hour (0-23): <<2
 >>
-Enter starting hour: <<10
+Enter starting minute (0-59): <<0
 >>
-Enter ending hour: <<22
+Enter starting second (0-59): <<0
 >>
-Enter days of week (M, T, W, T, F) separated by commas (I.E: M T W): <<M T W R
+Enter duration hours (0-23): <<2
+>>
+Enter duration minutes (0-59): <<30
+>>
+Enter duration seconds (0-59): <<0
 >>
 UniversityCourse created!
 Select from the following menu options:
@@ -66,12 +70,13 @@ Select from the following menu options:
 Selection: <<3
 >>
 Full list of events:
-1. The event starts at 10 and ends at 22
-2. The course CRN is: 115
-The event starts at 10 and ends at 22
-It repeats on M T W R 
-Expect 24 hours of homework each day.
-
+1. The event starts at 10 and ends at 12
+2. The course CRN is: 11005
+The course starts at 2:0:0
+It is during Spring quarter
+It lasts for 2 hours, 30 minutes, and 0 seconds
+It repeats on Tues Thurs
+Expect 5 hours of homework each week.
 Select from the following menu options:
 1. Create Event
 2. Create University Course
@@ -139,12 +144,11 @@ Exiting!
             Event sampleEvent1 = new Event(new DateTime(2018, 1, 1, 10, 0, 0), new DateTime(2018, 1, 1, 22, 0, 0));
             Event sampleEvent2 = new Event(new DateTime(2018, 1, 1, 11, 0, 0), new DateTime(2018, 1, 1, 21, 0, 0));
 
-            List<Event> toUse = new List<Event> {sampleEvent1, sampleEvent2};
+            List<IEvent> toUse = new List<IEvent> {sampleEvent1, sampleEvent2};
 
             string expected =
 $@"1. The event starts at 10 and ends at 22
 2. The event starts at 11 and ends at 21
-
 ";
             
             StringWriter stringWriter = new StringWriter();
@@ -166,7 +170,7 @@ $@"1. The event starts at 10 and ends at 22
         [TestMethod]
         public void PrintEventList_EmptyList()
         {
-            List<Event> toUse = new List<Event>();
+            List<IEvent> toUse = new List<IEvent>();
 
             string expected =
                 @"List is empty!
@@ -186,36 +190,6 @@ $@"1. The event starts at 10 and ends at 22
             Console.SetOut(oldOut);
 
             Assert.AreEqual(expected, stringWriter.ToString());
-        }
-
-        [TestMethod]
-        public void PromptUserForDaysOfWeek_InputValidData()
-        {
-            string userInput = "M T W R F";
-            
-            List<char> expected = new List<char>();
-            expected.Add('M');
-            expected.Add('T');
-            expected.Add('W');
-            expected.Add('R');
-            expected.Add('F');
-            
-            StringReader stringReader = new StringReader(userInput);
-            StringWriter stringWriter = new StringWriter();
-
-            var oldIn = Console.In;
-            var oldOut = Console.Out;
-            
-            Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
-            
-            // do something
-            List<char> result = Program.PromptUserForDaysOfWeek();
-            
-            Console.SetIn(oldIn);
-            Console.SetOut(oldOut);
-           
-            Assert.IsTrue(expected.SequenceEqual(result));
         }
     }
 }

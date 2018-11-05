@@ -43,7 +43,7 @@ namespace Assignment6.Tests
             
             Assert.AreEqual(sampleCRN, sampleCourse.Crn);
             Assert.IsTrue(validList.SequenceEqual(sampleCourse.CurrentSchedule.DaysOfWeek));
-            Assert.AreEqual(sampleQuarter, sampleCourse.CurrentSchedule.GetQuarter());
+            Assert.AreEqual(sampleQuarter, GetQuarter(sampleCourse));
             Assert.AreEqual(sampleStartingHour, sampleCourse.CurrentSchedule.StartTime.Hour);
             Assert.AreEqual(sampleStartingMinute, sampleCourse.CurrentSchedule.StartTime.Minute);
             Assert.AreEqual(sampleStartingSecond, sampleCourse.CurrentSchedule.StartTime.Second);
@@ -104,7 +104,7 @@ namespace Assignment6.Tests
                 sampleStartingMinute, sampleStartingSecond, sampleDurationHours, 
                 sampleDurationMinutes, sampleDurationSeconds);
             
-            Assert.AreEqual(setQuarter, sampleCourse.CurrentSchedule.GetQuarter());
+            Assert.AreEqual(setQuarter, GetQuarter(sampleCourse));
         }
         
         [DataTestMethod]
@@ -196,11 +196,17 @@ namespace Assignment6.Tests
                 sampleDurationMinutes, sampleDurationSeconds);
             String expected = 
 @"The course CRN is: 11005
-The event starts at 10:0:0
+The course starts at 10:0:0
+It is during Spring quarter
 It lasts for 4 hours, 30 minutes, and 0 seconds
 It repeats on Sun Mon Tues Weds Thurs Fri Sat
 Expect 9 hours of homework each week.";
             Assert.AreEqual(expected, sampleCourse.GetSummaryInformation());
+        }
+
+        public static string GetQuarter(UniversityCourse toUse)
+        {
+            return toUse.CurrentSchedule.Quarter.ToString();
         }
     }
 }

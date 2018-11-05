@@ -4,5 +4,6 @@ namespace Assignment6
     {
         int GetStartingHour();
         int GetEndingHour();
+        string GetSummaryInformation();
     }
 }

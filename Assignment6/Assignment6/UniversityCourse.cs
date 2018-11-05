@@ -153,11 +153,6 @@ namespace Assignment6
 
                 return false;
             }
-
-            public string GetQuarter()
-            {
-                return Quarter.ToString();
-            }
         }
 
         public readonly Schedule CurrentSchedule;
@@ -211,7 +206,8 @@ namespace Assignment6
             
             return 
 $@"The course CRN is: {Crn}
-The event starts at {CurrentSchedule.StartTime.Hour}:{CurrentSchedule.StartTime.Minute}:{CurrentSchedule.StartTime.Second}
+The course starts at {CurrentSchedule.StartTime.Hour}:{CurrentSchedule.StartTime.Minute}:{CurrentSchedule.StartTime.Second}
+It is during {CurrentSchedule.Quarter} quarter
 It lasts for {CurrentSchedule.Duration.Hours} hours, {CurrentSchedule.Duration.Minutes} minutes, and {CurrentSchedule.Duration.Seconds} seconds
 It repeats on {daysOfWeekEventOccursOn}
 Expect {WeeklyHoursOfHomeworkExpected} hours of homework each week.";
