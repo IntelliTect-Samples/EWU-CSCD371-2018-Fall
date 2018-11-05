@@ -15,7 +15,7 @@ namespace Assignment6.Tests
         public void TestProgramMain_ValidData()
         {
             string expected =
-$@"Select from the following menu options:
+@"Select from the following menu options:
 1. Create Event
 2. Create University Course
 3. Display list of events

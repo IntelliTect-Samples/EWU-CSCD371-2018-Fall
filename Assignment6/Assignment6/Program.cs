@@ -7,7 +7,14 @@ namespace Assignment6
     {
         public static void Main()
         {
-            List<Event> eventList = new List<Event>();
+            DateTime _sampleStartingTime = new DateTime(2018, 1, 1, 10, 0, 0);
+            DateTime _sampleEndingTime = new DateTime(2018, 1, 1, 11, 0, 0);
+            UniversityCourse test = new UniversityCourse(115, _sampleStartingTime, _sampleEndingTime);
+            
+            test.SetSchedule("Mon Tues");
+            
+            //TODO: uncomment
+            /*(List<Event> eventList = new List<Event>();
 
             int selection = 0;
             
@@ -39,7 +46,7 @@ namespace Assignment6
                        Console.WriteLine("Invalid menu option!");
                        break;
                 }
-            } while (selection != 4);
+            } while (selection != 4);*/
         }
 
         public static int PrintMenuAndGetUserSelection()
@@ -105,7 +112,8 @@ Selection: ";
             }
         }
         
-        public static UniversityCourse PromptCreateUniversityCourse()
+        //TODO: uncomment
+        /*public static UniversityCourse PromptCreateUniversityCourse()
         {
             int crnToSet;
             DateTime startingTime;
@@ -146,7 +154,7 @@ Selection: ";
                     Console.WriteLine("Invalid data, try again!");
                 }
             }
-        }
+        }*/
 
         public static DateTime PromptCreateDateTime()
         {

@@ -19,7 +19,7 @@ namespace Assignment6.Tests
             _startingTime = CreateDateTimeAtHour(10);
             _endingTime = CreateDateTimeAtHour(22);
             _sampleEvent = new Event(_startingTime, _endingTime);
-            _sampleCourse = new UniversityCourse(1115, _startingTime, _endingTime, _sampleCourseDays);
+            //TODO: _sampleCourse = new UniversityCourse(1115, _startingTime, _endingTime, _sampleCourseDays);
         }
         
         [TestMethod]
