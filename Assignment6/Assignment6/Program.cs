@@ -7,12 +7,6 @@ namespace Assignment6
     {
         public static void Main()
         {
-            DateTime _sampleStartingTime = new DateTime(2018, 1, 1, 10, 0, 0);
-            DateTime _sampleEndingTime = new DateTime(2018, 1, 1, 11, 0, 0);
-            UniversityCourse test = new UniversityCourse(115, _sampleStartingTime, _sampleEndingTime);
-            
-            test.SetSchedule("Mon Tues");
-            
             //TODO: uncomment
             /*(List<Event> eventList = new List<Event>();
 

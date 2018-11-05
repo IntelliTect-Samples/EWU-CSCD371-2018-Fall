@@ -8,17 +8,30 @@ namespace Assignment6.Tests
     [TestClass]
     public class UniversityCourseTester
     {
-        readonly DateTime _sampleStartingTime = new DateTime(2018, 1, 1, 10, 0, 0);
-        readonly DateTime _sampleEndingTime = new DateTime(2018, 1, 1, 11, 0, 0);
-        private List<char> _sampleCourseDays = new List<char> {'M', 'T', 'W', 'R', 'F'};
+        // int crn, string daysOfWeek, string quarter, int startingHour, 
+        //int startingMinute, int startingSecond, int durationHours, int durationMinutes, int durationSeconds
 
-        [TestMethod]
-        public void TestMethod1()
+        private readonly int sampleCRN = 11005;
+        private readonly string sampleDaysOfWeek = "Mon Tues Weds Thurs Fri Sat Sun";
+        private readonly string sampleQuarter = "Spring";
+        private readonly int sampleStartingHour = 10;
+        private readonly int sampleStartingMinute = 0;
+        private readonly int sampleStartingSecond = 0;
+        private readonly int sampleDurationHours = 4;
+        private readonly int sampleDurationMinutes = 30;
+        private readonly int sampleDurationSeconds = 0;
+
+        private UniversityCourse sampleCourse;
+        
+        [TestInitialize]
+        public void Initialize()
         {
-            
+            sampleCourse = new UniversityCourse(sampleCRN, sampleDaysOfWeek, sampleQuarter, sampleStartingHour, 
+                sampleStartingMinute, sampleStartingSecond, sampleDurationHours, 
+                sampleDurationMinutes, sampleDurationSeconds);
         }
         
-        /*TODO:[TestMethod]
+        [TestMethod]
         public void Constructor_SetValidValuesCRNStartTimeEndTimeDaysOfWeek()
         {
             UniversityCourse myCourse = 
@@ -73,6 +86,6 @@ The event starts at 10 and ends at 11
 It repeats on M T W R F 
 Expect 2 hours of homework each day.";
             Assert.AreEqual(expected, myCourse.GetSummaryInformation());
-        }*/
+        }
     }
 }

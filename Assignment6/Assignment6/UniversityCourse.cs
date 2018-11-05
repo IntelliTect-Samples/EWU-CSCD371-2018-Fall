@@ -6,6 +6,14 @@ namespace Assignment6
 {
     public class UniversityCourse : IEvent
     {
+        public UniversityCourse(int crn, string daysOfWeek, string quarter, int startingHour, 
+            int startingMinute, int startingSecond, int durationHours, int durationMinutes, int durationSeconds)
+        {
+            this.Crn = crn;
+            _currentSchedule = new Schedule(daysOfWeek, quarter, startingHour, startingMinute, startingSecond, 
+                durationHours, durationMinutes, durationSeconds);
+        }
+        
         private enum Day
         {
             Sun,
@@ -42,21 +50,29 @@ namespace Assignment6
         readonly struct Schedule
         {
             // List so we can have multiple days
-            public List<Day> _daysOfWeek { get; }
-            public SchoolQuarter _quarter { get; }
-            public TimeValue _startTime { get; }
-            public TimeSpan _duration { get; }
+            public List<Day> DaysOfWeek { get; }
+            public SchoolQuarter Quarter { get; }
+            public TimeValue StartTime { get; }
+            public TimeSpan Duration { get; }
+            
+            public Schedule(List<Day> daysOfWeek, SchoolQuarter quarter, TimeValue startTime, TimeSpan duration)
+            {
+                DaysOfWeek = daysOfWeek;
+                Quarter = quarter;
+                StartTime = startTime;
+                Duration = duration;
+            }
 
-            public Schedule(List<Day> daysOfWeek, SchoolQuarter quarter, int startingHour, int startingMinute, 
+            public Schedule(string daysOfWeek, string quarter, int startingHour, int startingMinute, 
                 int startingSecond, int durationHours, int durationMinutes, int durationSeconds)
             {
-                _daysOfWeek = daysOfWeek;
-                _quarter = quarter;
+                DaysOfWeek = ConvertStringToDayList(daysOfWeek);
+                Quarter = ConvertStringToSchoolQuarter(quarter);
 
                 if (startingHour <= 24 && startingHour > 0 && startingMinute < 60 && startingMinute >= 0 
                     && startingSecond < 60 && startingSecond >= 0)
                 {
-                    _startTime = new TimeValue(startingHour, startingMinute, startingSecond);
+                    StartTime = new TimeValue(startingHour, startingMinute, startingSecond);
                 }
                 else
                 {
@@ -64,15 +80,7 @@ namespace Assignment6
                                                    "Hour (0-24), Minute (0-60), Seconds (0-60)");
                 }
                 
-                _duration = new TimeSpan(durationHours, durationMinutes, durationSeconds);
-            }
-            
-            public Schedule(string daysOfWeek, string quarter, TimeValue startTime, TimeSpan duration)
-            {
-                _daysOfWeek = ConvertStringToDayList(daysOfWeek);
-                _quarter = ConvertStringToSchoolQuarter(quarter);
-                _startTime = startTime;
-                _duration = duration;
+                Duration = new TimeSpan(durationHours, durationMinutes, durationSeconds);
             }
 
             private static List<Day> ConvertStringToDayList(string spaceDelimitedDayList)
@@ -85,7 +93,15 @@ namespace Assignment6
                 {
                     if (Enum.TryParse(cur, out Day parsedDay))
                     {
-                        newDayList.Add(parsedDay);
+                        if (!newDayList.Contains(parsedDay))
+                        {
+                            newDayList.Add(parsedDay);
+                        }
+                        else
+                        {
+                            throw new InvalidDataException($"{parsedDay} already exists. You cannot specify the same " +
+                                                           $"day twice");
+                        }
                     }
                     else
                     {
@@ -163,38 +179,39 @@ namespace Assignment6
         // Calculated property
         // 2 hours of homework expected for every hour of class time
         public int DailyHoursOfHomeworkExpected 
-            => (_currentSchedule._duration.Hours+(_currentSchedule._duration.Minutes/60)) * 2;
-        
-        public UniversityCourse(int crn, DateTime startingTime, DateTime endingTime) 
-        {
-            this.Crn = crn;
-        }
+            => (_currentSchedule.Duration.Hours+(_currentSchedule.Duration.Minutes/60)) * 2;
 
-        //TODO: Update
         public string GetSummaryInformation()
         {
             string daysOfWeekEventOccursOn = "";
-            /*foreach (char cur in DaysOfWeek)
+            foreach (Day cur in _currentSchedule.DaysOfWeek)
             {
                 daysOfWeekEventOccursOn += cur + " ";
-            }*/
+            }
             
             return 
 $@"The course CRN is: {Crn}
+It starts at {_currentSchedule.StartTime.Hour}:{_currentSchedule.StartTime._minute}:{_currentSchedule.StartTime._second} 
+It lasts for {_currentSchedule.Duration.Hours} hours {_currentSchedule.Duration.Minutes} minutes and {_currentSchedule.Duration.Seconds} seconds
 It repeats on {daysOfWeekEventOccursOn}
 Expect {DailyHoursOfHomeworkExpected} hours of homework each day.";
         }
 
-        // TODO
         public int GetStartingHour()
         {
-            throw new NotImplementedException();
+            return _currentSchedule.StartTime.Hour;
         }
 
-        // TODO:
         public int GetEndingHour()
         {
-            throw new NotImplementedException();
+            int startingTimePlusDuration = _currentSchedule.StartTime.Hour + _currentSchedule.Duration.Hours;
+
+            if (startingTimePlusDuration > 24)
+            {
+                return startingTimePlusDuration - 24;
+            }
+
+            return startingTimePlusDuration;
         }
     }
 }

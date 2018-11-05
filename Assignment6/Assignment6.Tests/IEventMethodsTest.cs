@@ -8,7 +8,7 @@ namespace Assignment6.Tests
     {
         private DateTime _startingTime;
         private DateTime _endingTime;
-        private Event _sampleEvent;
+        private IEvent _sampleEvent;
 
         [TestInitialize]
         public void Initialize()
