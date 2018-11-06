@@ -16,7 +16,7 @@ namespace Assignment6
         }
 
         [Flags]
-        public enum DaysOfWeek
+        public enum DaysOfWeek : byte
         {
             Sunday = 1,
             Monday = 2,
@@ -27,7 +27,7 @@ namespace Assignment6
             Saturday = 64
         };
 
-        public enum SchoolQuarter
+        public enum SchoolQuarter : byte
         {
             Fall,
             Winter,
@@ -49,10 +49,10 @@ namespace Assignment6
             }
         }
 
-        public readonly struct Schedule // 24 bytes -> 5 bytes unaccounted for
+        public readonly struct Schedule // 13 bytes
         {
-            public readonly DaysOfWeek ClassDays; // 4 bytes
-            public readonly SchoolQuarter Quarter; // 4 bytes
+            public readonly DaysOfWeek ClassDays; // 1 byte
+            public readonly SchoolQuarter Quarter; // 1 byte
             public readonly TimeValue StartTime; // 3 bytes
             public readonly TimeSpan Duration; // 8 bytes
 

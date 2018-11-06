@@ -55,13 +55,13 @@ namespace Assignment6.Tests
         [TestMethod]
         public void ScheduleStruct_CheckLessThan16Bytes()
         {
-            Assert.IsTrue(16 > Marshal.SizeOf(_sampleCourse.CurrentSchedule));
+            Assert.IsTrue(16 >= Marshal.SizeOf(_sampleCourse.CurrentSchedule));
         }
         
         [TestMethod]
         public void TimeValueStruct_CheckLessThan16Bytes()
         {
-            Assert.IsTrue(16 > Marshal.SizeOf(_sampleCourse.CurrentSchedule.StartTime));
+            Assert.IsTrue(16 >= Marshal.SizeOf(_sampleCourse.CurrentSchedule.StartTime));
         }
 
         [DataTestMethod]
@@ -243,7 +243,7 @@ Expect 9 hours of homework each week.";
             Assert.AreEqual(expected, _sampleCourse.GetSummaryInformation());
         }
 
-        public static string GetQuarter(UniversityCourse toUse)
+        private static string GetQuarter(UniversityCourse toUse)
         {
             return toUse.CurrentSchedule.Quarter.ToString();
         }
