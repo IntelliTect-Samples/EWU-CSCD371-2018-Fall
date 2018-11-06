@@ -1,6 +1,6 @@
-namespace UniversityCourse
+namespace UniversityCourse.@event
 {
-    public static class IEventExtension
+    public static class EventExtension
     {
         public static double GetLength(this IEvent myIEvent)
         {

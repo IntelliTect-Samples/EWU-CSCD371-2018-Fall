@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UniversityCourse.@event;
 
 namespace UniversityCourse
 {
@@ -10,7 +11,7 @@ namespace UniversityCourse
         {
             switch (@object)
             {
-                case UniversityCourse course:
+                case @event.UniversityCourse course:
                     return course.GetSummaryInformation();
                 case Event @event:
                     return @event.GetSummaryInformation();

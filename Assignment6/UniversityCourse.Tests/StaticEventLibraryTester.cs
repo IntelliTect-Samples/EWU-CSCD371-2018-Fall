@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using UniversityCourse.@event;
 
 namespace UniversityCourse.Tests
 {
@@ -7,11 +8,11 @@ namespace UniversityCourse.Tests
     public class StaticEventLibraryTester
     {
         private static Event @event;
-        private static UniversityCourse course;
+        private static @event.UniversityCourse course;
         [TestInitialize]
         public void Get_Name_Constructed_Success()
         {
-            course = new UniversityCourse("Android Development", "CEB 228",
+            course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
 

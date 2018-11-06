@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using UniversityCourse.@event;
+
 namespace UniversityCourse.Tests
 {
     [TestClass]
@@ -22,7 +24,7 @@ namespace UniversityCourse.Tests
         [TestMethod]
         public void Test_IEvent_Get_Name_Course_Success()
         {
-            var course = new UniversityCourse("Android Development", "CEB 228",
+            var course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
             Assert.AreEqual("Android Development", course.GetName());
@@ -31,7 +33,7 @@ namespace UniversityCourse.Tests
         [TestMethod]
         public void Test_IEvent_Get_Name_Course_Failure()
         {
-            var course = new UniversityCourse("Android Development", "CEB 228",
+            var course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
             Assert.AreNotEqual("Web Application Development", course.GetName());
@@ -48,7 +50,7 @@ namespace UniversityCourse.Tests
         [TestMethod]
         public void Test_UniverityCourse_Is_IEvent_Success()
         {
-            var course = new UniversityCourse("Android Development", "CEB 228",
+            var course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
             if(!(course is IEvent))
@@ -58,7 +60,7 @@ namespace UniversityCourse.Tests
         [TestMethod]
         public void Test_UniverityCourse_Extension_Method_Success()
         {
-            var course = new UniversityCourse("Android Development", "CEB 228",
+            var course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
 
@@ -68,7 +70,7 @@ namespace UniversityCourse.Tests
         [TestMethod]
         public void Test_UniverityCourse_Extension_Method_Failure()
         {
-            var course = new UniversityCourse("Android Development", "CEB 228",
+            var course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 15, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
 

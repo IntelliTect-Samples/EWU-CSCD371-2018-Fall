@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using UniversityCourse.@event;
+
 /*Properties in Event class are read only
     So to check validation, values are passed to constructor*/
 namespace UniversityCourse.Tests

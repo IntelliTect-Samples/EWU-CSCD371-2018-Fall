@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UniversityCourse
+namespace UniversityCourse.@event
 {
     public class Event : IEvent
     {
@@ -85,4 +85,6 @@ namespace UniversityCourse
         public DateTime GetStartDate(){return DateStart;}
         public DateTime GetEndDate(){return DateEnd;}
     }
+
+
 }

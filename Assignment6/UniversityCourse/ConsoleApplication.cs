@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using UniversityCourse.@event;
 
 namespace UniversityCourse
 {
@@ -96,7 +97,7 @@ Choice: ");
 
             try
             {
-                CreatedEvents.Add(new UniversityCourse(name, location, startDate, endDate,
+                CreatedEvents.Add(new @event.UniversityCourse(name, location, startDate, endDate,
                     courseID, instructor, schedule));
             }
             catch (Exception e)

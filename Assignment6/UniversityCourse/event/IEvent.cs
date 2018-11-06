@@ -1,6 +1,6 @@
 using System;
 
-namespace UniversityCourse
+namespace UniversityCourse.@event
 {
     public interface IEvent
     {

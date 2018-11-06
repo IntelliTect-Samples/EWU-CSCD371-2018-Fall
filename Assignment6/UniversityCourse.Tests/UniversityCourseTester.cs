@@ -6,11 +6,11 @@ namespace UniversityCourse.Tests
     [TestClass]
     public class UniversityCourseTester
     {
-        private static UniversityCourse course;
+        private static @event.UniversityCourse course;
         [TestInitialize]
         public void Get_Name_Constructed_Success()
         {
-            course = new UniversityCourse("Android Development", "CEB 228",
+            course = new @event.UniversityCourse("Android Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Paul Shimpf", "mwf");
         }
@@ -114,11 +114,11 @@ namespace UniversityCourse.Tests
         [TestMethod]
         public void Get_Number_of_Constructed_Courses_Success()
         {
-            var numberOfCoursesBefore = UniversityCourse.NumberOfCourses;
-            UniversityCourse myCourse = new UniversityCourse("Web Development", "CEB 228",
+            var numberOfCoursesBefore = @event.UniversityCourse.NumberOfCourses;
+            @event.UniversityCourse myCourse = new @event.UniversityCourse("Web Development", "CEB 228",
                 new DateTime(2018, 9, 18, 12, 0, 0, 0), new DateTime(2018, 12, 10, 14, 0, 0, 0),
                 "CSCD272", "Casey White", "mtwrf");
-            Assert.AreEqual(numberOfCoursesBefore + 1, UniversityCourse.NumberOfCourses);
+            Assert.AreEqual(numberOfCoursesBefore + 1, @event.UniversityCourse.NumberOfCourses);
         }
 
 

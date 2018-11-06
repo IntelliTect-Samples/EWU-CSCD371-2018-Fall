@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace UniversityCourse
+namespace UniversityCourse.@event
 {
     public class UniversityCourse : Event
     {
