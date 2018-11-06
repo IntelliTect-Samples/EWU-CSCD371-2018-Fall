@@ -44,7 +44,7 @@ Selection: <<2
 >>
 Enter crn: <<11005
 >>
-Enter days of week (Mon, Tues, Weds, Thurs, Fri, Sat, Sun) separated by spaces (I.E: Mon Tues Weds): <<Tues Thurs
+Enter days of week (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) separated by spaces (I.E: Monday Tuesday Wednesday): <<Tuesday Thursday
 >>
 Enter school quarter, value values: (Spring, Winter, Fall, Summer): <<Spring
 >>
@@ -75,7 +75,7 @@ Full list of events:
 The course starts at 2:0:0
 It is during Spring quarter
 It lasts for 2 hours, 30 minutes, and 0 seconds
-It repeats on Tues Thurs
+It repeats on Tuesday Thursday
 Expect 5 hours of homework each week.
 Select from the following menu options:
 1. Create Event

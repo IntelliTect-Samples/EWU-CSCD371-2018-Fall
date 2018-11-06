@@ -1,28 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Assignment6
 {
     public class UniversityCourse : IEvent
     {
-        public UniversityCourse(int crn, string daysOfWeek, string quarter, int startingHour, 
-            int startingMinute, int startingSecond, int durationHours, int durationMinutes, int durationSeconds)
+        public UniversityCourse(int crn, string daysOfWeek, string quarter, byte startingHour, 
+            byte startingMinute, byte startingSecond, int durationHours, int durationMinutes, int durationSeconds)
         {
             this.Crn = crn;
             CurrentSchedule = new Schedule(daysOfWeek, quarter, startingHour, startingMinute, startingSecond, 
                 durationHours, durationMinutes, durationSeconds);
         }
-        
-        public enum Day
+
+        [Flags]
+        public enum DaysOfWeek
         {
-            Sun,
-            Mon,
-            Tues,
-            Weds,
-            Thurs,
-            Fri,
-            Sat
+            Sunday = 1,
+            Monday = 2,
+            Tuesday = 4,
+            Wednesday = 8,
+            Thursday = 16,
+            Friday = 32,
+            Saturday = 64
         };
 
         public enum SchoolQuarter
@@ -35,11 +37,11 @@ namespace Assignment6
 
         public readonly struct TimeValue
         {
-            public int Hour { get; }
-            public int Minute { get; }
-            public int Second { get; }
+            public byte Hour { get; }
+            public byte Minute { get; }
+            public byte Second { get; }
 
-            public TimeValue(int hour, int minute, int second)
+            public TimeValue(byte hour, byte minute, byte second)
             {
                 Hour = hour;
                 Minute = minute;
@@ -47,19 +49,17 @@ namespace Assignment6
             }
         }
 
-        public readonly struct Schedule
+        public readonly struct Schedule // 24 bytes -> 5 bytes unaccounted for
         {
-            // List so we can have multiple days
-            public List<Day> DaysOfWeek { get; }
+            public readonly DaysOfWeek ClassDays; // 4 bytes
+            public readonly SchoolQuarter Quarter; // 4 bytes
+            public readonly TimeValue StartTime; // 3 bytes
+            public readonly TimeSpan Duration; // 8 bytes
 
-            public SchoolQuarter Quarter { get; }
-            public TimeValue StartTime { get; }
-            public TimeSpan Duration { get; }
-
-            public Schedule(string daysOfWeek, string quarter, int startingHour, int startingMinute, 
-                int startingSecond, int durationHours, int durationMinutes, int durationSeconds)
+            public Schedule(string daysOfWeek, string quarter, byte startingHour, byte startingMinute, 
+                byte startingSecond, int durationHours, int durationMinutes, int durationSeconds)
             {
-                DaysOfWeek = ConvertStringToDayList(daysOfWeek);
+                this.ClassDays = ConvertStringToDayList(daysOfWeek);
                 Quarter = ConvertStringToSchoolQuarter(quarter);
 
                 if (IsValidTime(startingHour, startingMinute, startingSecond))
@@ -83,29 +83,20 @@ namespace Assignment6
                 }
             }
 
-            private static List<Day> ConvertStringToDayList(string spaceDelimitedDayList)
+            private static DaysOfWeek ConvertStringToDayList(string spaceDelimitedDayList)
             {
-                List<Day> newDayList = new List<Day>();
-        
+                DaysOfWeek dayList = new DaysOfWeek();
                 string[] separatedDays = spaceDelimitedDayList.Split();
 
                 foreach (string cur in separatedDays)
                 {
-                    if (Enum.TryParse(cur, out Day parsedDay))
+                    if (Enum.TryParse(cur, out DaysOfWeek parsedDay))
                     {
-                        if (!newDayList.Contains(parsedDay))
-                        {
-                            newDayList.Add(parsedDay);
-                        }
-                        else
-                        {
-                            throw new InvalidDataException($"{parsedDay} already exists. You cannot specify the same " +
-                                                           $"day twice");
-                        }
+                        dayList |= parsedDay;
                     }
                     else
                     {
-                        var validDays = Enum.GetValues(typeof(Day));
+                        var validDays = Enum.GetValues(typeof(DaysOfWeek));
                         string validDayValues = "";
 
                         foreach (var enumValue in validDays)
@@ -117,10 +108,8 @@ namespace Assignment6
                         throw new InvalidDataException($"{cur} is an invalid Day. Valid days are: \"{validDayValues}\"");
                     }
                 }
-
-                newDayList.Sort();
                 
-                return newDayList;
+                return dayList;
             }
             
             private static SchoolQuarter ConvertStringToSchoolQuarter(string schoolQuarter)
@@ -157,35 +146,6 @@ namespace Assignment6
 
         public readonly Schedule CurrentSchedule;
 
-        public void SetSchedule(string daysToSet)
-        {
-            List<Day> newDayList = new List<Day>();
-
-            string[] separatedDays = daysToSet.Split();
-
-            foreach (string cur in separatedDays)
-            {
-                Day parsedDay;
-                if (Enum.TryParse(cur, out parsedDay))
-                {
-                    newDayList.Add(parsedDay);
-                }
-                else
-                {
-                    var validDays = Enum.GetValues(typeof(Day));
-                    string validDayValues = "";
-
-                    foreach (var enumValue in validDays)
-                    {
-                        validDayValues += enumValue + " ";
-                    }
-
-                    validDayValues = validDayValues.Trim();
-                    throw new InvalidDataException($"{cur} is an invalid Day. Valid days are: \"{validDayValues}\"");
-                }
-            }
-        }
-
         // Read only
         public int Crn { get; }
         
@@ -197,9 +157,15 @@ namespace Assignment6
         public string GetSummaryInformation()
         {
             string daysOfWeekEventOccursOn = "";
-            foreach (Day cur in CurrentSchedule.DaysOfWeek)
+
+            var validDays = Enum.GetValues(typeof(DaysOfWeek));
+
+            foreach (DaysOfWeek enumValue in validDays)
             {
-                daysOfWeekEventOccursOn += cur + " ";
+                if (CurrentSchedule.ClassDays.HasFlag(enumValue))
+                {
+                    daysOfWeekEventOccursOn += enumValue + " ";
+                }
             }
 
             daysOfWeekEventOccursOn = daysOfWeekEventOccursOn.Trim();

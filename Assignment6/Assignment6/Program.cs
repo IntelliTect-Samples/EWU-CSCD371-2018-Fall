@@ -109,7 +109,7 @@ Selection: ";
         
         public static UniversityCourse PromptCreateUniversityCourse()
         {
-            //int crn, string daysOfWeek, string quarter, int startingHour, 
+            //int crn, string classDays, string quarter, int startingHour, 
             //int startingMinute, int startingSecond, int durationHours,
             //int durationMinutes, int durationSeconds
             while (true)
@@ -118,17 +118,19 @@ Selection: ";
                 {
                     int crnToSet = PromptUserForInt("crn");
                     
-                    Console.WriteLine("Enter days of week (Mon, Tues, Weds, Thurs, Fri, Sat, Sun) separated by spaces (I.E: Mon Tues Weds): ");
+                    Console.WriteLine("Enter days of week " +
+                                      "(Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) " +
+                                      "separated by spaces (I.E: Monday Tuesday Wednesday): ");
                     string daysOfWeekToSet = Console.ReadLine();
                     
                     Console.WriteLine("Enter school quarter, value values: (Spring, Winter, Fall, Summer): ");
                     string quarterToSet = Console.ReadLine();
 
-                    int startingHourToSet = PromptUserForInt("starting hour (0-23)");
+                    byte startingHourToSet = (byte)PromptUserForInt("starting hour (0-23)");
 
-                    int startingMinuteToSet = PromptUserForInt("starting minute (0-59)");
+                    byte startingMinuteToSet = (byte)PromptUserForInt("starting minute (0-59)");
 
-                    int startingSecondToSet = PromptUserForInt("starting second (0-59)");
+                    byte startingSecondToSet = (byte)PromptUserForInt("starting second (0-59)");
 
                     int durationHoursToSet = PromptUserForInt("duration hours (0-23)");
 
