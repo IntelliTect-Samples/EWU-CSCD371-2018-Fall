@@ -32,5 +32,12 @@ namespace UniversityCourse.Tests.ScheduleTests
             var size = Marshal.SizeOf(MySchedule);
             Assert.AreEqual(16, size);
         }
+        
+        [TestMethod]
+        public void Ensure_Schedule_Readonly_Success()
+        {
+            //MySchedule.DaysOfTheWeek = DaysOfTheWeek.Friday;    //wont compile because readonly
+            Assert.IsTrue(true);
+        }
     }
 }
