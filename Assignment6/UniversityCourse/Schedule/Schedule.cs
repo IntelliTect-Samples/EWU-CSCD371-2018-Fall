@@ -1,6 +1,7 @@
 using System;
+using UniversityCourse.Schedule;
 
-namespace UniversityCourse.Time
+namespace UniversityCourse.Schedule
 {
     public struct Schedule
     {

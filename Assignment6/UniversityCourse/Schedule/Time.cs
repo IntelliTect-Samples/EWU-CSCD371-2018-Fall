@@ -1,5 +1,5 @@
 
-namespace UniversityCourse.Time
+namespace UniversityCourse.Schedule
 {
     public struct Time
     {
