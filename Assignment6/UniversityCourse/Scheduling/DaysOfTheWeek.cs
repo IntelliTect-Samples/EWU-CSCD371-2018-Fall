@@ -1,9 +1,9 @@
 using System;
 
-namespace UniversityCourse.Schedule
+namespace UniversityCourse.Scheduling
 {
     [Flags]
-    public enum DaysOfTheWeek
+    public enum DaysOfTheWeek : byte
     {
         Sunday = 1 << 0,
         Monday = 1 << 1,

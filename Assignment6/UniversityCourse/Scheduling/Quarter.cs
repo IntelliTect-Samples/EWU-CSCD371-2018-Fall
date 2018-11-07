@@ -1,9 +1,9 @@
 using System;
 
-namespace UniversityCourse.Schedule
+namespace UniversityCourse.Scheduling 
 {
     [Flags]
-    public enum Quarter
+    public enum Quarter : byte
     {
         Winter = 1 << 0,
         Spring = 1 << 1,

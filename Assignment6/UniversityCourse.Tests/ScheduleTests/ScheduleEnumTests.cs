@@ -1,7 +1,6 @@
 using System;
-using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UniversityCourse.Schedule;
+using UniversityCourse.Scheduling;
 
 namespace UniversityCourse.Tests.ScheduleTests
 {
