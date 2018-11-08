@@ -2,21 +2,25 @@ using System;
 
 /*
  * Caveats:
- * -By making the Value variable a struct we eliminate the possibility of the value being null
- * -That being said every time we access the value of our variable it must be copied rather that
- *     a reference type which would only need to copy a reference of the object.
- *     *note that the ref keyword allows only a reference to be copied instead of the entire value type
- * -By adding the constraint that the value is unmanaged it ensures the passed objects is not a reference type
- *     and cannot contain any reference types. A draw back is for example any struct that is passed in cannot contain
- *     any references.
- *     
+ * -By making the Value variable a class we allow the value being null, so we must explicitly check for null values
+ * -A reference type will only need to copy a reference of the object.
+ *     whereas a value type must be copied over every time it is accessed.
+ * -By adding the constraint that the value is a class it ensures the passed objects is a reference type
+ *    
+ * A struct would ensure the value passed into the ctor is not null (because it is a value type)
+ *     this would be enforced at compile time.
  */
 namespace Assignment7
 {
     public class NotNullable<T>
-        where T : unmanaged 
+        where T : class
     {
-        public T Value { get; set; }
+        private T _Value;
+        public T Value
+        {
+            get => _Value;
+            set => _Value = value ?? throw new ArgumentNullException($"{nameof(value)} cannot be null.");
+        }
 
         public NotNullable(T value)
         {
