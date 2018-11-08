@@ -4,7 +4,7 @@ namespace Assignment7
 {
     public class Employee : IDisposable
     {
-        private static int Instances { get; set; }
+        public static int Instances { get; set; }
 
         private string Name{ get;}
         private int ID { get;}
