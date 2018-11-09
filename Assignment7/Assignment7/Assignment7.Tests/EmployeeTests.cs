@@ -50,5 +50,6 @@ namespace Assignment7.Tests
             }
             Assert.AreEqual(numberOfInstances-1, Employee.Instances);
         }
+
     }
 }

@@ -23,7 +23,6 @@ namespace Assignment7.Tests
         public void Ensure_NotNullable_Cannot_Accept_Null()
         {
             NotNullable<StringBuilder> notNullable = new NotNullable<StringBuilder>(null);
-            Assert.Fail();
         }
     }
 }
