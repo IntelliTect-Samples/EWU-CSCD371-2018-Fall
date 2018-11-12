@@ -20,7 +20,7 @@
 * Note: It is optional (neither better or worse) to use `IFactory<T>` (don't use `Factory<T>`) as as a means of providing the "default" value of `T` if `NonNullable`'s default constructor (if it has one) is invoked. I mention this because in class I inferred you would need a factory class but that is not necessarily the case.
 * Prefix your PR Name with __"Assignment7"__ (no space)
 
-NOTE: This exercise __can be implemented in pairs__ - with two people submitting the same solution.  (Identify who you paired with in the PR name.)
+NOTE: This exercise __can be implemented in pairs__ - with two people submitting the same solution (each person submits a PR with the same code).  (Identify who you paired with in the PR name.)
 
 ## Coding Guidelines
 
