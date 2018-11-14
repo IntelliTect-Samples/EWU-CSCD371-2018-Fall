@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assignment8"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        MinWidth="400"
+        MinHeight="600">
+
+
+  <Border Padding="10">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="XX : XX : XX" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="75"/>
+
+        <Button Grid.Column="0" Grid.Row="1" Margin="0 0 5 0" Content="Start" />
+        <Button Grid.Column="1" Grid.Row="1" Margin="5 0 0 0" Content="Stop" />
+
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Description" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.ColumnSpan="2" x:Name="DescriptionText" Margin="0 0 0 10" />
+
+        <ListBox Grid.Row="4" x:Name="ListBox" Grid.Column="0" Grid.ColumnSpan="2" Background="LightPink">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="Test" Background="Black" FontSize="25" />
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+
+      </Grid>
+  </Border>
 </Window>
