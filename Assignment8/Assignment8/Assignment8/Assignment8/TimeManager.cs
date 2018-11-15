@@ -12,17 +12,16 @@ namespace Assignment8
         private readonly DispatcherTimer _timer;
         private readonly RealDateTime _realDateTime;
         private DateTime _lastTickTime;
-        public DateTime ElapsedTime { get; private set; }
-
-
-
+        private DateTime ElapsedTime { get; set; }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler AddToListEvent;
 
         public TimeManager(RealDateTime realDateTime)
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(.01);
+            _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(.01)};
             _timer.Tick += TimerOnClick;
-            _currentTime = "00:00:00";
+            _currentTime = "00:00.00";
             _realDateTime = realDateTime;
         }
         
@@ -31,8 +30,8 @@ namespace Assignment8
         private string _currentTime;
         public string CurrentTime
         {
-            get { return _currentTime; }
-            set { 
+            get => _currentTime;
+            private set { 
                     if (_currentTime != value)
                     {
                         _currentTime = value;
@@ -41,26 +40,26 @@ namespace Assignment8
                 }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnCurrentTimeChanged([CallerMemberName] string propertyName = null)
-        {
+        protected virtual void OnCurrentTimeChanged([CallerMemberName] string propertyName = null) => 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+ 
 
-        public void StopButtonClick()
+      
+        public void StopButton()
         {
+            AddToListEvent(this, new TimeEventArgs(CurrentTime));
             ElapsedTime = DateTime.MinValue;
-            CurrentTime = "00:00:00";
+            CurrentTime = "00:00.00";
             _timer.Stop();
-        }
+            }
 
-        public void PauseButtonClick()
+        public void PauseButton()
         {
             _timer.Stop();
         }
 
-        public void StartButtonClick()
+        public void StartButton()
         {
             _lastTickTime = DateTime.Now;
             _timer.Start();
@@ -68,8 +67,8 @@ namespace Assignment8
 
         private void TimerOnClick(object sender, EventArgs e)
         {
-            ElapsedTime += DateTime.Now - _lastTickTime;
-            _lastTickTime = DateTime.Now;
+            ElapsedTime += _realDateTime.Now() - _lastTickTime;
+            _lastTickTime = _realDateTime.Now();
             CurrentTime = ElapsedTime.ToString("mm:ss.FF");
         }
         

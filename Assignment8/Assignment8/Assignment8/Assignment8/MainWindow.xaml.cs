@@ -1,81 +1,83 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Assignment8
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// TimeEventArgs does not pass data to handler
+    /// clock and timer cant work at the same time
     /// </summary>
     public partial class MainWindow : Window
-    {      
+    {
+        private DispatcherTimer _clockTimer;
         public MainWindow()
         {
-            DataContext = new TimeManager(new RealDateTime());
+           var timeManager = new TimeManager(new RealDateTime());
+            DataContext = timeManager;
+            timeManager.AddToListEvent += AddListItem;
             InitializeComponent();
+            _clockTimer = new DispatcherTimer{Interval = TimeSpan.FromSeconds(.01)};
+            _clockTimer.Tick += UpdateClockTick;
+            //_clockTimer.Start();
         }
 
-        private void StartStopBtn_Click(object sender, RoutedEventArgs e)
+
+        private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
-            var buttonClicked = (Button)sender;
-            if(buttonClicked.Name == "StartBtn")
-            {
-                StartBtn.Visibility = Visibility.Collapsed;
-                PauseBtn.Visibility = Visibility.Visible;
-                StopBtn.Opacity = 1;
-                StopBtn.IsEnabled = true;
-                ((TimeManager) DataContext).StartButtonClick();
-            }
-            else
-            {
-                PauseBtn.Visibility = Visibility.Collapsed;
-                StartBtn.Visibility = Visibility.Visible;
-                StopBtn.Opacity = .5;
-                StopBtn.IsEnabled = false;
-                AddListItem();
-                ((TimeManager) DataContext).StopButtonClick();
-            }
+           // _clockTimer.Stop();
+            StartBtn.Visibility = Visibility.Collapsed;
+            PauseBtn.Visibility = Visibility.Visible;
+            StopBtn.Opacity = 1;
+            StopBtn.IsEnabled = true;
+            ((TimeManager) DataContext).StartButton();
         }
+
+        private void StopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //_clockTimer.Start();
+            PauseBtn.Visibility = Visibility.Collapsed;
+            StartBtn.Visibility = Visibility.Visible;
+            StopBtn.Opacity = .5;
+            StopBtn.IsEnabled = false;
+            ((TimeManager) DataContext).StopButton();
+        }
+
+
 
         private void PauseBtn_Click(object sender, RoutedEventArgs e)
         {
             PauseBtn.Visibility = Visibility.Collapsed;
             StartBtn.Visibility = Visibility.Visible;
-            ((TimeManager)DataContext).PauseButtonClick();
+            ((TimeManager)DataContext).PauseButton();
         }
 
-        private void AddListItem()
+        private void AddListItem(object sender, EventArgs e)
         {
-            TimesListBox.Items.Add(new TimeItem(((TimeManager) DataContext).CurrentTime));
+           //TimesListBox.Items.Add(new TimeItem(args.ElapsedTime));
+           TimesListBox.Items.Add(new TimeItem(((TimeManager) DataContext).CurrentTime));
         }
 
 
 
         private void DeleteListItem(object sender, RoutedEventArgs e)
         {
-            Button deleteBtn = (Button)sender;
-            if (deleteBtn.DataContext is TimeItem caller)
-            {
+            if (((Button)sender).DataContext is TimeItem caller)
                 TimesListBox.Items.Remove(caller);
-            }
+            
+        }
+            
+        private void UpdateClockTick(object sender, EventArgs e)
+        {
+            //ClockTxt.Text = DateTime.Now.ToString("HH:MM:ss");
         }
     }
+
 
     public class TimeItem
     {
         public string ElapsedTime { get; }
-        public string Description { get; set; }
 
         public TimeItem(string elapsedTime)
         {
@@ -87,4 +89,5 @@ namespace Assignment8
             return ElapsedTime;
         }
     }
+   
 }

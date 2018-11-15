@@ -101,16 +101,16 @@
             <Rectangle Grid.RowSpan="3" Fill="LightSlateGray" Opacity="0.7" Margin="5,5,5,0"/>
 
             
-            <TextBlock x:Name="ClockTxt" Style="{StaticResource TimerTxt}" Text="{Binding CurrentTime}"/>
+            <TextBlock Grid.Row="0" x:Name="ClockTxt" Style="{StaticResource TimerTxt}" Text="{Binding CurrentTime}"/>
 
-            <Button x:Name="StartBtn" Content="Start" Style="{StaticResource ControlButtons}" Background="Green" Grid.Row="1" Click="StartStopBtn_Click"/>
-            <Button x:Name="PauseBtn" Content="PAUSE" Style="{StaticResource ControlButtons}" Background="#FF4F4FF7" Grid.Row="1" Click="PauseBtn_Click" Visibility="Hidden"/>
-            <Button x:Name="StopBtn" Content="Stop" Style="{StaticResource ControlButtons}" Background="Red" Grid.Row="2" Click="StartStopBtn_Click" Opacity=".3" IsEnabled="False"/>
+            <Button x:Name="StartBtn" Content="Start" Style="{StaticResource ControlButtons}" Background="Green" Grid.Row="1" Click="StartBtn_Click"/>
+            <Button x:Name="PauseBtn" Content="Pause" Style="{StaticResource ControlButtons}" Background="#FF4F4FF7" Grid.Row="1" Click="PauseBtn_Click" Visibility="Hidden"/>
+            <Button x:Name="StopBtn" Content="Stop" Style="{StaticResource ControlButtons}" Background="Red" Grid.Row="2" Click="StopBtn_Click" Opacity=".3" IsEnabled="False"/>
             
         </Grid>
          
 
-        <ListBox x:Name="TimesListBox" Style="{StaticResource TimeBox}" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="3"/>
+        <ListBox x:Name="TimesListBox" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="3"/>
         <Rectangle Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="LightSlateGray" Opacity="0.7" Margin="10"/>
         <TextBox x:Name="Description" Text="{Binding ElementName=TimesListBox, Path=SelectedItem, Mode=TwoWay}"
                  Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="15" Background="Cyan">

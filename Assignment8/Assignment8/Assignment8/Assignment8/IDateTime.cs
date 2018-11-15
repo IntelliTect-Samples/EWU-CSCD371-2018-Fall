@@ -4,6 +4,6 @@ namespace Assignment8
 {
     public interface IDateTime
     {
-        DateTime GetNow();
+        DateTime Now();
     }
 }
