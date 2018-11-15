@@ -10,18 +10,20 @@ namespace Assignment8
     {
 
         private readonly DispatcherTimer _timer;
-        private DateTime _LastTickTime;
+        private readonly RealDateTime _realDateTime;
+        private DateTime _lastTickTime;
         public DateTime ElapsedTime { get; private set; }
 
 
 
 
-        public TimeManager()
+        public TimeManager(RealDateTime realDateTime)
         {
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(.1);
+            _timer.Interval = TimeSpan.FromSeconds(.01);
             _timer.Tick += TimerOnClick;
             _currentTime = "00:00:00";
+            _realDateTime = realDateTime;
         }
         
         
@@ -48,20 +50,26 @@ namespace Assignment8
 
         public void StopButtonClick()
         {
+            ElapsedTime = DateTime.MinValue;
             CurrentTime = "00:00:00";
+            _timer.Stop();
+        }
+
+        public void PauseButtonClick()
+        {
             _timer.Stop();
         }
 
         public void StartButtonClick()
         {
-            _LastTickTime = DateTime.Now;
+            _lastTickTime = DateTime.Now;
             _timer.Start();
         }
 
         private void TimerOnClick(object sender, EventArgs e)
         {
-            ElapsedTime += DateTime.Now - _LastTickTime;
-            _LastTickTime = DateTime.Now;
+            ElapsedTime += DateTime.Now - _lastTickTime;
+            _lastTickTime = DateTime.Now;
             CurrentTime = ElapsedTime.ToString("mm:ss.FF");
         }
         

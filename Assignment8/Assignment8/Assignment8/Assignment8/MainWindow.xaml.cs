@@ -22,7 +22,7 @@ namespace Assignment8
     {      
         public MainWindow()
         {
-            DataContext = new TimeManager();
+            DataContext = new TimeManager(new RealDateTime());
             InitializeComponent();
         }
 
@@ -32,21 +32,59 @@ namespace Assignment8
             if(buttonClicked.Name == "StartBtn")
             {
                 StartBtn.Visibility = Visibility.Collapsed;
-                StopBtn.Visibility = Visibility.Visible;
+                PauseBtn.Visibility = Visibility.Visible;
+                StopBtn.Opacity = 1;
+                StopBtn.IsEnabled = true;
                 ((TimeManager) DataContext).StartButtonClick();
             }
             else
             {
-                StopBtn.Visibility = Visibility.Collapsed;
+                PauseBtn.Visibility = Visibility.Collapsed;
                 StartBtn.Visibility = Visibility.Visible;
+                StopBtn.Opacity = .5;
+                StopBtn.IsEnabled = false;
                 AddListItem();
                 ((TimeManager) DataContext).StopButtonClick();
             }
         }
 
+        private void PauseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PauseBtn.Visibility = Visibility.Collapsed;
+            StartBtn.Visibility = Visibility.Visible;
+            ((TimeManager)DataContext).PauseButtonClick();
+        }
+
         private void AddListItem()
         {
-            TimesListBox.Items.Add(((TimeManager) DataContext).CurrentTime);
+            TimesListBox.Items.Add(new TimeItem(((TimeManager) DataContext).CurrentTime));
+        }
+
+
+
+        private void DeleteListItem(object sender, RoutedEventArgs e)
+        {
+            Button deleteBtn = (Button)sender;
+            if (deleteBtn.DataContext is TimeItem caller)
+            {
+                TimesListBox.Items.Remove(caller);
+            }
+        }
+    }
+
+    public class TimeItem
+    {
+        public string ElapsedTime { get; }
+        public string Description { get; set; }
+
+        public TimeItem(string elapsedTime)
+        {
+            ElapsedTime = elapsedTime;
+        }
+
+        public override string ToString()
+        {
+            return ElapsedTime;
         }
     }
 }
