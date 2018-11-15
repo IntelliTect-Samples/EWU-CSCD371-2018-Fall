@@ -22,7 +22,23 @@ namespace Assignment8
     {
         public MainWindow()
         {
+            DataContext = new TimeManager();
             InitializeComponent();
+        }
+
+        private void StartStopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button buttonClicked = ((Button)sender);
+            if(buttonClicked.Name == "StartBtn")
+            {
+                StartBtn.Visibility = Visibility.Collapsed;
+                StopBtn.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                StopBtn.Visibility = Visibility.Collapsed;
+                StartBtn.Visibility = Visibility.Visible;
+            }
         }
     }
 }
