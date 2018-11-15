@@ -19,7 +19,7 @@ namespace Assignment8
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {      
         public MainWindow()
         {
             DataContext = new TimeManager();
@@ -28,17 +28,25 @@ namespace Assignment8
 
         private void StartStopBtn_Click(object sender, RoutedEventArgs e)
         {
-            Button buttonClicked = ((Button)sender);
+            var buttonClicked = (Button)sender;
             if(buttonClicked.Name == "StartBtn")
             {
                 StartBtn.Visibility = Visibility.Collapsed;
                 StopBtn.Visibility = Visibility.Visible;
+                ((TimeManager) DataContext).StartButtonClick();
             }
             else
             {
                 StopBtn.Visibility = Visibility.Collapsed;
                 StartBtn.Visibility = Visibility.Visible;
+                AddListItem();
+                ((TimeManager) DataContext).StopButtonClick();
             }
+        }
+
+        private void AddListItem()
+        {
+            TimesListBox.Items.Add(((TimeManager) DataContext).CurrentTime);
         }
     }
 }

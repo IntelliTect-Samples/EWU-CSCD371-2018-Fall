@@ -36,6 +36,30 @@
                 <Setter Property="Background" Value="#FF00CDEE"/>
             </Style>
             
+            <Style x:Key="TimeBox" TargetType="ListBox">
+                <Setter Property="Background" Value="SlateGray"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="ItemsSource" Value="{Binding}"/>
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding}" FontSize="20" Grid.Column="0" />
+                                <Button Content="X" FontSize="20" Grid.Column="1" Grid.RowSpan="2" Background="Red"/>
+                            </Grid>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
             <Style x:Key="Rectangle" TargetType="Rectangle">
                 <Setter Property="RadiusX" Value="5"/>
             </Style>
@@ -59,13 +83,17 @@
         </Grid.ColumnDefinitions>
         
         <Rectangle Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Fill="LightSlateGray" Opacity="0.7" Margin="10"/>
-        <ListBox x:Name="TimesListBox" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" Margin="10"/>
+       
 
         <Button x:Name="StartBtn" Content="Start" Style="{StaticResource RoundCornerBtn}" Background="Green" Grid.Column="0" Grid.Row="4" 
                 Grid.ColumnSpan="2" Width="auto" Height="auto" Click="StartStopBtn_Click"/>
         <Button x:Name="StopBtn" Content="Stop" Style="{StaticResource RoundCornerBtn}" Background="Red" Grid.Column="0" Grid.Row="4" 
                 Grid.ColumnSpan="2" Width="auto" Height="auto" Click="StartStopBtn_Click" Visibility="Hidden"/>
-        <TextBlock x:Name="TimerTxt" Style="{StaticResource TimerTxt}" Text="00:00:00" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <TextBlock  Style="{StaticResource TimerTxt}" Text="{Binding CurrentTime}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
 
+        
+        <ListBox x:Name="TimesListBox" Style="{StaticResource TimeBox}" Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="3" />
+        
+        
     </Grid>
 </Window>
