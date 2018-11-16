@@ -11,22 +11,17 @@ namespace Assignment8
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DispatcherTimer _clockTimer;
         public MainWindow()
         {
             var timeManager = new TimeManager(new RealDateTime());
             DataContext = timeManager;
             timeManager.AddToListEvent += AddListItem;
             InitializeComponent();
-            _clockTimer = new DispatcherTimer{Interval = TimeSpan.FromSeconds(.01)};
-            _clockTimer.Tick += UpdateClockTick;
-            //_clockTimer.Start();
         }
 
 
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
-           // _clockTimer.Stop();
             StartBtn.Visibility = Visibility.Collapsed;
             PauseBtn.Visibility = Visibility.Visible;
             StopBtn.Opacity = 1;
@@ -36,7 +31,6 @@ namespace Assignment8
 
         private void StopBtn_Click(object sender, RoutedEventArgs e)
         {
-            //_clockTimer.Start();
             PauseBtn.Visibility = Visibility.Collapsed;
             StartBtn.Visibility = Visibility.Visible;
             StopBtn.Opacity = .5;
@@ -55,9 +49,9 @@ namespace Assignment8
 
         private void AddListItem(object sender, EventArgs e)
         {
-           //TimesListBox.Items.Add(new TimeItem(args.ElapsedTime));
+            var args = (TimeEventArgs)e;
             var description = "TimeItem " + (TimesListBox.Items.Count + 1);
-           TimesListBox.Items.Add(new TimeItem(((TimeManager) DataContext).CurrentTime, description, description));
+            TimesListBox.Items.Add(new TimeItem(args.ElapsedTime, description, description));
         }
 
 
@@ -70,11 +64,6 @@ namespace Assignment8
                 InfoGrid.Visibility = Visibility.Hidden;
             }
 
-        }
-            
-        private void UpdateClockTick(object sender, EventArgs e)
-        {
-            //ClockTxt.Text = DateTime.Now.ToString("HH:MM:ss");
         }
 
         private void TimesListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

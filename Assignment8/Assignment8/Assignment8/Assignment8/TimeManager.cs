@@ -15,7 +15,7 @@ namespace Assignment8
         public TimeSpan ElapsedTime { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler AddToListEvent;
+        public event EventHandler<TimeEventArgs> AddToListEvent;
 
         public TimeManager(IDateTime myDateTime)
         {
@@ -48,7 +48,7 @@ namespace Assignment8
       
         public void Stop()
         {
-            AddToListEvent(this, new EventArgs());
+            AddToListEvent(this, new TimeEventArgs(CurrentTime));
             CurrentTime = "00:00.00";
             _timer.Stop();
             }
