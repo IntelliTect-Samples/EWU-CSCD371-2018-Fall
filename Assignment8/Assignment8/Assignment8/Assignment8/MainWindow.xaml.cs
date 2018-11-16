@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Threading;
 
 namespace Assignment8
@@ -9,14 +12,29 @@ namespace Assignment8
     /// TimeEventArgs does not pass data to handler
     /// clock and timer cant work at the same time
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private DispatcherTimer ClockTimer { get; set; }
+
+        private string _CurrentTime;
+        public string CurrentTime
+        {
+            get => _CurrentTime;
+            set { 
+                if(CurrentTime == value) return;
+                _CurrentTime = value;     
+                OnCurrentTimeChanged();
+            }
+        }
+
         public MainWindow()
         {
             var timeManager = new TimeManager(new RealDateTime());
             DataContext = timeManager;
             timeManager.OnTimeComplete += AddListItem;
+            InitializeClock();   
             InitializeComponent();
+            SwitchDisplayToClock();
         }
 
 
@@ -27,6 +45,7 @@ namespace Assignment8
         /// <param name="e"></param>
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
+            SwitchDisplayToTimer();
             StartBtn.Visibility = Visibility.Collapsed;
             PauseBtn.Visibility = Visibility.Visible;
             StopBtn.Opacity = 1;
@@ -42,6 +61,7 @@ namespace Assignment8
         /// <param name="e"></param>
         private void StopBtn_Click(object sender, RoutedEventArgs e)
         {
+            SwitchDisplayToClock();
             PauseBtn.Visibility = Visibility.Collapsed;
             StartBtn.Visibility = Visibility.Visible;
             StopBtn.Opacity = .5;
@@ -71,8 +91,9 @@ namespace Assignment8
         private void AddListItem(object sender, EventArgs e)
         {
             var args = (TimeEventArgs)e;
-            var description = "TimeItem " + (TimesListBox.Items.Count + 1);
-            TimesListBox.Items.Add(new TimeRecord(args.ElapsedTime, description, description));
+            var title = "Time Record " + (TimesListBox.Items.Count + 1);
+            var description = $"The event took {args.ElapsedTime}";
+            TimesListBox.Items.Add(new TimeRecord(args.ElapsedTime, title, description));
         }
 
 
@@ -135,7 +156,60 @@ namespace Assignment8
             var timeItem = (TimeRecord)TimesListBox.SelectedItem;
             timeItem.Title = titleTextBox.Text;
          }
+        
+        
+        /*Clock*/
+        /// <summary>
+        /// Initializes the clock timer and adds its event handler
+        /// </summary>
+        private void InitializeClock()
+        {
+            ClockTimer = new DispatcherTimer{Interval = TimeSpan.FromSeconds(.01)};
+            ClockTimer.Tick += UpdateClock;
+        }
 
+        
+        /// <summary>
+        /// Updates the time to be displayed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateClock(object sender, EventArgs e)=>
+            CurrentTime = DateTime.Now.ToString("HH:mm:ss tt");
+        
+
+        /// <summary>
+        /// Switches the display binding to the current time
+        /// </summary>
+        private void SwitchDisplayToClock()
+        {
+            ClockTimer.Start();
+            var myBinding = new Binding("CurrentTime") {Source = this};
+            ClockTxt.SetBinding(TextBlock.TextProperty, myBinding);
+            ClockTxt.FontSize = 35;
+        }
+
+        
+        /// <summary>
+        /// Switches the display binding to the timer
+        /// </summary>
+        private void SwitchDisplayToTimer()
+        {
+            ClockTimer.Stop();
+            var myBinding = new Binding("ElapsedTimeStr") {Source = (TimeManager) DataContext};
+            ClockTxt.SetBinding(TextBlock.TextProperty, myBinding);
+            ClockTxt.FontSize = 50;
+        }
+
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        /// <summary>
+        /// An event that is raised every time the current time changes.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        protected virtual void OnCurrentTimeChanged([CallerMemberName] string propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));       
     }
    
 }

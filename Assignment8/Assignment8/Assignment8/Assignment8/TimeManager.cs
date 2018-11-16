@@ -38,20 +38,18 @@ namespace Assignment8
         public string ElapsedTimeStr
         {
             get => _elapsedTimeStr;
-            private set { 
-                    if (_elapsedTimeStr != value)
-                    {
-                        _elapsedTimeStr = value;
-                        OnCurrentTimeChanged();
-                    }
-                }
+            private set {
+                if (_elapsedTimeStr == value) return;
+                _elapsedTimeStr = value;
+                OnElapsedTimeChanged();
+            }
         }
 
         /// <summary>
         /// An event that is raised every time the elapsed time changes.
         /// </summary>
         /// <param name="propertyName"></param>
-        protected virtual void OnCurrentTimeChanged([CallerMemberName] string propertyName = null) => 
+        protected virtual void OnElapsedTimeChanged([CallerMemberName] string propertyName = null) => 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
  
 
