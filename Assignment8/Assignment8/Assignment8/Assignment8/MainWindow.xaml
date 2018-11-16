@@ -67,8 +67,12 @@
                  </Setter>
              </Style>
              
-             <Style x:Key="Rectangle" TargetType="Rectangle">
-                 <Setter Property="RadiusX" Value="5"/>
+             <Style x:Key="InfoTxt" TargetType="TextBlock">
+                 <Setter Property="Margin" Value="20,20,20,0"/>
+             </Style>
+             
+             <Style x:Key="DescriptionBox" TargetType="TextBox">
+                 <Setter Property="Margin" Value="20,20,20,0"/>
              </Style>
 
 
@@ -110,12 +114,30 @@
         </Grid>
          
 
-        <ListBox x:Name="TimesListBox" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="3"/>
-        <Rectangle Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="LightSlateGray" Opacity="0.7" Margin="10"/>
-        <TextBox x:Name="Description" Text="{Binding ElementName=TimesListBox, Path=SelectedItem, Mode=TwoWay}"
-                 Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="15" Background="Cyan">
-      
-        </TextBox>
+        <ListBox x:Name="TimesListBox" SelectionChanged="TimesListBox_OnSelectionChanged" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4"/>
+       <Grid x:Name="InfoGrid" Column="2" ColumnSpan="4" Row="3" RowSpan="2" Visibility="Hidden">
+           <Grid.RowDefinitions>
+               <RowDefinition Height="auto"/>
+               <RowDefinition Height="auto"/>
+               <RowDefinition Height="Auto"/>
+               <RowDefinition Height="auto"/>
+           </Grid.RowDefinitions>
+           <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="Auto"/>
+               <ColumnDefinition Width="*"/>
+           </Grid.ColumnDefinitions>
+           <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Fill="LightSlateGray" Opacity="0.7" Margin="10,0,10,-5"/>
+           <TextBlock Text="Title:" Style="{StaticResource InfoTxt}" Grid.Row="0" Grid.Column="0"/>
+           <TextBox x:Name="TitleTxt" TextChanged="TitleTxt_OnTextChanged" Style="{StaticResource DescriptionBox}" Grid.Row="0" Grid.Column="1"/>
+           
+           <TextBlock Text="Time:" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="0"/>
+           <TextBlock x:Name="TimeTxt" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="1"/>
+           
+           <TextBlock Text="Description:" Style="{StaticResource InfoTxt}" Grid.Row="2" Grid.Column="0"/>
+           <TextBox x:Name="DescriptionTxt" TextChanged="DescriptionTxt_OnTextChanged" Grid.Row="3" Grid.Column="0" 
+                    Grid.ColumnSpan="2" MinWidth="355" TextWrapping="Wrap" Style="{StaticResource DescriptionBox}"/>
+           
+       </Grid>
 
 
     </Grid>

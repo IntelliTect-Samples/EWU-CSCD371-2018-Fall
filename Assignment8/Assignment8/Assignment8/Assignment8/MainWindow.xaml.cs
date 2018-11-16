@@ -56,32 +56,74 @@ namespace Assignment8
         private void AddListItem(object sender, EventArgs e)
         {
            //TimesListBox.Items.Add(new TimeItem(args.ElapsedTime));
-           TimesListBox.Items.Add(new TimeItem(((TimeManager) DataContext).CurrentTime));
+            var description = "TimeItem " + (TimesListBox.Items.Count + 1);
+           TimesListBox.Items.Add(new TimeItem(((TimeManager) DataContext).CurrentTime, description, description));
         }
 
 
 
         private void DeleteListItem(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).DataContext is TimeItem caller)
-                TimesListBox.Items.Remove(caller);
-            
+            if (((Button) sender).DataContext is TimeItem timeItem)
+            {
+                TimesListBox.Items.Remove(timeItem);
+                InfoGrid.Visibility = Visibility.Hidden;
+            }
+
         }
             
         private void UpdateClockTick(object sender, EventArgs e)
         {
             //ClockTxt.Text = DateTime.Now.ToString("HH:MM:ss");
         }
+
+        private void TimesListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InfoGrid.Visibility = Visibility.Visible;
+            var timeItem = (TimeItem)TimesListBox.SelectedItem;
+            if (timeItem != null)
+            {
+                TimeTxt.Text = timeItem.ElapsedTime;
+                TitleTxt.Text = timeItem.Title;
+                DescriptionTxt.Text = timeItem.Description;
+            }
+        }
+
+
+        private void DescriptionTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var descriptionTextBox = (TextBox) sender;
+            var timeItem = (TimeItem)TimesListBox.SelectedItem;
+            timeItem.Description = descriptionTextBox.Text;
+
+        }
+
+        private void TitleTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var titleTextBox = (TextBox) sender;
+            var timeItem = (TimeItem)TimesListBox.SelectedItem;
+            timeItem.Title = titleTextBox.Text;
+         }
+
+        private void TimesListBox_OnUnselected(object sender, RoutedEventArgs e)
+        {
+            InfoGrid.Visibility = Visibility.Hidden;
+        }
+
     }
 
 
     public class TimeItem
     {
         public string ElapsedTime { get; }
-
-        public TimeItem(string elapsedTime)
+        public string Description { get; set; }
+        public string Title { get; set; }
+    
+        public TimeItem(string elapsedTime, string title, string description)
         {
             ElapsedTime = elapsedTime;
+            Title = title;
+            Description = description;
         }
 
         public override string ToString()
