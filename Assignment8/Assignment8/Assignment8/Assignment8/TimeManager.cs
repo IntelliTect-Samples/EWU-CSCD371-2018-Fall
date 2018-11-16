@@ -10,19 +10,19 @@ namespace Assignment8
     {
 
         private readonly DispatcherTimer _timer;
-        private readonly RealDateTime _realDateTime;
+        private readonly IDateTime _myDateTime;
         private DateTime _lastTickTime;
-        private DateTime ElapsedTime { get; set; }
+        public TimeSpan ElapsedTime { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler AddToListEvent;
 
-        public TimeManager(RealDateTime realDateTime)
+        public TimeManager(IDateTime myDateTime)
         {
             _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(.01)};
             _timer.Tick += TimerOnClick;
             _currentTime = "00:00.00";
-            _realDateTime = realDateTime;
+            _myDateTime = myDateTime;
         }
         
         
@@ -46,30 +46,30 @@ namespace Assignment8
  
 
       
-        public void StopButton()
+        public void Stop()
         {
-            AddToListEvent(this, new TimeEventArgs(CurrentTime));
-            ElapsedTime = DateTime.MinValue;
+            AddToListEvent(this, new EventArgs());
             CurrentTime = "00:00.00";
             _timer.Stop();
             }
 
-        public void PauseButton()
+        public void Pause()
         {
             _timer.Stop();
         }
 
-        public void StartButton()
+        public void Start()
         {
-            _lastTickTime = DateTime.Now;
+            ElapsedTime = DateTime.MinValue - DateTime.MinValue;
+            _lastTickTime = _myDateTime.Now();
             _timer.Start();
         }
 
         private void TimerOnClick(object sender, EventArgs e)
         {
-            ElapsedTime += _realDateTime.Now() - _lastTickTime;
-            _lastTickTime = _realDateTime.Now();
-            CurrentTime = ElapsedTime.ToString("mm:ss.FF");
+            ElapsedTime += _myDateTime.Now() - _lastTickTime;
+            _lastTickTime = _myDateTime.Now();
+            CurrentTime = $"{ElapsedTime.Minutes.ToString("0#")}:{ElapsedTime.Seconds.ToString("0#")}.{ElapsedTime.Milliseconds}";
         }
         
         

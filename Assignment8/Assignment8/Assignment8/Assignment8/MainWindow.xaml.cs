@@ -14,7 +14,7 @@ namespace Assignment8
         private DispatcherTimer _clockTimer;
         public MainWindow()
         {
-           var timeManager = new TimeManager(new RealDateTime());
+            var timeManager = new TimeManager(new RealDateTime());
             DataContext = timeManager;
             timeManager.AddToListEvent += AddListItem;
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace Assignment8
             PauseBtn.Visibility = Visibility.Visible;
             StopBtn.Opacity = 1;
             StopBtn.IsEnabled = true;
-            ((TimeManager) DataContext).StartButton();
+            ((TimeManager) DataContext).Start();
         }
 
         private void StopBtn_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace Assignment8
             StartBtn.Visibility = Visibility.Visible;
             StopBtn.Opacity = .5;
             StopBtn.IsEnabled = false;
-            ((TimeManager) DataContext).StopButton();
+            ((TimeManager) DataContext).Stop();
         }
 
 
@@ -50,7 +50,7 @@ namespace Assignment8
         {
             PauseBtn.Visibility = Visibility.Collapsed;
             StartBtn.Visibility = Visibility.Visible;
-            ((TimeManager)DataContext).PauseButton();
+            ((TimeManager)DataContext).Pause();
         }
 
         private void AddListItem(object sender, EventArgs e)

@@ -56,7 +56,6 @@
     </ApplicationDefinition>
     <Compile Include="RealDateTime.cs" />
     <Compile Include="IDateTime.cs" />
-    <Compile Include="TimeEventArgs.cs" />
     <Compile Include="TimeManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
