@@ -6,6 +6,9 @@ using System.Windows.Threading;
 
 namespace Assignment8
 {
+    /// <summary>
+    /// TimeManager uses DispatcherTimer to record the elapsed time between calls to Start() and Stop()
+    /// </summary>
     public class TimeManager : INotifyPropertyChanged
     {
 
@@ -15,49 +18,63 @@ namespace Assignment8
         public TimeSpan ElapsedTime { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler<TimeEventArgs> AddToListEvent;
+        public event EventHandler<TimeEventArgs> OnTimeComplete;
 
+        /// <summary>
+        /// Creates a new TimeManager
+        /// </summary>
+        /// <param name="myDateTime">The object used to get current time</param>
         public TimeManager(IDateTime myDateTime)
         {
             _timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(.01)};
             _timer.Tick += TimerOnClick;
-            _currentTime = "00:00.00";
+            _elapsedTimeStr = "00:00.00";
             _myDateTime = myDateTime;
         }
         
         
         
-        private string _currentTime;
-        public string CurrentTime
+        private string _elapsedTimeStr;
+        public string ElapsedTimeStr
         {
-            get => _currentTime;
+            get => _elapsedTimeStr;
             private set { 
-                    if (_currentTime != value)
+                    if (_elapsedTimeStr != value)
                     {
-                        _currentTime = value;
+                        _elapsedTimeStr = value;
                         OnCurrentTimeChanged();
                     }
                 }
         }
 
-
+        /// <summary>
+        /// An event that is raised every time the elapsed time changes.
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected virtual void OnCurrentTimeChanged([CallerMemberName] string propertyName = null) => 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
  
 
-      
+      /// <summary>
+      /// Stops execution of the timer and raises an event that uses TimeEventArgs to carry the total elapsed time before resetting the elapsed time
+      /// </summary>
         public void Stop()
         {
-            AddToListEvent(this, new TimeEventArgs(CurrentTime));
-            CurrentTime = "00:00.00";
-            _timer.Stop();
-            }
-
-        public void Pause()
-        {
+            OnTimeComplete?.Invoke(this, new TimeEventArgs(ElapsedTimeStr));
+            ElapsedTimeStr = "00:00.00";
             _timer.Stop();
         }
 
+        
+        /// <summary>
+        /// Pauses execution of the timer
+        /// </summary>
+        public void Pause() => _timer.Stop();
+
+
+        /// <summary>
+        /// Starts the timer
+        /// </summary>
         public void Start()
         {
             ElapsedTime = DateTime.MinValue - DateTime.MinValue;
@@ -65,11 +82,17 @@ namespace Assignment8
             _timer.Start();
         }
 
+        
+        /// <summary>
+        /// An event that is triggered using the timer, it updates the elapsed time, as well as its string representation
+        /// </summary>
+        /// <param name="sender">The timer that triggered it</param>
+        /// <param name="e">The events arguments</param>
         private void TimerOnClick(object sender, EventArgs e)
         {
             ElapsedTime += _myDateTime.Now() - _lastTickTime;
             _lastTickTime = _myDateTime.Now();
-            CurrentTime = $"{ElapsedTime.Minutes.ToString("0#")}:{ElapsedTime.Seconds.ToString("0#")}.{ElapsedTime.Milliseconds}";
+            ElapsedTimeStr = $"{ElapsedTime.Minutes.ToString("0#")}:{ElapsedTime.Seconds.ToString("0#")}.{ElapsedTime.Milliseconds}";
         }
         
         

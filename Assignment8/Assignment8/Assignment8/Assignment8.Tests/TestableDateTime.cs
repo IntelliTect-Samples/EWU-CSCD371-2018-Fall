@@ -6,19 +6,19 @@ namespace Assignment8.Tests
 {
     class TestableDateTime : IDateTime
     {
-        private int _index = 0;
-        private List<DateTime> _datesToBeRead;
+        public int Index { get; private set;}
+        public List<DateTime> DatesToBeRead { get; private set; }
 
         public TestableDateTime(List<DateTime> dateTimesToBeRead)
         {
-            _datesToBeRead = dateTimesToBeRead;
+            DatesToBeRead = dateTimesToBeRead;
         }
 
         public DateTime Now()
         {
-            if (_index > _datesToBeRead.Count)
-                _index = _datesToBeRead.Count - 1;
-          return _datesToBeRead[_index++];
+            if (Index > DatesToBeRead.Count)
+                Index = DatesToBeRead.Count - 1;
+          return DatesToBeRead[Index++];
         }    
     }
 }

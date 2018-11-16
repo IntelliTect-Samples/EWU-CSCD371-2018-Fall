@@ -10,8 +10,8 @@
          MinHeight="450" MinWidth="800">
      
      <Grid Margin="1" Background="LightSkyBlue">
+         <!-- Styling -->
          <Grid.Resources>
-
             <Style x:Key="RoundCornerBtn" TargetType="Button">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -74,10 +74,11 @@
              <Style x:Key="DescriptionBox" TargetType="TextBox">
                  <Setter Property="Margin" Value="20,20,20,0"/>
              </Style>
-
-
         </Grid.Resources>
  
+         
+         
+         <!-- Outer grid definition -->
          <Grid.RowDefinitions>
              <RowDefinition />
              <RowDefinition />
@@ -94,19 +95,47 @@
              <ColumnDefinition />
          </Grid.ColumnDefinitions>
          
-        
-        <Grid Grid.ColumnSpan="2" Grid.RowSpan="3">
+
+         
+         <!-- Saved times listbox -->
+         <ListBox x:Name="TimesListBox" SelectionChanged="TimesListBox_OnSelectionChanged" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4"/>
+         
+         
+         <!-- Saved time info elements -->
+         <Grid x:Name="InfoGrid" Column="2" ColumnSpan="4" Row="3" RowSpan="2" Visibility="Hidden">
+             <Grid.RowDefinitions>
+                 <RowDefinition Height="auto"/>
+                 <RowDefinition Height="auto"/>
+                 <RowDefinition Height="Auto"/>
+                 <RowDefinition Height="auto"/>
+             </Grid.RowDefinitions>
+             <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="Auto"/>
+                 <ColumnDefinition Width="*"/>
+             </Grid.ColumnDefinitions>
+             <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Fill="LightSlateGray" Opacity="0.7" Margin="10,0,10,-5"/>
+             <TextBlock Text="Title:" Style="{StaticResource InfoTxt}" Grid.Row="0" Grid.Column="0"/>
+             <TextBox x:Name="TitleTxt" TextChanged="TitleTxt_OnTextChanged" Style="{StaticResource DescriptionBox}" Grid.Row="0" Grid.Column="1"/>
+           
+             <TextBlock Text="Time:" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="0"/>
+             <TextBlock x:Name="TimeTxt" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="1"/>
+           
+             <TextBlock Text="Description:" Style="{StaticResource InfoTxt}" Grid.Row="2" Grid.Column="0"/>
+             <TextBox x:Name="DescriptionTxt" TextChanged="DescriptionTxt_OnTextChanged" Grid.Row="3" Grid.Column="0" 
+                      Grid.ColumnSpan="2" MinWidth="355" TextWrapping="Wrap" Style="{StaticResource DescriptionBox}"/>
+         </Grid>
+             
+             
+         <!-- Timer control elements -->
+        <Grid Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Rectangle Grid.RowSpan="3" Fill="LightSlateGray" Opacity="0.7" Margin="5,5,5,0"/>
-
-            
-            <TextBlock Grid.Row="0" x:Name="ClockTxt" Style="{StaticResource TimerTxt}" Text="{Binding CurrentTime}"/>
-
+            <Rectangle Grid.Row="0" Grid.RowSpan="3" Fill="LightSlateGray" Opacity="0.7" Margin="5,5,5,0"/>            
+            <TextBlock Grid.Row="0" x:Name="ClockTxt" Style="{StaticResource TimerTxt}" Text="{Binding ElapsedTimeStr}"/>
             <Button x:Name="StartBtn" Content="Start" Style="{StaticResource ControlButtons}" Background="Green" Grid.Row="1" Click="StartBtn_Click"/>
             <Button x:Name="PauseBtn" Content="Pause" Style="{StaticResource ControlButtons}" Background="#FF4F4FF7" Grid.Row="1" Click="PauseBtn_Click" Visibility="Hidden"/>
             <Button x:Name="StopBtn" Content="Stop" Style="{StaticResource ControlButtons}" Background="Red" Grid.Row="2" Click="StopBtn_Click" Opacity=".3" IsEnabled="False"/>
@@ -114,30 +143,8 @@
         </Grid>
          
 
-        <ListBox x:Name="TimesListBox" SelectionChanged="TimesListBox_OnSelectionChanged" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4"/>
-       <Grid x:Name="InfoGrid" Column="2" ColumnSpan="4" Row="3" RowSpan="2" Visibility="Hidden">
-           <Grid.RowDefinitions>
-               <RowDefinition Height="auto"/>
-               <RowDefinition Height="auto"/>
-               <RowDefinition Height="Auto"/>
-               <RowDefinition Height="auto"/>
-           </Grid.RowDefinitions>
-           <Grid.ColumnDefinitions>
-               <ColumnDefinition Width="Auto"/>
-               <ColumnDefinition Width="*"/>
-           </Grid.ColumnDefinitions>
-           <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Fill="LightSlateGray" Opacity="0.7" Margin="10,0,10,-5"/>
-           <TextBlock Text="Title:" Style="{StaticResource InfoTxt}" Grid.Row="0" Grid.Column="0"/>
-           <TextBox x:Name="TitleTxt" TextChanged="TitleTxt_OnTextChanged" Style="{StaticResource DescriptionBox}" Grid.Row="0" Grid.Column="1"/>
+       
            
-           <TextBlock Text="Time:" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="0"/>
-           <TextBlock x:Name="TimeTxt" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="1"/>
-           
-           <TextBlock Text="Description:" Style="{StaticResource InfoTxt}" Grid.Row="2" Grid.Column="0"/>
-           <TextBox x:Name="DescriptionTxt" TextChanged="DescriptionTxt_OnTextChanged" Grid.Row="3" Grid.Column="0" 
-                    Grid.ColumnSpan="2" MinWidth="355" TextWrapping="Wrap" Style="{StaticResource DescriptionBox}"/>
-           
-       </Grid>
 
 
     </Grid>

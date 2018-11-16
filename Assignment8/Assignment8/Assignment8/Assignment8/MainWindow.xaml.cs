@@ -15,11 +15,16 @@ namespace Assignment8
         {
             var timeManager = new TimeManager(new RealDateTime());
             DataContext = timeManager;
-            timeManager.AddToListEvent += AddListItem;
+            timeManager.OnTimeComplete += AddListItem;
             InitializeComponent();
         }
 
 
+        /// <summary>
+        /// Hides the start button and starts the timer in TimeManager
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
             StartBtn.Visibility = Visibility.Collapsed;
@@ -29,6 +34,12 @@ namespace Assignment8
             ((TimeManager) DataContext).Start();
         }
 
+        
+        /// <summary>
+        /// Hides the stop button and stops the timer in TimeManager
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopBtn_Click(object sender, RoutedEventArgs e)
         {
             PauseBtn.Visibility = Visibility.Collapsed;
@@ -39,7 +50,11 @@ namespace Assignment8
         }
 
 
-
+        /// <summary>
+        /// Hides the pause button and pauses the timer in TimeManager
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PauseBtn_Click(object sender, RoutedEventArgs e)
         {
             PauseBtn.Visibility = Visibility.Collapsed;
@@ -47,18 +62,28 @@ namespace Assignment8
             ((TimeManager)DataContext).Pause();
         }
 
+        
+        /// <summary>
+        /// An event subscriber called whenever a new time record us completed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddListItem(object sender, EventArgs e)
         {
             var args = (TimeEventArgs)e;
             var description = "TimeItem " + (TimesListBox.Items.Count + 1);
-            TimesListBox.Items.Add(new TimeItem(args.ElapsedTime, description, description));
+            TimesListBox.Items.Add(new TimeRecord(args.ElapsedTime, description, description));
         }
 
 
-
+        /// <summary>
+        /// Deletes the currently selected time record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteListItem(object sender, RoutedEventArgs e)
         {
-            if (((Button) sender).DataContext is TimeItem timeItem)
+            if (((Button) sender).DataContext is TimeRecord timeItem)
             {
                 TimesListBox.Items.Remove(timeItem);
                 InfoGrid.Visibility = Visibility.Hidden;
@@ -66,10 +91,16 @@ namespace Assignment8
 
         }
 
+        
+        /// <summary>
+        /// When a time record is selected, its information is displayed at the bottom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimesListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             InfoGrid.Visibility = Visibility.Visible;
-            var timeItem = (TimeItem)TimesListBox.SelectedItem;
+            var timeItem = (TimeRecord)TimesListBox.SelectedItem;
             if (timeItem != null)
             {
                 TimeTxt.Text = timeItem.ElapsedTime;
@@ -79,46 +110,32 @@ namespace Assignment8
         }
 
 
+        /// <summary>
+        /// Updates the list of records when the description of a record is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DescriptionTxt_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             var descriptionTextBox = (TextBox) sender;
-            var timeItem = (TimeItem)TimesListBox.SelectedItem;
+            var timeItem = (TimeRecord)TimesListBox.SelectedItem;
             timeItem.Description = descriptionTextBox.Text;
 
         }
 
+        
+        /// <summary>
+        /// Updates the list of records when the title of a record is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TitleTxt_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             var titleTextBox = (TextBox) sender;
-            var timeItem = (TimeItem)TimesListBox.SelectedItem;
+            var timeItem = (TimeRecord)TimesListBox.SelectedItem;
             timeItem.Title = titleTextBox.Text;
          }
 
-        private void TimesListBox_OnUnselected(object sender, RoutedEventArgs e)
-        {
-            InfoGrid.Visibility = Visibility.Hidden;
-        }
-
-    }
-
-
-    public class TimeItem
-    {
-        public string ElapsedTime { get; }
-        public string Description { get; set; }
-        public string Title { get; set; }
-    
-        public TimeItem(string elapsedTime, string title, string description)
-        {
-            ElapsedTime = elapsedTime;
-            Title = title;
-            Description = description;
-        }
-
-        public override string ToString()
-        {
-            return ElapsedTime;
-        }
     }
    
 }
