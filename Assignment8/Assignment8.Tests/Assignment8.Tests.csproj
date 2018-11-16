@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08172C3D-785F-4575-8EEF-34591D837A0D}</ProjectGuid>
+    <ProjectGuid>{34B94C0C-6C10-43F2-AE65-007119D0A292}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Assignment8.Tests</RootNamespace>
@@ -50,7 +50,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="TimeManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Assignment8\Assignment8.csproj">
-      <Project>{1d0e6e28-d6f4-49f0-b312-57f4390d0def}</Project>
+      <Project>{dc9cb7c7-fdd5-427a-b6e4-5509bc58c46e}</Project>
       <Name>Assignment8</Name>
     </ProjectReference>
   </ItemGroup>

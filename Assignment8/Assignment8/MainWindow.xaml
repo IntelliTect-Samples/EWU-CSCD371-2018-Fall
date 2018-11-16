@@ -5,50 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assignment8"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="500"
-        MinWidth="500"
+        Title="MainWindow" Height="450" Width="600"
+        MinWidth="450"
         MinHeight="600">
-  
-  
-  <Border Padding="10">
-    <Grid x:Name="MainGrid">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-
-      <Grid.RowDefinitions>
-        <RowDefinition Height="2*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="7*"/>
-      </Grid.RowDefinitions>
-
-      <TextBlock x:Name="CurrentTimeDisplay" Grid.Row="0" Grid.ColumnSpan="2" Text="XX : XX : XX" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="75"/>
-
-      <Button Grid.Column="0" Grid.Row="1" Margin="0 0 5 0" Content="Start" Background="Green" FontSize="25" Click="OnStart"/>
-      <Button Grid.Column="1" Grid.Row="1" Margin="5 0 0 0" Content="Stop" Background="Red" FontSize="25" />
-
-      <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Description" FontWeight="Bold" HorizontalAlignment="Center"/>
-      <TextBox Grid.Row="3" Grid.ColumnSpan="2" x:Name="DescriptionText" Margin="0 0 0 10" />
-
-      <ListBox Grid.Row="4" x:Name="TimeList" Grid.Column="0" Grid.ColumnSpan="2" Background="LightPink" HorizontalContentAlignment="Stretch">
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <Grid>
-              <Grid.ColumnDefinitions>
+    
+    
+    <Border Padding="10">
+        <Grid x:Name="MainGrid">
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-              </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-              <TextBlock Text="{Binding Text}" Grid.Column="0"></TextBlock >
-              <Button Content="X" Grid.Column="1" Background="Red" Click="ButtonClick"></Button>
-            </Grid>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
 
-    </Grid>
-  </Border>
+            <TextBlock x:Name="CurrentTimeDisplay" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding CurrentTime}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="75"/>
+
+            <Button Grid.Column="0" Grid.Row="1" Margin="0 0 5 0" Content="Start" Background="Green" FontSize="25" Click="OnStartClicked" />
+            <Button Grid.Column="1" Grid.Row="1" Margin="5 0 0 0" Content="Stop" Background="Red" FontSize="25" Click="OnStopClicked" />
+
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Description" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.ColumnSpan="2" x:Name="DescriptionText" Margin="0 0 0 10" />
+
+            <ListBox Grid.Row="4" x:Name="TimeList" Grid.Column="0" Grid.ColumnSpan="2" Background="LightPink" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Text="{Binding}" Grid.Column="0" FontSize="20"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=Description}" FontSize="15" />
+                            <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="X" Background="Red" Click="DeleteListBoxEntry"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+    </Border>
 </Window>

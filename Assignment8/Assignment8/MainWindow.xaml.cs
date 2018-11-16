@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,36 @@ namespace Assignment8
     {
         public MainWindow()
         {
+            DataContext = new TimeManager(CreateNewListBoxEntry);
+
             InitializeComponent();
+        }
+
+        public void OnStartClicked(object sender, EventArgs args)
+        {
+            ((TimeManager)DataContext).TimerStart();
+        }
+
+        public void OnStopClicked(object sender, EventArgs args)
+        {
+            // do something
+            ((TimeManager)DataContext).TimerStop(DescriptionText.Text);
+        }
+
+        public void CreateNewListBoxEntry(TimeEvent passedEvent)
+        {
+            TimeEvent eventToAdd = passedEvent;
+
+            TimeList.Items.Add(eventToAdd);
+        }
+
+        private void DeleteListBoxEntry(object sender, EventArgs e)
+        {
+            Button thing = (Button)sender;
+            if (thing.DataContext is TimeEvent caller)
+            {
+                TimeList.Items.Remove(caller);
+            }
         }
     }
 }
