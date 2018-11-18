@@ -9,30 +9,24 @@ using System.Windows.Threading;
 namespace Assignment8
 {
     /// <summary>
-    /// TimeEventArgs does not pass data to handler
-    /// clock and timer cant work at the same time
+    /// MainWindow contains all event handlers from WPF elements.
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow
     {
-        private DispatcherTimer ClockTimer { get; set; }
 
-        private string _CurrentTime;
-        public string CurrentTime
+        private ClockManager _MyClockManager;
+        public ClockManager MyClockManager
         {
-            get => _CurrentTime;
-            set { 
-                if(CurrentTime == value) return;
-                _CurrentTime = value;     
-                OnCurrentTimeChanged();
-            }
+            get => _MyClockManager ?? (_MyClockManager = new ClockManager());
+            set { _MyClockManager = value; }
         }
+
 
         public MainWindow()
         {
-            var timeManager = new TimeManager(new RealDateTime());
+            var timeManager = new TimeManager();
             DataContext = timeManager;
-            timeManager.OnTimeComplete += AddListItem;
-            InitializeClock();   
+            timeManager.OnTimeComplete += AddListItem;  
             InitializeComponent();
             SwitchDisplayToClock();
         }
@@ -158,33 +152,15 @@ namespace Assignment8
          }
         
         
-        /*Clock*/
-        /// <summary>
-        /// Initializes the clock timer and adds its event handler
-        /// </summary>
-        private void InitializeClock()
-        {
-            ClockTimer = new DispatcherTimer{Interval = TimeSpan.FromSeconds(.01)};
-            ClockTimer.Tick += UpdateClock;
-        }
-
-        
-        /// <summary>
-        /// Updates the time to be displayed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UpdateClock(object sender, EventArgs e)=>
-            CurrentTime = DateTime.Now.ToString("HH:mm:ss tt");
-        
+ 
 
         /// <summary>
         /// Switches the display binding to the current time
         /// </summary>
         private void SwitchDisplayToClock()
         {
-            ClockTimer.Start();
-            var myBinding = new Binding("CurrentTime") {Source = this};
+            MyClockManager.Start();
+            var myBinding = new Binding("CurrentTime") {Source = MyClockManager};
             ClockTxt.SetBinding(TextBlock.TextProperty, myBinding);
             ClockTxt.FontSize = 35;
         }
@@ -195,21 +171,12 @@ namespace Assignment8
         /// </summary>
         private void SwitchDisplayToTimer()
         {
-            ClockTimer.Stop();
+            MyClockManager.Stop();
             var myBinding = new Binding("ElapsedTimeStr") {Source = (TimeManager) DataContext};
             ClockTxt.SetBinding(TextBlock.TextProperty, myBinding);
             ClockTxt.FontSize = 50;
         }
-
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-        /// <summary>
-        /// An event that is raised every time the current time changes.
-        /// </summary>
-        /// <param name="propertyName"></param>
-        protected virtual void OnCurrentTimeChanged([CallerMemberName] string propertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));       
+         
     }
    
 }

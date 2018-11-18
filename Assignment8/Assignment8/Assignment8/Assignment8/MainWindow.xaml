@@ -91,7 +91,7 @@
 
          
          <!-- Saved times listbox -->
-         <ListBox x:Name="TimesListBox" SelectionChanged="TimesListBox_OnSelectionChanged" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4"/>
+         <ListBox x:Name="TimesListBox" ToolTip="The saved time records" SelectionChanged="TimesListBox_OnSelectionChanged" Style="{StaticResource TimeBox}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4"/>
          
          
          <!-- Saved time info elements -->
@@ -108,16 +108,15 @@
              </Grid.ColumnDefinitions>
              <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Fill="LightSlateGray" Opacity="0.7" Margin="10,0,10,-5"/>
              <TextBlock Text="Title:" Style="{StaticResource InfoTxt}" Grid.Row="0" Grid.Column="0"/>
-             <TextBox x:Name="TitleTxt" TextChanged="TitleTxt_OnTextChanged" Style="{StaticResource DescriptionBox}" Grid.Row="0" Grid.Column="1"/>
+             <TextBox x:Name="TitleTxt" ToolTip="Title for the currently selected Record" TextChanged="TitleTxt_OnTextChanged" Style="{StaticResource DescriptionBox}" Grid.Row="0" Grid.Column="1"/>
            
              <TextBlock Text="Time:" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="0"/>
-             <TextBlock x:Name="TimeTxt" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="1"/>
+             <TextBlock x:Name="TimeTxt" ToolTip="Total time for the currently selected record" Style="{StaticResource InfoTxt}" Grid.Row="1" Grid.Column="1"/>
            
              <TextBlock Text="Description:" Style="{StaticResource InfoTxt}" Grid.Row="2" Grid.Column="0"/>
-             <TextBox x:Name="DescriptionTxt" TextChanged="DescriptionTxt_OnTextChanged" Grid.Row="3" Grid.Column="0" 
+             <TextBox x:Name="DescriptionTxt" ToolTip="Description for the currently selected record" TextChanged="DescriptionTxt_OnTextChanged" Grid.Row="3" Grid.Column="0" 
                       Grid.ColumnSpan="2" MinWidth="355" TextWrapping="Wrap" Style="{StaticResource DescriptionBox}"/>
          </Grid>
-             
              
          <!-- Timer control elements -->
         <Grid Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
@@ -128,10 +127,10 @@
             </Grid.RowDefinitions>
 
             <Rectangle Grid.Row="0" Grid.RowSpan="3" Fill="LightSlateGray" Opacity="0.7" Margin="5,5,5,0"/>            
-            <TextBlock Grid.Row="0" x:Name="ClockTxt" Style="{StaticResource TimerTxt}" Text="{Binding ElapsedTimeStr}"/>
-            <Button x:Name="StartBtn" Content="Start" Style="{StaticResource ControlButtons}" Background="Green" Grid.Row="1" Click="StartBtn_Click"/>
-            <Button x:Name="PauseBtn" Content="Pause" Style="{StaticResource ControlButtons}" Background="#FF4F4FF7" Grid.Row="1" Click="PauseBtn_Click" Visibility="Hidden"/>
-            <Button x:Name="StopBtn" Content="Stop" Style="{StaticResource ControlButtons}" Background="Red" Grid.Row="2" Click="StopBtn_Click" Opacity=".3" IsEnabled="False"/>
+            <TextBlock Grid.Row="0" x:Name="ClockTxt" ToolTip="Displays the current time or the timer" Style="{StaticResource TimerTxt}" Text="{Binding ElapsedTimeStr}"/>
+            <Button x:Name="StartBtn" Content="Start" ToolTip="Start the timer" Style="{StaticResource ControlButtons}" Background="Green" Grid.Row="1" Click="StartBtn_Click"/>
+            <Button x:Name="PauseBtn" Content="Pause" ToolTip="Pause the timer" Style="{StaticResource ControlButtons}" Background="#FF4F4FF7" Grid.Row="1" Click="PauseBtn_Click" Visibility="Hidden"/>
+            <Button x:Name="StopBtn" Content="Stop" ToolTip="Stop the timer" Style="{StaticResource ControlButtons}" Background="Red" Grid.Row="2" Click="StopBtn_Click" Opacity=".3" IsEnabled="False"/>
             
         </Grid>
          

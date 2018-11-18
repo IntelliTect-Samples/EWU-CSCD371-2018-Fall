@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClockManager.cs" />
     <Compile Include="RealDateTime.cs" />
     <Compile Include="IDateTime.cs" />
     <Compile Include="TimeEventArgs.cs" />
