@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:io="clr-namespace:System.IO;assembly=mscorlib"
+        mc:Ignorable="d"
+        Topmost="True"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+        Title="MainWindow" Height="450" Width="800"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.LayoutTransform>
+            <ScaleTransform ScaleX="1.2" ScaleY="1.2"></ScaleTransform>
+        </Grid.LayoutTransform>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TreeView Grid.ColumnSpan="2"
+                  ItemsSource="{Binding Path=FileInfos}">
+            <TreeView.Resources>
+                <local:GetChildrenConverter x:Key="ChildrenConverter" />
+
+                <DataTemplate DataType="{x:Type io:FileInfo}">
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+
+                <HierarchicalDataTemplate DataType="{x:Type io:DirectoryInfo}"
+                                          ItemsSource="{Binding Converter={StaticResource ChildrenConverter}}">
+                    <TextBlock Text="{Binding Name}" Foreground="Turquoise" />
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+
+        <TextBox Text="{Binding RootDirectory, UpdateSourceTrigger=PropertyChanged}" x:Name="TextBox" Grid.Column="0" Grid.Row="1" />
+
+        <Button Content="Load" Command="{Binding LoadCommand}" 
+                CommandParameter="{Binding RootDirectory}"
+                Grid.Column="1" Grid.Row="1" Height="100"/>
+    </Grid>
+</Window>
