@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Linq;
 
 namespace Assignment9
 {
@@ -15,9 +17,20 @@ I    * InventorLastNames: Returns the only the last name of each of the inventor
      */
     public class PatentDataAnalyzer
     {
-        public static IEnumerable<string> GetInventorNames(string speifiedCountry)
+        public static IEnumerable<string> GetInventorNames(string specifiedCountry)
         {
-            return null;
+            return from inventor in PatentData.Inventors
+                where inventor.Country == specifiedCountry
+                select inventor.Name;
         }
+
+        public static IEnumerable<string> GetInventorsLastNameSorted()
+        {
+            return from inventor in PatentData.Inventors
+                let lastName = inventor.Name.Split(' ').Last()
+                orderby lastName descending
+                select lastName;
+        }
+        
     }
 }
