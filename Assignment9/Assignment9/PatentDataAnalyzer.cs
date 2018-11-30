@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,12 +6,14 @@ namespace Assignment9
 {
     public static class PatentDataAnalyzer
     {
-        public static List<Inventor> InventorNames(string country)
+        public static List<string> InventorNames(string country)
         {
             IEnumerable<Inventor> inventors = PatentData.Inventors;
 
-            IEnumerable<Inventor> subList = inventors.Where(
-                inventor => inventor.Country.Equals(country));
+            IEnumerable<string> subList = inventors.Where(
+                inventor => inventor.Country.Equals(country))
+                    .Select(
+                        inventor => inventor.Name);
 
             return subList.ToList();
         }
@@ -40,27 +43,52 @@ namespace Assignment9
                     from inventor in PatentData.Inventors
                     select $"{inventor.State}-{inventor.Country}"
                 )
-                .Distinct().ToArray());
+                .Distinct());
 
             return result;
         }
 
-        public static IEnumerable<int> NthFibonacciNumbers()
+        public static IEnumerable<int> NthFibonacciNumbers(int n)
         {
-            yield return 1;
-            yield return 1;
+            if (n == 0)
+            {
+                throw new ArgumentException("n must be greater than or equal to 1");
+            }
+
+            if (n <= 2)
+            {
+                for (int i = n-1; i < 2; i = i+n)
+                {
+                    yield return 1;
+                }
+            }
 
             int lowNum = 1; // n - 2
             int highNum = 1; // n - 1
 
+            int res = 0;
+
+            bool firstIteration = true;
+
             while (true)
             {
-                int n = highNum + lowNum;
+                for(int i = 0; i < n; i++)
+                {
+                    if (firstIteration)
+                    {
+                        if (n != 2)
+                        {
+                            i = i + 2;
+                        }
+                        firstIteration = false;
+                    }
+                    res = highNum + lowNum;
                 
-                lowNum = highNum;
-                highNum = n;
+                    lowNum = highNum;
+                    highNum = res;
+                }
 
-                yield return n;
+                yield return res;
             }
         }
     }

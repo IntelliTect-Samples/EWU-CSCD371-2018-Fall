@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment9
 {
@@ -6,7 +8,10 @@ namespace Assignment9
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(PatentDataAnalyzer.LocationsWithInventors());
+            IEnumerable<int> fibSeq = PatentDataAnalyzer.NthFibonacciNumbers(2);
+
+            Console.WriteLine(fibSeq.ElementAt(0));
+            Console.WriteLine(fibSeq.ElementAt(1));
         }
     }
 }
