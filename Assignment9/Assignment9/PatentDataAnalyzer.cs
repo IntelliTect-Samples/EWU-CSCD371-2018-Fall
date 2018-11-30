@@ -44,5 +44,24 @@ namespace Assignment9
 
             return result;
         }
+
+        public static IEnumerable<int> NthFibonacciNumbers()
+        {
+            yield return 1;
+            yield return 1;
+
+            int lowNum = 1; // n - 2
+            int highNum = 1; // n - 1
+
+            while (true)
+            {
+                int n = highNum + lowNum;
+                
+                lowNum = highNum;
+                highNum = n;
+
+                yield return n;
+            }
+        }
     }
 }
