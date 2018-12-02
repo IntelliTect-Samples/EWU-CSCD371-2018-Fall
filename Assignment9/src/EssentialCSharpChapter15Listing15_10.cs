@@ -14,10 +14,7 @@ namespace EssentialCSharpChapter15Listing15_10
     {
         public static void Main()
         {
-            IEnumerable<Patent> patents = PatentData.Patents;
-            patents = patents.Where(
-                patent => patent.YearOfPublication.StartsWith("18"));
-            Print(patents);
+            Console.WriteLine(src.PatentDataAnalyzer.NthFibonacciNumbers(2));
         }
 
         private static void Print<T>(IEnumerable<T> items)

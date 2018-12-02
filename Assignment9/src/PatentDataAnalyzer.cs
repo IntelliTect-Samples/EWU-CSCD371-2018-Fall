@@ -76,10 +76,39 @@ namespace src
             //return new List<Inventor>();
         }
 
-        public static void NthFibonacciNumbers()
+        public static IEnumerable<int> NthFibonacciNumbers(int nth)//still wrapping head around yield statement
         {
+            if (nth < 0 || nth == 0)//cannot do a 0th or -#th fibonacci value
+            {
+                throw new ArgumentOutOfRangeException();
+            }
 
+            int termPrev = 1;//first term
+            int termTwoPrev = 1;//second term
+
+            //cannot do if/else if/else as that wouldn't allow the yield return to return all proper values.
+            if (1 % nth == 0)
+            {
+                yield return termPrev;
+            }
+            if (2 % nth == 0)
+            {
+                yield return termTwoPrev;
+            }
+
+            int termNumber = 3;//inilize 3rd term, and go forward
+            while (true)//since there is a yield return in the while loop, it will continue on "forever" but testing we can get the nth subset of it.
+            {
+                int currentTerm = termPrev + termTwoPrev;
+                if (termNumber % nth == 0)
+                {
+                    yield return currentTerm;
+                }
+                termTwoPrev = termPrev;
+                termPrev = currentTerm;
+                termNumber++;
+            }
+            
         }
-
     }
 }

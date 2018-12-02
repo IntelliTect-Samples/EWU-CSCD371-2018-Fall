@@ -7,7 +7,7 @@ using System.Text;
 //Comparer class created to confirm when testing that returned list of inventors is equivalent to the original.
 namespace src
 {
-    public class InventorComparator : Comparer<Inventor>
+    public class InventorComparer : Comparer<Inventor>
     {
         public override int Compare(Inventor firstInventor, Inventor secondInventor)
         {

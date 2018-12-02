@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using src;
 using System;
+using System.Linq;
 
 namespace TestPatentDataAnalyzer
 {
@@ -41,9 +42,11 @@ namespace TestPatentDataAnalyzer
         public void TestPass_Verify(string country)
         {
             List<string> expectedList = new List<string> { "George Stephenson" };
-            List<string> list = PatentDataAnalyzer.InventorNames(country);
+
+            List<string> actualList = PatentDataAnalyzer.InventorNames(country);
+           
             //Console.WriteLine(list.ToArray());
-            CollectionAssert.Equals(expectedList, list);
+            CollectionAssert.Equals(expectedList, actualList);
         }
 
         [DataRow("USA")]
@@ -51,9 +54,11 @@ namespace TestPatentDataAnalyzer
         public void TestPass_VerifyInventorNamesFindsCorrect_2(string country)
         {
             List<string> expectedList = new List<string> { "Benjamin Franklin", "Orville Wright", "Wilbur Wright", "Samuel Morse", "John Michaelis", "Mary Phelps Jacob" };
-            List<string> list = PatentDataAnalyzer.InventorNames(country);
+
+            List<string> actualList = PatentDataAnalyzer.InventorNames(country);
+            
             //Console.WriteLine(list.ToArray());
-            CollectionAssert.Equals(expectedList, list);
+            CollectionAssert.Equals(expectedList, actualList);
         }
 
         [DataRow("Atlantis")]
@@ -64,7 +69,9 @@ namespace TestPatentDataAnalyzer
         public void TestPass_VerifyInventorNamesFindsCorrect_CountryNotInFile(string country)
         {
             List<string> list = PatentDataAnalyzer.InventorNames(country);
+
             int sizeOfInvalidCountryName = list.Count;
+
             //Console.WriteLine(list.ToArray());
             Assert.AreEqual(list.Count, 0);
         }
@@ -84,20 +91,45 @@ namespace TestPatentDataAnalyzer
                                                             Id = 1
                                                         }};
             //Console.WriteLine(list.ToArray());
-            InventorComparator t = new InventorComparator();
-            CollectionAssert.AreEqual(expected, actual, t);
+            CollectionAssert.AreEqual(expected, actual, new InventorComparer());
         }
+
+        [TestMethod]
+        [DataRow(1, new int[] { 1, 1, 2, 3, 5, 8, 13})]
+        [DataRow(2, new int[] { 1, 3, 8, 21 })]
+        [DataRow(3, new int[] { 2, 8, 34, 144 })]
+        [DataRow(4, new int[] { 3, 21, 144, 987 })]
+        public void TestPass_VerifyCorrectFibonacciList(int nth, int[] expected)
+        {
+            List<int> subsetOfFib = new List<int> { 1, 2, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987 };
+
+            List<int> actual = PatentDataAnalyzer.NthFibonacciNumbers(nth).Take(expected.Length).ToList();
+
+            CollectionAssert.AreEqual(actual, expected);
+        }
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(-1)]
+        [DataRow(-32)]
+        [DataRow(-42)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestFail_VerifyExceptionThrownForNthFib(int nth)
+        {
+            List<int> actualWontReach = PatentDataAnalyzer.NthFibonacciNumbers(nth).Take(1).ToList();//test if atleast one element was calculated
+        }
+
     }
 
     [TestClass]
     public class TestInventorComparator
     {
-        private InventorComparator _TestComparator;
+        private InventorComparer _TestComparator;
 
         [TestInitialize]
         public void SetUp()
         {
-            _TestComparator = new InventorComparator();
+            _TestComparator = new InventorComparer();
         }
 
         [DataRow(123456789, 123456789)]
@@ -127,7 +159,7 @@ namespace TestPatentDataAnalyzer
             Assert.AreEqual(0, _TestComparator.CompareString(string1, string2));
         }
 
-        [DataRow("Tzu", "Josh")]
+        [DataRow("Drake", "Josh")]
         [DataRow("", "Earth")]
         [DataRow("aVeryBigWordThisIsYodaSaid", "smallWord")]
         [TestMethod]
@@ -135,5 +167,7 @@ namespace TestPatentDataAnalyzer
         {
             Assert.AreNotEqual(0, _TestComparator.CompareString(string1, string2));
         }
+
+
     }
 }
