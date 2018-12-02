@@ -14,7 +14,7 @@ namespace EssentialCSharpChapter15Listing15_10
     {
         public static void Main()
         {
-            Console.WriteLine(src.PatentDataAnalyzer.NthFibonacciNumbers(2));
+            //Console.WriteLine(src.PatentDataAnalyzer.NthFibonacciNumbers(2));
         }
 
         private static void Print<T>(IEnumerable<T> items)

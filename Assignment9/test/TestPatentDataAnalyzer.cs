@@ -1,11 +1,11 @@
 using EssentialCSharpChapter15Listing15_10;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using src;
+using Assingment9;
 using System;
 using System.Linq;
 
-namespace TestPatentDataAnalyzer
+namespace TestAssignment9
 {
     [TestClass]
     public class TestPatentDataAnalyzer
@@ -128,37 +128,45 @@ namespace TestPatentDataAnalyzer
 
     }
 
+    /// <summary>
+    /// I had to ponder if I should run two seperate tests for Randomize, and I decided to due to the directions
+    /// detailing that the Randomize method should not be different on each of the three runs and random.
+    /// If two are diffrent yet called from the same randomize method, I don't think it would be required retest
+    /// as tests should also "test for one objective". Doing so may have broken the rule of tests being independent,
+    /// but I could say that for some of the other tests in my program, it's difficult for me to understand where
+    /// the line sometimes is.
+    /// </summary>
     [TestClass]
     public class TestEnumerablesClass
     {
         [TestMethod]
-        public void TestPass_VerifyRandomWorksOnThreeConsecutiveAndActualRandom()
+        public void TestPass_VerifyDifferentRandomOnThreeProductions()
         {
-            List<Inventor> originalInventorList = PatentData.Inventors.ToList();
-            List<Inventor> randomInventorList1 = src.Enumerable.Randomize(PatentData.Inventors).ToList(),
-                           randomInventorList2 = src.Enumerable.Randomize(PatentData.Inventors).ToList(),
-                           randomInventorList3 = src.Enumerable.Randomize(PatentData.Inventors).ToList();
+            //List<Inventor> originalInventorList = PatentData.Inventors.ToList();
+            List<Inventor> randomInventorList1 = Assingment9.Enumerable.Randomize(PatentData.Inventors).ToList(),
+                           randomInventorList2 = Assingment9.Enumerable.Randomize(PatentData.Inventors).ToList(),
+                           randomInventorList3 = Assingment9.Enumerable.Randomize(PatentData.Inventors).ToList();
 
-            CollectionAssert.AreNotEqual(randomInventorList1, originalInventorList, new InventorComparer());
+            //CollectionAssert.AreNotEqual(randomInventorList1, originalInventorList, new InventorComparer());
             CollectionAssert.AreNotEqual(randomInventorList1, randomInventorList2, new InventorComparer());
 
-            CollectionAssert.AreNotEqual(randomInventorList1, originalInventorList, new InventorComparer());
-            CollectionAssert.AreNotEqual(randomInventorList2, randomInventorList3, new InventorComparer());
+            //CollectionAssert.AreNotEqual(randomInventorList1, originalInventorList, new InventorComparer());
+            CollectionAssert.AreNotEqual(randomInventorList1, randomInventorList2, new InventorComparer());
 
-            CollectionAssert.AreNotEqual(randomInventorList2, originalInventorList, new InventorComparer());
-            CollectionAssert.AreNotEqual(randomInventorList1, randomInventorList3, new InventorComparer());
+            //CollectionAssert.AreNotEqual(randomInventorList2, originalInventorList, new InventorComparer());
+            CollectionAssert.AreNotEqual(randomInventorList2, randomInventorList3, new InventorComparer());
         }
 
-        //removed due to bad practice of not having methods independent, had hard time switching if should be two seperate
+        // hard time switching if should be two seperate
         //or have two types of tests in one method that are needed to succeed to pass overall test objective.
 
-        /*[TestMethod]
+        [TestMethod]
         public void TestPass_VerifyRandomSort()
         {
             List<Inventor> originalInventorList = PatentData.Inventors.ToList();
-            List<Inventor> randomInventorList = src.Enumerable.Randomize(PatentData.Inventors).ToList();
+            List<Inventor> randomInventorList = Assingment9.Enumerable.Randomize(PatentData.Inventors).ToList();
             CollectionAssert.AreNotEqual(originalInventorList, randomInventorList, new InventorComparer());
-        }*/
+        }
     }
 
     /// <summary>

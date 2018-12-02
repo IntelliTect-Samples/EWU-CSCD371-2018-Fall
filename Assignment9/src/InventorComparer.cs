@@ -5,7 +5,7 @@ using System.Text;
 
 
 //Comparer class created to confirm when testing that returned list of inventors is equivalent to the original.
-namespace src
+namespace Assingment9
 {
     public class InventorComparer : Comparer<Inventor>
     {
