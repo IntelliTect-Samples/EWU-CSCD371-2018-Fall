@@ -45,7 +45,6 @@ namespace TestPatentDataAnalyzer
 
             List<string> actualList = PatentDataAnalyzer.InventorNames(country);
            
-            //Console.WriteLine(list.ToArray());
             CollectionAssert.AreEqual(expectedList, actualList);
         }
 
@@ -57,7 +56,6 @@ namespace TestPatentDataAnalyzer
 
             List<string> actualList = PatentDataAnalyzer.InventorNames(country);
             
-            //Console.WriteLine(list.ToArray());
             CollectionAssert.Equals(expectedList, actualList);
         }
 
@@ -80,7 +78,6 @@ namespace TestPatentDataAnalyzer
 
             int sizeOfInvalidCountryName = list.Count;
 
-            //Console.WriteLine(list.ToArray());
             Assert.AreEqual(list.Count, 0);
         }
 
@@ -98,7 +95,7 @@ namespace TestPatentDataAnalyzer
                                                             Country = "USA",
                                                             Id = 1
                                                         }};
-            //Console.WriteLine(list.ToArray());
+
             CollectionAssert.AreEqual(expected, actual, new InventorComparer());
         }
 
@@ -129,6 +126,39 @@ namespace TestPatentDataAnalyzer
             //not run into the error of Take(0) if empty but would if Take(0+n) as long as n > 0.
         }
 
+    }
+
+    [TestClass]
+    public class TestEnumerablesClass
+    {
+        [TestMethod]
+        public void TestPass_VerifyRandomWorksOnThreeConsecutiveAndActualRandom()
+        {
+            List<Inventor> originalInventorList = PatentData.Inventors.ToList();
+            List<Inventor> randomInventorList1 = src.Enumerable.Randomize(PatentData.Inventors).ToList(),
+                           randomInventorList2 = src.Enumerable.Randomize(PatentData.Inventors).ToList(),
+                           randomInventorList3 = src.Enumerable.Randomize(PatentData.Inventors).ToList();
+
+            CollectionAssert.AreNotEqual(randomInventorList1, originalInventorList, new InventorComparer());
+            CollectionAssert.AreNotEqual(randomInventorList1, randomInventorList2, new InventorComparer());
+
+            CollectionAssert.AreNotEqual(randomInventorList1, originalInventorList, new InventorComparer());
+            CollectionAssert.AreNotEqual(randomInventorList2, randomInventorList3, new InventorComparer());
+
+            CollectionAssert.AreNotEqual(randomInventorList2, originalInventorList, new InventorComparer());
+            CollectionAssert.AreNotEqual(randomInventorList1, randomInventorList3, new InventorComparer());
+        }
+
+        //removed due to bad practice of not having methods independent, had hard time switching if should be two seperate
+        //or have two types of tests in one method that are needed to succeed to pass overall test objective.
+
+        /*[TestMethod]
+        public void TestPass_VerifyRandomSort()
+        {
+            List<Inventor> originalInventorList = PatentData.Inventors.ToList();
+            List<Inventor> randomInventorList = src.Enumerable.Randomize(PatentData.Inventors).ToList();
+            CollectionAssert.AreNotEqual(originalInventorList, randomInventorList, new InventorComparer());
+        }*/
     }
 
     /// <summary>
