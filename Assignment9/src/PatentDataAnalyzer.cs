@@ -61,11 +61,6 @@ namespace Assingment9
                     select patients.Title).Count();
         }
 
-        public static void Randomize()
-        {
-
-        }
-
         public static List<Inventor> GetInventorsWithMulitplePatents(int numOfPatients)
         {
             List<Inventor> nHavingPatientInventors = new List<Inventor>(from inventor
