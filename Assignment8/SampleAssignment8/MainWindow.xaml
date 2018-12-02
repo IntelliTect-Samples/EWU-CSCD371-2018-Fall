@@ -1,0 +1,29 @@
+﻿<Window x:Class="SampleAssignment8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SampleAssignment8"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Center" x:Name="ClockText" />
+
+            <Button Content="Start" x:Name="StartStopButton" Grid.Column="1" Click="StartStopButton_OnClick" />
+        </Grid>
+
+        <ListBox x:Name="TimesList" Grid.Row="1" KeyDown="TimesList_OnKeyDown">
+
+        </ListBox>
+    </Grid>
+</Window>
