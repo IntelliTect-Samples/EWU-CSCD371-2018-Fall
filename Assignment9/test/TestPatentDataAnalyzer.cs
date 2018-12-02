@@ -39,14 +39,14 @@ namespace TestPatentDataAnalyzer
         //InventorNames
         [DataRow("UK")]
         [TestMethod]
-        public void TestPass_Verify(string country)
+        public void TestPass_VerifyInventorNamesFindsCorrect_1(string country)
         {
             List<string> expectedList = new List<string> { "George Stephenson" };
 
             List<string> actualList = PatentDataAnalyzer.InventorNames(country);
            
             //Console.WriteLine(list.ToArray());
-            CollectionAssert.Equals(expectedList, actualList);
+            CollectionAssert.AreEqual(expectedList, actualList);
         }
 
         [DataRow("USA")]
@@ -59,6 +59,14 @@ namespace TestPatentDataAnalyzer
             
             //Console.WriteLine(list.ToArray());
             CollectionAssert.Equals(expectedList, actualList);
+        }
+
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void TestFail_VerifyExceptionThrownFor_GetInventorsWithMultiplePariants()
+        {
+            PatentDataAnalyzer.InventorNames(null);
         }
 
         [DataRow("Atlantis")]
@@ -117,10 +125,20 @@ namespace TestPatentDataAnalyzer
         public void TestFail_VerifyExceptionThrownForNthFib(int nth)
         {
             List<int> actualWontReach = PatentDataAnalyzer.NthFibonacciNumbers(nth).Take(1).ToList();//test if atleast one element was calculated
+            //can't test on empty take, as when it returns the exception I think it returns a emtpy IEnumerable, so it would
+            //not run into the error of Take(0) if empty but would if Take(0+n) as long as n > 0.
         }
 
     }
 
+    /// <summary>
+    ///Tested helper methods that control the flow, if the helper methods are working properly,
+    ///the comparer should function properly as well.
+    ///TestPass_VerifyGetInventorsWithMultiplePariants() tests two lists for the equality given the comparer
+    ///I didn't think it was necessary writing the test again but did so. 
+    ///Seeing that the helper methods work properly and the comparer works properly as well,
+    ///I don't think it is needed to test each possible case of the comparer.    
+    /// </summary>
     [TestClass]
     public class TestInventorComparator
     {
@@ -130,6 +148,29 @@ namespace TestPatentDataAnalyzer
         public void SetUp()
         {
             _TestComparator = new InventorComparer();
+        }
+
+        [TestMethod]
+        public void TestPass_VerifyEqualityForComparer()
+        {
+            Inventor twinOne = new Inventor()
+                                            {
+                                                Name = "Benjamin Franklin",
+                                                City = "Philadelphia",
+                                                State = "PA",
+                                                Country = "USA",
+                                                Id = 1
+                                            };
+
+            Inventor twinTwo = new Inventor()
+                                            {
+                                                Name = "Benjamin Franklin",
+                                                City = "Philadelphia",
+                                                State = "PA",
+                                                Country = "USA",
+                                                Id = 1
+                                            };
+            Assert.AreEqual(0, _TestComparator.Compare(twinOne, twinTwo));
         }
 
         [DataRow(123456789, 123456789)]

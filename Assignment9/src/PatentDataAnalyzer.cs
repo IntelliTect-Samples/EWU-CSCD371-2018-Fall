@@ -20,7 +20,7 @@ namespace src
                                                                     where inventors.Country.Equals(countryName)
                                                                     //orderby inventors ascending
                                                                     select inventors.Name);
-                return new List<string>();
+                return listOfInventorNames;
                 //Or
                 /*
                  *                 List<string> listOfInventorNames = (from inventors
@@ -96,17 +96,17 @@ namespace src
                 yield return termTwoPrev;
             }
 
-            int termNumber = 3;//inilize 3rd term, and go forward
+            int currentNth = 3;//inilize 3rd term, and go forward
             while (true)//since there is a yield return in the while loop, it will continue on "forever" but testing we can get the nth subset of it.
             {
                 int currentTerm = termPrev + termTwoPrev;
-                if (termNumber % nth == 0)
+                if (currentNth % nth == 0)
                 {
                     yield return currentTerm;
                 }
                 termTwoPrev = termPrev;
                 termPrev = currentTerm;
-                termNumber++;
+                currentNth++;
             }
             
         }
