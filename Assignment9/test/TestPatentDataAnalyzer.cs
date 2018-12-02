@@ -92,9 +92,9 @@ namespace TestPatentDataAnalyzer
     [TestClass]
     public class TestInventorComparator
     {
-        private InventorComparator _TestComparator = new InventorComparator();
+        private InventorComparator _TestComparator;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             _TestComparator = new InventorComparator();
