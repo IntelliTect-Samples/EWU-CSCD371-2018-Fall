@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace TestAssignment9
 {
+
     [TestClass]
     public class TestPatentDataAnalyzer
     {
@@ -97,6 +98,43 @@ namespace TestAssignment9
                                                         }};
 
             CollectionAssert.AreEqual(expected, actual, new InventorComparer());
+        }
+
+        [TestMethod]
+        public void TestPass_ReverseOrderIdOfLastName()
+        {
+            string[] byIDRev = new List<string>(from inventors
+                                                   in PatentData.Inventors
+                                                orderby inventors.Id
+                                                select inventors.Name).ToArray();
+
+            string[] byRevIDLastName = PatentDataAnalyzer.InventorLastNames().ToArray();
+
+            for (int index = 0; index < byIDRev.Length; index++)
+            {
+                Assert.AreEqual(byIDRev[index].Split(" ").Last(), byRevIDLastName[byIDRev.Length - 1 - index]);
+            }
+        }
+
+        [TestMethod]
+        public void TestPass_VerifyDistinctLocationOfInventor()
+        {
+            List<string> actual = PatentDataAnalyzer.LocationsWithInventors().Split(",").ToList();
+            List<Inventor> InventorsList = PatentData.Inventors.ToList();
+            int count;
+            string address;
+
+            foreach (Inventor currentInventor in InventorsList)
+            {
+                address = (currentInventor.State + "-" + currentInventor.Country);
+                count = (from location
+                         in actual
+                         where location.Equals(address)
+                         select location
+                         ).Count();
+
+                Assert.AreEqual(1, count);
+            }
         }
 
         [TestMethod]
@@ -246,7 +284,6 @@ namespace TestAssignment9
         {
             Assert.AreNotEqual(0, _TestComparator.CompareString(string1, string2));
         }
-
 
     }
 }

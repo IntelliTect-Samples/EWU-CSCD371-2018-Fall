@@ -46,19 +46,21 @@ namespace Assingment9
         public static string LocationsWithInventors()
         {
             //string empty = "";
-            string uniqueLocationAll = string.Join(",", from inventors
+            string uniqueLocationAll = string.Join(",", (from inventors
                                                         in PatentData.Inventors
-                                                        select (inventors.Name + "-" + inventors.Country).Distinct());
+                                                        select (inventors.State + "-" + inventors.Country)).Distinct());
             return uniqueLocationAll;
         }
 
         public static int NumOfOccurance(long id)
         {
             //long.TryParse(id, out long result);
-            return (from patients
+            int numOfOccur = (from patients
             in PatentData.Patents
                     where patients.InventorIds.Contains(id)
                     select patients.Title).Count();
+
+            return numOfOccur;
         }
 
         public static List<Inventor> GetInventorsWithMulitplePatents(int numOfPatients)
