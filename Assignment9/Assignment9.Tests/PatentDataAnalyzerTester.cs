@@ -77,6 +77,37 @@ namespace Assignment9.Tests
             }
         }
 
+        [TestMethod]
+        public void GetInventorsWithMultiplePatents_ReturnListOfInventors_1Patents()
+        {
+            List<Inventor> expected = PatentData.Inventors.ToList();
+            expected.RemoveAt(0); // remove Ben Franklin
+            // expected -> list of all inventors but Ben Franklin
+
+            List<Inventor> result = PatentDataAnalyzer.GetInventorsWithMultiplePatents(1);
+
+            for (int i = 0; i < expected.Count; i++) // sequence equals, but allows us to see what in list is not equal
+            {
+                Assert.AreEqual(expected[i], result[i]);
+            }
+        }
+        
+        [TestMethod]
+        public void GetInventorsWithMultiplePatents_ReturnListOfInventors_3Patents()
+        {
+            List<Inventor> expected = new List<Inventor>
+            {
+                PatentData.Inventors.ElementAt(0)
+            };
+
+            List<Inventor> result = PatentDataAnalyzer.GetInventorsWithMultiplePatents(3);
+
+            for (int i = 0; i < expected.Count; i++) // sequence equals, but allows us to see what in list is not equal
+            {
+                Assert.AreEqual(expected[i], result[i]);
+            }
+        }
+
         [TestMethod] // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946,
         public void NthFibonacciNumbers_GetEveryFibonacciNumber_ValidateUpTo5thElement()
         {

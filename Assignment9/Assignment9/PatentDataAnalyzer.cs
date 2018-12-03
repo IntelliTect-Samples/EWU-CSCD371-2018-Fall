@@ -47,6 +47,19 @@ namespace Assignment9
 
             return result;
         }
+        
+        public static List<Inventor> GetInventorsWithMultiplePatents(int n)
+        {
+            IEnumerable<Inventor> inventors = PatentData.Inventors;
+            IEnumerable<Patent> patents = PatentData.Patents;
+
+            return inventors.Where(inventor =>
+            {
+                int count = patents.Count(
+                    patent => patent.InventorIds.Contains(inventor.Id));
+                return count == n;
+            }).ToList();
+        }
 
         public static IEnumerable<int> NthFibonacciNumbers(int n)
         {
