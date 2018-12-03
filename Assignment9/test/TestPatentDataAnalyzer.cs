@@ -57,7 +57,7 @@ namespace TestAssignment9
 
             List<string> actualList = PatentDataAnalyzer.InventorNames(country);
             
-            CollectionAssert.Equals(expectedList, actualList);
+            CollectionAssert.AreEqual(expectedList, actualList);
         }
 
 
