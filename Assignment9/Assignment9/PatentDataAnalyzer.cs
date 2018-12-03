@@ -54,11 +54,11 @@ namespace Assignment9
             IEnumerable<Patent> patents = PatentData.Patents;
 
             return inventors.Where(inventor =>
-            {
-                int count = patents.Count(
-                    patent => patent.InventorIds.Contains(inventor.Id));
-                return count == n;
-            }).ToList();
+                {
+                    int count = patents.Count(
+                        patent => patent.InventorIds.Contains(inventor.Id));
+                    return count == n;
+                }).ToList();
         }
 
         public static IEnumerable<int> NthFibonacciNumbers(int n)
