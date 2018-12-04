@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HW9", "HW9\HW9.csproj", "{1D9A8F1E-9DB1-4E7A-B0B4-6F25B84736D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatentData.Tests", "PatentData.Tests\PatentData.Tests.csproj", "{748D0EB7-7238-487A-A57D-B5E857740F02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D9A8F1E-9DB1-4E7A-B0B4-6F25B84736D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D9A8F1E-9DB1-4E7A-B0B4-6F25B84736D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D9A8F1E-9DB1-4E7A-B0B4-6F25B84736D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D9A8F1E-9DB1-4E7A-B0B4-6F25B84736D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{748D0EB7-7238-487A-A57D-B5E857740F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{748D0EB7-7238-487A-A57D-B5E857740F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{748D0EB7-7238-487A-A57D-B5E857740F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{748D0EB7-7238-487A-A57D-B5E857740F02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46A1117D-19D5-479F-934B-74F02E5F94C2}
+	EndGlobalSection
+EndGlobal
