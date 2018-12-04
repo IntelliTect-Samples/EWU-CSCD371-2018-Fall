@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -73,15 +72,37 @@ namespace Assignment9.Tests
 
             for (int i = 0; i < 3; i++)
             {
-                IEnumerable<string> randomizedNames = Enumerable.Randomize(PatentDataAnalyzer.InventorLastNames());
+                List<string> randomizedNames = Enumerable.Randomize(PatentDataAnalyzer.InventorLastNames()).ToList();
                 Assert.IsFalse(randomizedNames.SequenceEqual(expectedNames));
-                Assert.AreEqual(expectedNames.Count,randomizedNames.Count());
+                Assert.AreEqual(expectedNames.Count,randomizedNames.Count);
             }
         }
         
         
         /*EXTRA CREDIT*/
-        
-        
+
+        [DataTestMethod]
+        [DataRow(1, new long[]{2,3,4,5,6,7})]
+        [DataRow(2, null)]
+        [DataRow(3, new long[]{1})]
+        [DataRow(4, null)]
+        public void Get_Inventors_With_N_Patents(int n, long[] expectedInventorIds)
+        {
+            List<Inventor> inventorsWithNPatents = PatentDataAnalyzer.GetInventorsWithMulitplePatents(n);
+            foreach (Inventor inventor in inventorsWithNPatents)
+                Assert.IsTrue(expectedInventorIds.Contains(inventor.Id), $"failed id: {inventor.Id}");
+            
+           Assert.AreEqual(expectedInventorIds?.Length ?? 0, inventorsWithNPatents.Count);
+        }
+
+        [DataTestMethod]
+        [DataRow(1, new long[]{1,1,2,3,5,8})]
+        [DataRow(2,new long[]{1,3,8,21,55,144,377,987})]
+        [DataRow(5,new long[]{5,55,610,6765,75025,832040,9227465})]
+        public void Get_Every_N_Fibonacci_Success(int n, long[] expected)
+        {
+            var fibonacciNums = PatentDataAnalyzer.NthFibonacciNumbers(n).Take(expected.Length).ToList();
+            Assert.IsTrue(expected.SequenceEqual(fibonacciNums));
+        }
     }
 }
