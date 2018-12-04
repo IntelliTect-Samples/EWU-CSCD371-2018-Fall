@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -106,6 +107,15 @@ namespace Assignment9.Tests
             {
                 Assert.AreEqual(expected[i], result[i]);
             }
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NthFibonacciNumbers_InvalidInput_ThrowArgumentException()
+        {
+            IEnumerable<int> fibSequence = PatentDataAnalyzer.NthFibonacciNumbers(0);
+
+            fibSequence.ElementAt(0); // call iterator
         }
 
         [TestMethod] // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946,

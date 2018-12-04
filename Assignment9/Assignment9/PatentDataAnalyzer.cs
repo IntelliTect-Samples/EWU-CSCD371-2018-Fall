@@ -63,7 +63,7 @@ namespace Assignment9
 
         public static IEnumerable<int> NthFibonacciNumbers(int n)
         {
-            if (n == 0)
+            if (n <= 0)
             {
                 throw new ArgumentException("n must be greater than or equal to 1");
             }
