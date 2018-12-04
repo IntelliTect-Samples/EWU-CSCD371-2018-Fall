@@ -4,7 +4,7 @@ using System.Linq;
 namespace Assignment9
 {
     
-    public class PatentDataAnalyzer
+    public static class PatentDataAnalyzer
     {
         public static List<string> InventorNames(string specifiedCountry)
         {
@@ -30,7 +30,7 @@ namespace Assignment9
         
         /*EXTRA CREDIT*/
         
-        public static List<Inventor> GetInventorsWithMulitplePatents(int n)
+        public static List<Inventor> GetInventorsWithMultiplePatents(int n)
         {
             return (from inventor in PatentData.Inventors
                 let count = PatentData.Patents.Count(patent => patent.InventorIds.Contains(inventor.Id))

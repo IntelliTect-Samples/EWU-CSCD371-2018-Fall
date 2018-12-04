@@ -88,7 +88,7 @@ namespace Assignment9.Tests
         [DataRow(4, null)]
         public void Get_Inventors_With_N_Patents(int n, long[] expectedInventorIds)
         {
-            List<Inventor> inventorsWithNPatents = PatentDataAnalyzer.GetInventorsWithMulitplePatents(n);
+            List<Inventor> inventorsWithNPatents = PatentDataAnalyzer.GetInventorsWithMultiplePatents(n);
             foreach (Inventor inventor in inventorsWithNPatents)
                 Assert.IsTrue(expectedInventorIds.Contains(inventor.Id), $"failed id: {inventor.Id}");
             
